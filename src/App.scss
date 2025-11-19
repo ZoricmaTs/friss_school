@@ -1,0 +1,50 @@
+
+#root {
+  --text-color: #4A3F46;
+  --bg-color: #FAF8F6;
+  --section-color: #CDB4DB;
+  --section-color-2: #FFE5D9;
+  --hover-color: #FFCAD4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: auto;
+  background-color: var(--bg-color);
+}
+
+html {
+  font-family: "Montserrat", "Roboto", sans-serif;
+  font-size: 16px; /* базовый размер */
+}
+
+body {
+  font-size: 1rem; /* 16px */
+}
+
+.brush {
+  width: 100%;
+  transform-origin: right top;
+  transform: translateY( 100%) rotate(90deg);
+  margin-top: 100%;
+  &__container {
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    transform:  translateY(-100%);
+    filter: hue-rotate(300deg) opacity(50%);
+  }
+}
+
+@media (max-width: 700px) {
+  .brush {
+    &__container {
+    }
+  }
+}

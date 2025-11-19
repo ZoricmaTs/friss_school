@@ -1,0 +1,128 @@
+
+.video-section {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 8rem 2.5rem 0 2.5rem;
+
+  &__video-container {
+    position: relative;
+    flex-shrink: 0;
+    width: 33%;
+  }
+
+  &__video {
+    width: 100%;
+
+
+  }
+  &__button {
+    &_play {
+      position: absolute;
+      color: var(--text-color);
+      background-color: transparent;
+      border: none;
+      top: calc(50% - 50px);
+      left: calc(50% - 50px);
+      transition: transform 0.2s ease;
+
+      &:hover {
+        color: var(--hover-color);
+        transform: scale(1.04);
+      }
+
+      &:active {
+        color: var(--hover-color);
+        transform: scale(0.97);
+      }
+    }
+
+    &_mute {
+      position: absolute;
+      color: var(--text-color);
+      background-color: transparent;
+      border: none;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        color: var(--hover-color);
+        transform: scale(1.04);
+      }
+
+      &:active {
+        color: var(--hover-color);
+        transform: scale(0.97);
+      }
+    }
+
+    &_pause {
+      position: absolute;
+      color: var(--text-color);
+      background-color: transparent;
+      border: none;
+      bottom: 2.5rem;
+      right: 5.5rem;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        color: var(--hover-color);
+        transform: scale(1.04);
+      }
+
+      &:active {
+        color: var(--hover-color);
+        transform: scale(0.97);
+      }
+    }
+  }
+
+  &__info-container {
+    padding: 2.5rem;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 1500px) {
+  .video-section {
+    max-width: calc(100% - 2rem);
+
+    &__video-container {
+      width: 50%;
+    }
+
+    &__info-container {
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .video-section {
+    flex-direction: column;
+    max-width: calc(100% - 2rem);
+    margin: 0 1rem;
+    gap: 1rem;
+
+    &__video-container {
+      width: 100%;
+    }
+
+    &__info-container {
+      padding: 0 2.5rem;
+    }
+  }
+}
