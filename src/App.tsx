@@ -1,5 +1,7 @@
 import {Navbar} from './widgets/navbar';
 import {VideoSection} from './widgets/video';
+import {Separator} from './widgets/separator';
+import {Courses} from './widgets/courses';
 
 function App() {
   return <div style={{position:'relative', backgroundColor:  'var(--bg-color)', zIndex: 2}}>
@@ -8,6 +10,8 @@ function App() {
     <div className={'brush__container'} >
       <img className={'brush'} src={'/images/4.svg'}/>
     </div>
+    <Separator/>
+    <Courses/>
 
 
     {/*<InfoSection/>*/}

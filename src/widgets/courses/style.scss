@@ -1,0 +1,132 @@
+//.course {
+//  width: 100%;
+//  margin: 0 auto;
+//  display: grid;
+//  grid-template-rows: repeat(3, 812px);
+//  gap: 2.5rem;
+//  padding-bottom: calc(12% + var(--spacing-gutter));
+//
+//  opacity: 1;
+//  transform: translateY(0);
+//  transition: transform 1s var(--easing-base), opacity 0.8s var(--easing-base);
+//}
+.courses-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  background-color: var(--section-color-pink);
+}
+
+@media (max-width: 1500px) {
+  .courses-section {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.course {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  background-color: var(--bg-color);
+
+  &__image-container {
+    aspect-ratio: 1/2;
+    position: relative;
+    flex-shrink: 0;
+    height: 429px;
+    width: auto;
+  }
+
+  &__image {
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  &__title {
+    padding: 0.5rem 0;
+  }
+
+  &__prev {
+    padding: 1rem 0;
+  }
+
+  &__price-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__duration {
+    color: var(--text-additional-color);
+  }
+
+  &__price {
+
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 0.15rem solid transparent;
+
+
+    &:hover {
+      border-bottom: 0.15rem solid var(--hover-color);
+      transform: scale(1.04);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &_icon {
+      display: inline-flex;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__button:hover .course__button-icon {
+    transform: rotate(300deg);
+  }
+}
+
+@media (max-width: 1500px) {
+  .course {
+    &__image-container {
+      aspect-ratio: 9/12;
+      position: relative;
+      flex-shrink: 0;
+      height: 429px;
+      width: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .course {
+    flex-direction: column;
+
+    &__image-container {
+      aspect-ratio: 9/12;
+      position: relative;
+      flex-shrink: 0;
+      height: 429px;
+      width: auto;
+    }
+  }
+}

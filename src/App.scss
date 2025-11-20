@@ -1,10 +1,25 @@
 
 #root {
   --text-color: #4A3F46;
+  --text-additional-color: #826D7A;
+
   --bg-color: #FAF8F6;
   --section-color: #CDB4DB;
-  --section-color-2: #FFE5D9;
+  --section-color-pink: #F2E6E8;
   --hover-color: #FFCAD4;
+  --spacing-gutter: 1.5rem;
+}
+
+@media (max-width: 820px) {
+  :root {
+    --spacing-gutter: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-gutter: 0.5rem;
+  }
 }
 
 * {
@@ -47,4 +62,22 @@ body {
     &__container {
     }
   }
+}
+
+
+.scroll-animate {
+  transition: transform 0.5s;
+  transform: translateY(0px);
+}
+
+.hide-top {
+  transform: translateY(-70px);
+}
+
+.hide-bottom {
+  transform: translateY(70px);
+}
+
+.stop-scroll-animate {
+  transform: translateY(0px);
 }
