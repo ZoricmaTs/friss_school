@@ -84,9 +84,7 @@ export function Accordion({item}: {item: AccordionType} ) {
         className="accordion__content"
         style={{maxHeight: height + 'px'}}
       >
-        <div ref={innerRef} className="accordion__inner">
-          {item.answer}
-        </div>
+        <div ref={innerRef} className="accordion__inner">{item.answer}</div>
       </div>
     </div>
   );

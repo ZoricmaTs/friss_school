@@ -34,7 +34,14 @@
 
 .accordion:hover .accordion__header {
   background-color: var(--hover-color);
+  color: var(--bg-color);
 }
+
+.accordion:hover .accordion__inner {
+  color: var(--text-color);
+}
+
 .accordion:hover .accordion__content {
   border: 3px solid var(--hover-color);
+  color: var(--bg-color);
 }

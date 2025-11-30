@@ -13,12 +13,12 @@
 
   &:hover {
     transform: scale(1.04);
-    color: var(--hover-color-dark);
+    color: var(--hover-color);
   }
 
   &:active {
     animation-play-state: paused;
-    color: var(--hover-color-dark);
+    color: var(--hover-color);
     transform: scale(0.97);
   }
 
@@ -33,7 +33,7 @@
     &:hover {
       display: block;
       transform: translateY(-300);
-      color: var(--hover-color-dark);
+      color: var(--hover-color);
     }
   }
 }

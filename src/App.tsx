@@ -5,6 +5,7 @@ import {Courses} from './widgets/courses';
 import Accordions from './widgets/accordion';
 import {Contacts} from './widgets/contacts';
 import {WhatsAppWidget} from './widgets/whatsApp';
+import {Carousel, imagesCarousel} from './widgets/carousel';
 
 function App() {
   return <div style={{position:'relative', backgroundColor:  'var(--bg-color)', zIndex: 2}}>
@@ -17,6 +18,8 @@ function App() {
       <p style={{color: 'var(--text-additional-color)', fontFamily: 'serif', letterSpacing: '0.2rem', whiteSpace: 'nowrap'}}>{'в FRISS SCHOOL'}</p>
     </Separator>
     <Courses/>
+    <Separator title={'Галерея'}/>
+    <Carousel items={imagesCarousel}/>
     <Separator title={'Вопросы и ответы'}/>
     <Accordions/>
     <Separator title={'Контакты'}/>

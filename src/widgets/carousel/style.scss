@@ -1,0 +1,47 @@
+.carousel {
+  height: 65vh;
+  position: relative;
+  margin: 2rem 0 4rem;
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    border-radius: 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 0.15rem solid var(--text-color);
+    padding: 0.15rem;
+    background-color: var(--text-color);
+
+    svg {
+      fill: var(--bg-color);
+    }
+  }
+
+  &__arrow:hover {
+    border: 0.15rem solid var(--hover-color);
+    background-color: var(--hover-color);
+  }
+
+  &__wrapper {
+    position: absolute;
+    height: 65vh;
+    display: flex;
+    transition: left 0.3s;
+  }
+
+  &__item {
+    height: 65vh;
+    width: 25vh;
+    display: flex;
+    transform: scale(0.85);
+    transition: filter 0.3s, transform 0.3s;
+    filter: blur(2px);
+
+    &._active {
+      width: 50vh;
+      transform: scale(1);
+      filter: blur(0px);
+    }
+  }
+}
