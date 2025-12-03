@@ -95,10 +95,6 @@
       transition: transform 0.3s ease;
     }
   }
-
-  &__button:hover .course__button-icon {
-    transform: rotate(300deg);
-  }
 }
 
 @media (max-width: 1500px) {

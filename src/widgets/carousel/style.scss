@@ -137,9 +137,7 @@
     border-bottom: 0.15rem solid var(--bg-color);
   }
 
-  &__button:hover .carousel-review__button-icon {
-    transform: rotate(300deg);
-  }
+
 
   &__item h4 {
     padding: 0.5rem 0;
@@ -152,7 +150,9 @@
     overflow: hidden;
   }
 }
-
+.carousel-review__button:hover .carousel-review__button_icon {
+  transform: translateX(4px) rotate(-20deg);
+}
 .review-modal {
 
   &__title {

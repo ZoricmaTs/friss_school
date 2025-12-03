@@ -14,12 +14,11 @@
     position: relative;
     flex-shrink: 0;
     width: 33%;
+    background-color: var(--section-color);
   }
 
   &__video {
     width: 100%;
-
-
   }
   &__button {
     &_play {
