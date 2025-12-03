@@ -21,12 +21,12 @@ function App() {
     <Courses/>
     <Separator title={'Галерея'}/>
     <Carousel items={imagesCarousel}/>
-    <Separator title={'Отзывы'}/>
+    <Separator title={'Отзывы'} id={'reviews-view'}/>
     <CarouselReviews items={reviewsCarousel}/>
-    <Separator title={'Вопросы и ответы'}/>
+    <Separator title={'Вопросы и ответы'} id={'accordions-view'}/>
     <Accordions/>
-    <Separator title={'Контакты'}/>
-    <Contacts id={'contacts-view'}/>
+    <Separator title={'Контакты'} id={'contacts-view'}/>
+    <Contacts/>
     <WhatsAppWidget/>
     {/*<InfoSection/>*/}
   </div>

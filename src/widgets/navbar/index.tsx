@@ -9,7 +9,7 @@ export interface NavbarItem {
 
 const scrollToId = (id: string) => {
   const el = document.getElementById(id);
-  el?.scrollIntoView({ behavior: "smooth" });
+  document.body.parentElement!.scrollTo({top: el!.offsetTop - 106, behavior: 'smooth'});
 };
 
 const navbarItems: NavbarItem[] = [
@@ -36,15 +36,15 @@ const navbarItems: NavbarItem[] = [
   {
     id: 4,
     title: 'Отзывы',
-    action: () => console.log('sd'),
+    action: () => scrollToId('reviews-view'),
   },
-  // {
-  //   id: 5,
-  //   title: 'Часто задаваемые вопросы',
-  //   action: () => console.log('sd')
-  // },
   {
-    id: 'contacts-view',
+    id: 5,
+    title: 'Ответы и вопросы',
+    action: () => scrollToId('accordions-view'),
+  },
+  {
+    id: 6,
     title: 'Контакты',
     action: () => scrollToId('contacts-view'),
   },
@@ -83,7 +83,10 @@ export function Navbar() {
     <ul className={`navbar__links ${isOpen ? 'active' : ''}`}>
       {navbarItems.map((item: NavbarItem) => {
         return <li key={`navbar-${item.id}`}>
-          <button onClick={item.action}>
+          <button onClick={() => {
+            setIsOpen(false);
+            item.action();
+          }}>
             <p>{item.title}</p>
           </button>
         </li>

@@ -27,10 +27,10 @@ const socialMedia: SocialMediaType[] = [
   },
 ]
 
-export function Contacts({id}: {id: string}) {
+export function Contacts() {
   const rootRef = useScrollHider<HTMLDivElement>();
 
-  return <section className={'contacts'} ref={rootRef} id={id}>
+  return <section className={'contacts'} ref={rootRef}>
     <span className={'contacts__copyright'}>{'©FRISS SCHOOL 2025'}</span>
     <YMap/>
     <div className={'contacts__info'}>
