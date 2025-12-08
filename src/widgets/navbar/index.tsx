@@ -1,10 +1,11 @@
 import './style.scss';
 import {useEffect, useState} from 'react';
+import {useNavigate, type UseNavigateResult} from '@tanstack/react-router';
 
 export interface NavbarItem {
   id: number | string,
   title: string,
-  action: () => void,
+  action: (navigate: UseNavigateResult<string>) => void,
 }
 
 const scrollToId = (id: string) => {
@@ -16,7 +17,7 @@ const navbarItems: NavbarItem[] = [
   {
     id: 0,
     title: 'Курсы',
-    action: () => console.log('sd'),
+    action: (navigate) => navigate({to: '/courses'}),
   },
   // {
   //   id: 1,
@@ -61,7 +62,7 @@ export function Navbar() {
     };
   }, [isOpen]);
 
-
+  const navigate = useNavigate();
 
   return <nav className={'navbar'}>
     <nav className={'navbar__container'}>
@@ -85,7 +86,7 @@ export function Navbar() {
         return <li key={`navbar-${item.id}`}>
           <button onClick={() => {
             setIsOpen(false);
-            item.action();
+            item.action(navigate);
           }}>
             <p>{item.title}</p>
           </button>

@@ -118,9 +118,9 @@
     border-bottom: 0.15rem solid transparent;
     color: var(--text-color);
     cursor: pointer;
+    border-bottom: 0.15rem solid var(--hover-color);
 
     &:hover {
-      border-bottom: 0.15rem solid var(--hover-color);
       transform: scale(1.04);
     }
 
