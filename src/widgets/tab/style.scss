@@ -1,0 +1,25 @@
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 2.5rem 2.5rem 2.5rem;
+
+  &__btn-wrapper {
+
+  }
+
+  &__btn {
+    padding: 0.5rem;
+    border: 0;
+    background-color: var(--section-color);
+  }
+
+  &__btn._active {
+    background-color: var(--hover-color);
+  }
+}

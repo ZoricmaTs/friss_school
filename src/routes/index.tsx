@@ -6,7 +6,6 @@ import {Carousel, imagesCarousel} from '../widgets/carousel';
 import {CarouselReviews, reviewsCarousel} from '../widgets/carousel/reviews.tsx';
 import Accordions from '../widgets/accordion';
 import {Contacts} from '../widgets/contacts';
-import {WhatsAppWidget} from '../widgets/whatsApp';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -35,6 +34,5 @@ function Index() {
     <Accordions/>
     <Separator title={'Контакты'} id={'contacts-view'}/>
     <Contacts/>
-    <WhatsAppWidget/>
   </>
 }

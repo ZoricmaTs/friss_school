@@ -14,7 +14,8 @@ export interface CourseType {
   prev: string,
 }
 
-const courses: CourseType[] = [
+// eslint-disable-next-line react-refresh/only-export-components
+export const courses: CourseType[] = [
   {
     id: 0,
     title: 'Курс «Нулевой практический»',
