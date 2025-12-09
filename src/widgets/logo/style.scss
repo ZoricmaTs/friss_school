@@ -1,0 +1,26 @@
+.logo {
+  position: relative;
+  cursor: pointer;
+  color: var(--text-color);
+
+  &__image {
+    position: absolute;
+    width: 160%;
+    transform: translateY(-30%);
+    left: -4.7rem;
+  }
+
+  &__title {
+      position: relative;
+      font-family: serif;
+      letter-spacing: 0.15rem;
+      word-spacing: 0.75rem;
+      white-space: nowrap;
+    }
+
+  &__description {
+    position: relative;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.5rem;
+  }
+}

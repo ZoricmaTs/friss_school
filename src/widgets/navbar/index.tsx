@@ -1,6 +1,7 @@
 import './style.scss';
 import {useEffect, useState} from 'react';
 import {useNavigate, type UseNavigateResult} from '@tanstack/react-router';
+import {Logo} from '../logo';
 
 export interface NavbarItem {
   id: number | string,
@@ -24,11 +25,6 @@ const navbarItems: NavbarItem[] = [
   //   title: 'Услуги',
   //   action: () => console.log('sd'),
   // },
-  {
-    id: 2,
-    title: 'Расписание занятий',
-    action: () => console.log('sd'),
-  },
   {
     id: 3,
     title: 'Видео-курсы',
@@ -66,12 +62,7 @@ export function Navbar() {
 
   return <nav className={'navbar'}>
     <nav className={'navbar__container'}>
-      <div style={{position: 'relative', cursor: 'pointer'}} onClick={() => navigate({to: '/'})}>
-        <img className={'navbar__image'} src={'/friss_school/images/1.svg'}/>
-        <h2 className={'navbar__logo_title'}>{'FRISS SCHOOL'}</h2>
-        <small className={'navbar__logo_description'}>{'школа кройки и шитья'}</small>
-      </div>
-
+      <Logo imgVisible={true}/>
       <button
         className={`navbar__hamburger ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}

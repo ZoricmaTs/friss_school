@@ -9,7 +9,7 @@ export interface SocialMediaType {
   href: string,
   node: ReactNode,
 }
-const socialMedia: SocialMediaType[] = [
+export const socialMedia: SocialMediaType[] = [
   {
     id: 0,
     href: 'https://www.instagram.com/purisova_school/',

@@ -6,6 +6,7 @@ import {Carousel, imagesCarousel} from '../widgets/carousel';
 import {CarouselReviews, reviewsCarousel} from '../widgets/carousel/reviews.tsx';
 import Accordions from '../widgets/accordion';
 import {Contacts} from '../widgets/contacts';
+import {Footer} from '../widgets/footer';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -16,6 +17,9 @@ function Index() {
     <VideoSection/>
     <div className={'brush__container'}>
       <img className={'brush'} src={'/friss_school/images/4.svg'}/>
+    </div>
+    <div className={'brush-course__container'} style={{top: 860}}>
+      <img className={'brush-course'} src={'/friss_school/images/4.svg'}/>
     </div>
     <Separator title={'Оффлайн обучение'}>
       <p style={{
@@ -34,5 +38,6 @@ function Index() {
     <Accordions/>
     <Separator title={'Контакты'} id={'contacts-view'}/>
     <Contacts/>
+    <Footer/>
   </>
 }

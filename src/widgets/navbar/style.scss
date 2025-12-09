@@ -24,28 +24,6 @@
     padding: 1rem;
   }
 
-  &__image {
-    position: absolute;
-    width: 160%;
-    transform: translateY(-30%);
-    left: -4.7rem;
-  }
-
-  &__logo {
-    &_title {
-      position: relative;
-      font-family: serif;
-      letter-spacing: 0.15rem;
-      word-spacing: 0.75rem;
-      white-space: nowrap;
-    }
-    &_description {
-      position: relative;
-      letter-spacing: 0.2rem;
-      word-spacing: 0.5rem;
-    }
-  }
-
   &__hamburger {
     display: none;
     flex-direction: column;

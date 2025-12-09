@@ -32,7 +32,7 @@ export function YMapLeaflet() {
       {/* Метка */}
       <Marker position={coordinates} icon={customIcon}>
         <Popup>
-          Твоя локация 🎯
+          ул.Байтик-Батыра, д. 34/5, офис 6/1
         </Popup>
       </Marker>
     </MapContainer>

@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import {Separator} from '../widgets/separator';
 import {TabsWidget} from '../widgets/tab';
 import {courses} from '../widgets/courses';
+import {Footer} from '../widgets/footer';
 
 export const Route = createFileRoute('/courses/$index')({
   component: RouteComponent,
@@ -14,9 +15,9 @@ function RouteComponent() {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
         <div className={'tab-course__img-wrapper'}>
-          <div  style={{backgroundImage: `url(${item.img})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
-          {/*<img className={'tab-course__img'} src={item.img} alt={`${item.title} в Friss school`} />*/}
+          <div style={{backgroundImage: `url(${item.img})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
         </div>
+
         <div className={'tab-course__info-wrapper'}>
           <p>{item.description}</p>
           <div className={'tab-course__info'}>
@@ -30,13 +31,13 @@ function RouteComponent() {
             </div>
           </div>
         </div>
-      </div>,
+      </div>
     }
   });
 
   return <>
-    <div className={'brush__container'}>
-      <img className={'brush'} src={'/friss_school/images/4.svg'}/>
+    <div className={'brush-course__container'} >
+      <img className={'brush-course'} src={'/friss_school/images/4.svg'}/>
     </div>
     <Separator title={'Оффлайн обучение'} style={{marginTop: 0}}>
       <p style={{
@@ -50,5 +51,6 @@ function RouteComponent() {
       tabs={items}
       initialIndex={parseInt(route.index)}
     />
+    <Footer/>
   </>;
 }

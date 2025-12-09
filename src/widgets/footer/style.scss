@@ -1,0 +1,21 @@
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #E1CDD0;;
+  padding: 2.5rem 9rem;
+
+  &__copyright {
+    color: var(--text-additional-color);
+    justify-self: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

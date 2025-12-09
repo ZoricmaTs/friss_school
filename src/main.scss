@@ -66,6 +66,20 @@ body {
   }
 }
 
+.brush-course {
+  width: 100%;
+  transform-origin: right top;
+  transform: translateY(100%) rotate(0deg);
+  margin-top: 100%;
+  &__container {
+    z-index: 0;
+    position: absolute;
+    left: 300px;
+    top: 860px;
+    transform:  translateY(-100%);
+    filter: hue-rotate(353deg) opacity(50%);
+  }
+}
 
 .scroll-animate {
   transition: transform 0.5s;

@@ -1,6 +1,7 @@
 import './style.scss';
 import {type ReactNode, useLayoutEffect, useRef, useState} from 'react';
 import {CaretLeftIcon, CaretRightIcon} from '@phosphor-icons/react';
+import {useScrollHider} from '../../hooks/scroll-observer.ts';
 
 type Tab = {
   label: string;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export function TabsWidget({ tabs, initialIndex }: Props) {
+  const rootRef = useScrollHider<HTMLDivElement>();
   const tabsWrapper = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(initialIndex);
 
@@ -23,7 +25,7 @@ export function TabsWidget({ tabs, initialIndex }: Props) {
   }, [initialIndex]);
 
   return (
-    <div className={'tab'}>
+    <div className={'tab'} ref={rootRef}>
       <button className={'tab__btn-arrow _right'}>
         <CaretRightIcon size={40} onClick={() => {
           if (tabsWrapper.current) {
