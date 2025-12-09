@@ -12,7 +12,7 @@ import './main.scss';
 import {routeTree} from './routeTree.gen'
 
 // Create a new router instance
-const router = createRouter({routeTree, basepath: '/purisova_school/'})
+const router = createRouter({routeTree, basepath: '/friss_school/'})
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
