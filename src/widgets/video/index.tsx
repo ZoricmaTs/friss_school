@@ -44,7 +44,7 @@ export function VideoSection() {
   return <section className={'video-section'} ref={rootRef}>
     <div className={'video-section__video-container'}>
       <video className={'video-section__video'} loop muted={muted} ref={videoRef}>
-        <source src="videos/sew.mp4" type="video/mp4"/>
+        <source src="/friss_school/videos/sew.mp4" type="video/mp4"/>
         Your browser does not support the video tag.
       </video>
       {isPaused && <button className={'video-section__button_play'} onClick={onClickPlay}>

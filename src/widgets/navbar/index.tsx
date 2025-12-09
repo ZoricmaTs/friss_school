@@ -17,7 +17,7 @@ const navbarItems: NavbarItem[] = [
   {
     id: 0,
     title: 'Курсы',
-    action: (navigate) => navigate({to: '/courses'}),
+    action: (navigate) => navigate({to: '/courses/$index', params: {index: '0'}}),
   },
   // {
   //   id: 1,
@@ -37,17 +37,17 @@ const navbarItems: NavbarItem[] = [
   {
     id: 4,
     title: 'Отзывы',
-    action: () => scrollToId('reviews-view'),
+    action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('reviews-view')}),
   },
   {
     id: 5,
-    title: 'Ответы и вопросы',
-    action: () => scrollToId('accordions-view'),
+    title: 'Вопросы и ответы',
+    action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('accordions-view')}),
   },
   {
     id: 6,
     title: 'Контакты',
-    action: () => scrollToId('contacts-view'),
+    action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('contacts-view')}),
   },
 ];
 
@@ -66,8 +66,8 @@ export function Navbar() {
 
   return <nav className={'navbar'}>
     <nav className={'navbar__container'}>
-      <div style={{position: 'relative'}}>
-        <img className={'navbar__image'} src={'images/1.svg'}/>
+      <div style={{position: 'relative', cursor: 'pointer'}} onClick={() => navigate({to: '/'})}>
+        <img className={'navbar__image'} src={'/friss_school/images/1.svg'}/>
         <h2 className={'navbar__logo_title'}>{'FRISS SCHOOL'}</h2>
         <small className={'navbar__logo_description'}>{'школа кройки и шитья'}</small>
       </div>

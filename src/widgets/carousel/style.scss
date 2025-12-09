@@ -14,15 +14,27 @@
     padding: 0.15rem;
     background-color: var(--text-color);
     cursor: pointer;
+    transition: transform 0.3s ease;
 
     svg {
       fill: var(--bg-color);
+
+      &:hover {
+        fill: var(--hover-color);
+      }
     }
   }
 
   &__arrow:hover {
-    border: 0.15rem solid var(--hover-color);
-    background-color: var(--hover-color);
+    border: 0.15rem solid var(--bg-color);
+    background-color: var(--bg-color);
+    transform: scale(1.04);
+  }
+
+  &__arrow:active {
+    border: 0.15rem solid var(--bg-color);
+    background-color: var(--bg-color);
+    transform: scale(0.97);
   }
 
   &__wrapper {
@@ -71,10 +83,27 @@
     padding: 0.15rem;
     background-color: var(--text-color);
     cursor: pointer;
+    transition: transform 0.3s ease;
 
     svg {
       fill: var(--bg-color);
+
+      &:hover {
+        fill: var(--hover-color);
+      }
     }
+  }
+
+  &__arrow:hover {
+    border: 0.15rem solid var(--bg-color);
+    background-color: var(--bg-color);
+    transform: scale(1.04);
+  }
+
+  &__arrow:active {
+    border: 0.15rem solid var(--bg-color);
+    background-color: var(--bg-color);
+    transform: scale(0.97);
   }
 
   &__wrapper {

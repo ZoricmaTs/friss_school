@@ -15,7 +15,7 @@ function Index() {
   return <>
     <VideoSection/>
     <div className={'brush__container'}>
-      <img className={'brush'} src={'images/4.svg'}/>
+      <img className={'brush'} src={'/friss_school/images/4.svg'}/>
     </div>
     <Separator title={'Оффлайн обучение'}>
       <p style={{

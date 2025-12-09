@@ -1,5 +1,5 @@
 import './style.scss';
-import {YMap} from '../yMap';
+import {YMapLeaflet} from '../yMap';
 import {FacebookLogoIcon, InstagramLogoIcon, WhatsappLogoIcon} from '@phosphor-icons/react';
 import type {ReactNode} from 'react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
@@ -32,7 +32,7 @@ export function Contacts() {
 
   return <section className={'contacts'} ref={rootRef}>
     <span className={'contacts__copyright'}>{'©FRISS SCHOOL 2025'}</span>
-    <YMap/>
+    <YMapLeaflet/>
     <div className={'contacts__info'}>
       <h2 className={'contacts__logo_title'}>{'FRISS SCHOOL'}</h2>
       <small className={'contacts__logo_description'}>{'школа кройки и шитья'}</small>

@@ -1,6 +1,7 @@
 import './style.scss';
 import {ArrowRightIcon} from '@phosphor-icons/react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
+import {useNavigate} from '@tanstack/react-router';
 
 export interface CourseType {
   id: number,
@@ -24,8 +25,8 @@ export const courses: CourseType[] = [
     description: 'Обработка воротников, карманов, манжет, планок, рюшей, клапанов, шлевок,' +
       ' гульфиков в разных вариантах. Работа на 4 видах оборудования (прямострочка, оверлок, распошив, закрутка).',
     duration: '5 недель',
-    price: '13000 сом',
-    img: 'images/courses/photo_2025-11-19_12-12-09.jpg'
+    price: '13 000 сом',
+    img: '/friss_school/images/courses/photo_2025-11-19_12-12-09.jpg'
   },
   {
     id: 1,
@@ -37,7 +38,7 @@ export const courses: CourseType[] = [
     result: 'Готовая одежда, сшитая своими руками',
     duration: '2 месяца',
     price: '13 000 сом/месяц',
-    img: 'images/courses/photo_2025-11-19_12-12-14.jpg'
+    img: '/friss_school/images/courses/photo_2025-11-19_12-12-14.jpg'
   },
   {
     id: 2,
@@ -47,7 +48,7 @@ export const courses: CourseType[] = [
     description: 'Конструирование и моделирование юбок, брюк, плечевых изделий',
     duration: '5 недель',
     price: '20 000 сом',
-    img: 'images/courses/photo_2025-11-19_12-28-24.jpg'
+    img: '/friss_school/images/courses/photo_2025-11-19_12-28-24.jpg'
   },
   {
     id: 3,
@@ -56,16 +57,17 @@ export const courses: CourseType[] = [
     description: 'Глубокое изучение конструирования и моделирования одежды с обязательным пошивом макетов на свой размер с учетом индивидуальных особенностей.',
     duration: '4 месяца',
     price: '15 000 сом/месяц',
-    img: 'images/courses/photo_2025-11-20_01-17-29.jpg'
+    img: '/friss_school/images/courses/photo_2025-11-20_01-17-29.jpg'
   },
 ]
 
 export function Courses() {
   const rootRef = useScrollHider<HTMLDivElement>();
+  const navigate = useNavigate();
 
   return <section style={{padding: '2.5rem'}} className={'courses-section'} ref={rootRef}>
     {courses.map((course: CourseType, index: number) => {
-      return <div className={'course'} key={`course-${index}`}>
+      return <div className={'course'} key={`course-${index}`} onClick={() => navigate({to: '/courses/$index', params: {index: `${index}`}})}>
         <div className={'course__image-container'}>
           <div className={'course__image-cover'}></div>
           <div className={'course__image'} style={{backgroundImage: `url(${course.img})`}} />

@@ -1,4 +1,4 @@
-.yMap {
+.leaflet-container {
   position: relative;
   flex-shrink: 0;
   width: 33%;
@@ -6,13 +6,19 @@
 }
 
 @media (max-width: 1500px) {
-  .yMap {
+  .leaflet-container {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .yMap {
+  .leaflet-container {
     width: 100%;
   }
+}
+
+.leaflet-control-attribution {
+  position: absolute;
+  bottom: -20px;
+
 }

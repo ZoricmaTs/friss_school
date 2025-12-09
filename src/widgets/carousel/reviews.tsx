@@ -73,6 +73,7 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
         return <div
           className={`carousel-review__item ${activeIndex == index ? '_active' : ''}`}
           onClick={() => onPressReview({index})}
+          key={`review-${index}`}
         >
           <h4>{item.title}</h4>
           {item.date && <small>{item.date}</small>}

@@ -24,6 +24,7 @@ export function Carousel({items}: {items: string[]}) {
           className={`carousel__item ${activeIndex == index ? '_active' : ''}`}
           style={{backgroundImage: `url(images/students/${item})`, backgroundPosition: 'center', backgroundSize: 'cover'}}
           onClick={() => setActiveIndex(index)}
+          key={`carousel-item-${index}`}
         >
         </div>
       })}
