@@ -7,6 +7,8 @@ import {CarouselReviews, reviewsCarousel} from '../widgets/carousel/reviews.tsx'
 import Accordions from '../widgets/accordion';
 import {Contacts} from '../widgets/contacts';
 import {Footer} from '../widgets/footer';
+import {RunningLine} from '../widgets/runningLine';
+import {VideoCourse} from '../widgets/videoCourse';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -29,7 +31,10 @@ function Index() {
         whiteSpace: 'nowrap',
       }}>{'в FRISS SCHOOL'}</p>
     </Separator>
+    <RunningLine/>
     <Courses/>
+    <Separator style={{marginBottom: '1rem'}} title={'Видео-курсы'}/>
+    <VideoCourse/>
     <Separator title={'Галерея'}/>
     <Carousel items={imagesCarousel}/>
     <Separator title={'Отзывы'} id={'reviews-view'}/>

@@ -17,5 +17,9 @@
   .footer {
     flex-direction: column;
     justify-content: center;
+
+    &__copyright {
+      white-space: nowrap;
+    }
   }
 }

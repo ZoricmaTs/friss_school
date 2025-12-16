@@ -25,18 +25,6 @@
     }
   }
 
-  &__arrow:hover {
-    border: 0.15rem solid var(--bg-color);
-    background-color: var(--bg-color);
-    transform: scale(1.04);
-  }
-
-  &__arrow:active {
-    border: 0.15rem solid var(--bg-color);
-    background-color: var(--bg-color);
-    transform: scale(0.97);
-  }
-
   &__wrapper {
     position: absolute;
     height: 65vh;
@@ -50,12 +38,10 @@
     display: flex;
     transform: scale(0.85);
     transition: filter 0.3s, transform 0.3s;
-    filter: blur(2px);
 
     &._active {
       width: 50vh;
       transform: scale(1);
-      filter: blur(0px);
     }
   }
 }
@@ -92,18 +78,6 @@
         fill: var(--hover-color);
       }
     }
-  }
-
-  &__arrow:hover {
-    border: 0.15rem solid var(--bg-color);
-    background-color: var(--bg-color);
-    transform: scale(1.04);
-  }
-
-  &__arrow:active {
-    border: 0.15rem solid var(--bg-color);
-    background-color: var(--bg-color);
-    transform: scale(0.97);
   }
 
   &__wrapper {
@@ -179,11 +153,12 @@
     overflow: hidden;
   }
 }
+
 .carousel-review__button:hover .carousel-review__button_icon {
   transform: translateX(4px) rotate(-20deg);
 }
-.review-modal {
 
+.review-modal {
   &__title {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;

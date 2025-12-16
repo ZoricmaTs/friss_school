@@ -4,7 +4,7 @@
   --text-additional-color: #826D7A;
 
   --bg-color: #FAF8F6;
-  --section-color: #CDB4DB;
+  --section-color: #A97AB7;
   --section-color-viola: #e7e2f4;
   --section-color-pink: #F2E6E8;
   //--hover-color: #FFCAD4;
@@ -72,7 +72,7 @@ body {
   transform: translateY(100%) rotate(0deg);
   margin-top: 100%;
   &__container {
-    z-index: 0;
+    z-index: -1;
     position: absolute;
     left: 300px;
     top: 860px;

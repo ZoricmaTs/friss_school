@@ -62,7 +62,7 @@ export function Navbar() {
 
   return <nav className={'navbar'}>
     <nav className={'navbar__container'}>
-      <Logo imgVisible={true}/>
+      <Logo imgVisible={true} action={() => setIsOpen(false)}/>
       <button
         className={`navbar__hamburger ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}

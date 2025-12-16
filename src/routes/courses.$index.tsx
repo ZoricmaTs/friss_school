@@ -1,21 +1,24 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {Separator} from '../widgets/separator';
 import {TabsWidget} from '../widgets/tab';
-import {courses} from '../widgets/courses';
+import {courses, type CourseType} from '../widgets/courses';
 import {Footer} from '../widgets/footer';
+import useSheetData from '../hooks/useSheetData.ts';
 
 export const Route = createFileRoute('/courses/$index')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const data = useSheetData(884951379) as unknown as CourseType[];
+
   const route = Route.useParams();
-  const items = courses.map((item) => {
+  const items = data.map((item, index: number) => {
     return {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
         <div className={'tab-course__img-wrapper'}>
-          <div style={{backgroundImage: `url(${item.img})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+          <div style={{backgroundImage: `url(${courses[index].imageUrl})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
         </div>
 
         <div className={'tab-course__info-wrapper'}>
@@ -23,7 +26,7 @@ function RouteComponent() {
           <div className={'tab-course__info'}>
             <div className={'tab-course__duration'}>
               <h4 style={{marginRight: '1rem'}}>{'Продолжительность курса:'}</h4>
-              <h3>{item.duration}</h3>
+              <h3 style={{whiteSpace: 'nowrap'}}>{item.duration}</h3>
             </div>
             <div className={'tab-course__price'}>
               <h4 style={{marginRight: '1rem'}}>{'Стоимость:'}</h4>

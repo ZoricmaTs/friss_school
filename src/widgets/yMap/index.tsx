@@ -3,8 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
 
-const coordinates: [number, number] = [42.848644, 74.608399];
-
 // Исправление иконки (по умолчанию Leaflet не видит её в сборке Vite)
 const customIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
@@ -14,7 +12,7 @@ const customIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-export function YMapLeaflet() {
+export function YMapLeaflet({address, coordinates}: {address?: string, coordinates: [number, number]}) {
   return (
     <MapContainer
       id={'maps-script'}
@@ -30,9 +28,7 @@ export function YMapLeaflet() {
 
       {/* Метка */}
       <Marker position={coordinates} icon={customIcon}>
-        <Popup>
-          ул.Байтик-Батыра, д. 34/5, офис 6/1
-        </Popup>
+        {address && <Popup>{address}</Popup>}
       </Marker>
     </MapContainer>
   );

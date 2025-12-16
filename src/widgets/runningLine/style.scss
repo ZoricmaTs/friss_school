@@ -1,0 +1,45 @@
+.running-line {
+  position: relative;
+  height: 100px;
+
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    background-color: var(--section-color-pink);
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    animation: linear slider 60s;
+    animation-iteration-count: infinite;
+  }
+
+  &:hover {
+    & .running-line__items {
+      animation: linear slider 60s paused;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    white-space: nowrap;
+    color: var(--text-color);
+    text-transform: uppercase;
+    text-shadow: 0 3px 0 var(--section-color);
+  }
+}
+
+@keyframes slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

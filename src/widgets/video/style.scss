@@ -112,11 +112,14 @@
   }
 
   &__title {
+    color: var(--text-color);
     margin-bottom: 2rem;
   }
 
   &__description {
+    color: var(--text-color);
     margin-bottom: 1.5rem;
+    text-align: justify;
   }
 }
 

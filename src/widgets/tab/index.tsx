@@ -1,6 +1,5 @@
 import './style.scss';
 import {type ReactNode, useLayoutEffect, useRef, useState} from 'react';
-import {CaretLeftIcon, CaretRightIcon} from '@phosphor-icons/react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
 
 type Tab = {
@@ -19,34 +18,20 @@ export function TabsWidget({ tabs, initialIndex }: Props) {
   const [active, setActive] = useState(initialIndex);
 
   useLayoutEffect(() => {
+    if(!tabs.length) {
+      return;
+    }
     tabsWrapper.current!.scrollTo({
       left: (tabsWrapper.current!.children[initialIndex] as HTMLButtonElement).offsetLeft - tabsWrapper.current!.getBoundingClientRect().left
     })
-  }, [initialIndex]);
+  }, [initialIndex, tabs.length]);
+
+  if(!tabs.length){
+    return <div/>   
+  }
 
   return (
     <div className={'tab'} ref={rootRef}>
-      <button className={'tab__btn-arrow _right'}>
-        <CaretRightIcon size={40} onClick={() => {
-          if (tabsWrapper.current) {
-            tabsWrapper.current.scrollTo({
-              left: tabsWrapper.current.scrollLeft + 100,
-              behavior: 'smooth'
-            })
-          }
-
-        }}/>
-      </button>
-      <button className={'tab__btn-arrow _left'}>
-        <CaretLeftIcon size={40} onClick={() => {
-          if (tabsWrapper.current) {
-            tabsWrapper.current.scrollTo({
-              left: tabsWrapper.current.scrollLeft - 100,
-              behavior: 'smooth'
-            })
-          }
-        }}/>
-      </button>
       <div className={'tab__btn-wrapper'} ref={tabsWrapper}>
         {tabs.map((t, index) => (
           <button className={`tab__btn ${index === active ? '_active' : ''}`} key={index} onClick={() => setActive(index)}>
