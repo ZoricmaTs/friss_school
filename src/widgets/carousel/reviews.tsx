@@ -77,7 +77,7 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
         >
           <h4>{item.title}</h4>
           {item.date && <small>{item.date}</small>}
-          <p>{item.description}</p>
+          <p style={{marginTop: '0.75rem'}}>{item.description}</p>
           <button className={'carousel-review__button'}>
             <p style={{paddingRight: '0.5rem'}}>{'Подробнее'}</p><ArrowRightIcon size={24} className={'carousel-review__button_icon'}/>
           </button>

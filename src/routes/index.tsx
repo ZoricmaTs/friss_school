@@ -18,10 +18,10 @@ function Index() {
   return <>
     <VideoSection/>
     <div className={'brush__container'}>
-      <img className={'brush'} src={'/friss_school/images/4.svg'}/>
+      <img className={'brush'} src={'/friss_school/images/4.svg'} alt={'background'}/>
     </div>
     <div className={'brush-course__container'} style={{top: 860}}>
-      <img className={'brush-course'} src={'/friss_school/images/4.svg'}/>
+      <img className={'brush-course'} src={'/friss_school/images/4.svg'} alt={'background'}/>
     </div>
     <Separator title={'Оффлайн обучение'}>
       <p style={{
@@ -33,7 +33,7 @@ function Index() {
     </Separator>
     <RunningLine/>
     <Courses/>
-    <Separator style={{marginBottom: '1rem'}} title={'Видео-курсы'}/>
+    <Separator style={{}} title={'Видео-курсы'} id={'video-view'}/>
     <VideoCourse/>
     <Separator title={'Галерея'}/>
     <Carousel items={imagesCarousel}/>

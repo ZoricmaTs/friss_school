@@ -11,8 +11,13 @@ export function VideoCourse() {
         'После оплаты и подтверждения вам будет открыт доступ к выбранному курсу.'}
     </h4>
     <small className={'video-course__note'}>{'Мы всегда на связи в Whatsapp и готовы ответить на вопросы.'}</small>
-    <button className={'video-course__btn'}>
-      <p>{'Оставить заявку'}</p>
-    </button>
+    <div className={'video-course__btns'}>
+      <button className={'video-course__btn video-course__btn_transparent'}>
+        <p>{'Подробнее'}</p>
+      </button>
+      <button className={'video-course__btn video-course__btn_full'}>
+        <p>{'Оставить заявку'}</p>
+      </button>
+    </div>
   </section>
 }

@@ -56,7 +56,7 @@ export function Accordion({item}: {item: AccordionType} ) {
 export default function Accordions() {
   const data = useSheetData(0) as unknown as AccordionType[];
 
-  return <section>
+  return <section className={'accordions-section'}>
     {data.map((item: AccordionType, index: number) => <Accordion item={item} key={`accordion-${index}`}/>)}
   </section>
 }
