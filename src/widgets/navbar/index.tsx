@@ -26,9 +26,14 @@ const navbarItems: NavbarItem[] = [
   //   action: () => console.log('sd'),
   // },
   {
+    id: 2,
+    title: 'Выкройки',
+    action: (navigate) => navigate({to: '/patterns'}),
+  },
+  {
     id: 3,
     title: 'Видео-курсы',
-    action: () => console.log('sd'),
+    action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('video-view')}),
   },
   {
     id: 4,

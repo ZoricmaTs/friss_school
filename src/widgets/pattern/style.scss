@@ -1,0 +1,161 @@
+.pattern {
+  max-width: 400px;
+  min-width: 250px;
+  overflow: hidden;
+  aspect-ratio: 9/18;
+  color: var(--text-color);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.04);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/12;
+    background-color: var(--section-color-viola);
+    border: 0.3125rem solid #c9b2d1;
+  }
+
+  &__image {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__info-wrapper {
+    margin: 0.25rem 0.75rem;
+  }
+
+  &__price-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.25rem 0;
+  }
+
+  &__title {
+
+  }
+  &__title::first-letter {
+    text-transform: uppercase;
+  }
+
+  &__sale-price {
+    text-decoration: line-through;
+    text-decoration-color: #f04343;
+    text-decoration-thickness: 2px;
+  }
+
+  &__level {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  &__free {
+    padding: 0 0.5rem;
+    outline: 0.125rem solid #f04343;
+    color: #f04343;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.25rem;
+  }
+
+  &__button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #A97AB7;
+    border: none;
+    padding: 0.75rem 1rem;
+    color: var(--bg-color);
+    width: 100%;
+    margin-top: 0.5rem;
+
+    //&:hover {
+    //  background-color: var(--hover-color);
+    //}
+    //
+    //&:active {
+    //  background-color: var(--hover-color);
+    //}
+  }
+
+  & .pattern__level.active {
+    fill: #c9b2d1;
+  }
+
+  &:hover .pattern__level.active {
+    fill: var(--hover-color);
+  }
+}
+
+.pattern:hover .pattern {
+  &__image-wrapper {
+    background-color: var(--hover-color);
+    border: 0.3125rem solid var(--hover-color);
+  }
+
+  &__button {
+    background-color:  var(--hover-color);
+  }
+}
+
+.pattern:active .pattern {
+  &__image-wrapper {
+    background-color: var(--hover-color);
+    border: 0.3125rem solid var(--hover-color);
+  }
+
+  &__button {
+    background-color:  var(--hover-color);
+  }
+}
+
+.pattern h4 {
+  font-weight: 500;
+}
+
+@media (max-width: 500px) {
+  .pattern {
+    min-width: 100%;
+  }
+}
+
+.patterns {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 2.5rem 2.5rem 2.5rem;
+  }
+
+  &__description {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto 1rem;
+    padding: 0 2.5rem 2.5rem 2.5rem;
+  }
+
+}
