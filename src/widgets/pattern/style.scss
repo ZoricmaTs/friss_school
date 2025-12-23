@@ -133,9 +133,10 @@
   font-weight: 500;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
   .pattern {
     min-width: 100%;
+    aspect-ratio: 9/16;
   }
 }
 
