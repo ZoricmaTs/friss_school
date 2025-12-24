@@ -1,12 +1,15 @@
 .running-line {
   position: relative;
-  height: 100px;
-
+  height: 65px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
 
   &__inner {
     position: absolute;
     top: 0;
     background-color: var(--section-color-pink);
+    bottom: 0;
   }
 
   &__items {
@@ -14,6 +17,8 @@
     flex-direction: row;
     animation: linear slider 60s;
     animation-iteration-count: infinite;
+    height: 100%;
+    letter-spacing: 0.1rem;
   }
 
   &:hover {
@@ -31,7 +36,36 @@
     white-space: nowrap;
     color: var(--text-color);
     text-transform: uppercase;
-    text-shadow: 0 3px 0 var(--section-color);
+    text-shadow: 0 0.09rem 0 var(--section-color);
+    height: 100%;
+  }
+
+  &__text {
+    margin-right: 3rem;
+    margin-left: 3rem;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1200px) {
+  .running-line {
+    height: 60px;
+
+    &__text {
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .running-line {
+    height: 45px;
+
+    &__text {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
   }
 }
 
