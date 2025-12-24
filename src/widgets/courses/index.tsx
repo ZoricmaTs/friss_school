@@ -90,7 +90,7 @@ export function Courses() {
   const navigate = useNavigate();
   const data = useSheetData(884951379) as unknown as CourseType[];
 
-  return <section style={{padding: '2.5rem'}} className={'courses-section'} ref={rootRef}>
+  return <section className={'courses-section'} ref={rootRef}>
     {data.map((course: CourseType, index: number) => {
 
       return <div className={'course'} key={`course-${index}`} onClick={() => navigate({to: '/courses/$index', params: {index: `${index}`}})}>

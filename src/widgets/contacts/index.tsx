@@ -39,7 +39,9 @@ export function Contacts() {
 
   return <section className={'contacts'} ref={rootRef}>
     <span className={'contacts__copyright'}>{'©FRISS SCHOOL 2025'}</span>
-    <YMapLeaflet address={contacts.addressShort} coordinates={coordinates}/>
+    <div className={'contacts__map-wrapper'}>
+      <YMapLeaflet address={contacts.addressShort} coordinates={coordinates}/>
+    </div>
     <div className={'contacts__info'}>
       <h2 className={'contacts__logo_title'}>{'FRISS SCHOOL'}</h2>
       <small className={'contacts__logo_description'}>{'школа кройки и шитья'}</small>

@@ -2,7 +2,6 @@
   max-width: 400px;
   min-width: 250px;
   overflow: hidden;
-  aspect-ratio: 9/18;
   color: var(--text-color);
   transition: transform 0.2s ease;
 
@@ -54,10 +53,8 @@
     text-transform: uppercase;
   }
 
-  &__sale-price {
-    text-decoration: line-through;
-    text-decoration-color: #f04343;
-    text-decoration-thickness: 2px;
+  &__price {
+    color: var(--text-color);
   }
 
   &__level {
@@ -133,13 +130,6 @@
   font-weight: 500;
 }
 
-@media (max-width: 768px) {
-  .pattern {
-    min-width: 100%;
-    aspect-ratio: 9/16;
-  }
-}
-
 .patterns {
   &__list {
     display: flex;
@@ -158,5 +148,24 @@
     margin: 0 auto 1rem;
     padding: 0 2.5rem 2.5rem 2.5rem;
   }
-
 }
+
+@media (max-width: 768px) {
+  .pattern {
+    min-width: calc(50% - 2.5rem);
+    //width: calc(50% - 2rem);
+  }
+
+  .patterns {
+    &__list {
+      gap: 1rem;
+      padding: 0 1rem 2.5rem 1rem;
+    }
+
+    &__description {
+      padding: 0 1rem 2.5rem 1rem;
+    }
+  }
+}
+
+

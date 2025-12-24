@@ -139,8 +139,9 @@
 @media (max-width: 768px) {
   .video-section {
     flex-direction: column;
-    max-width: calc(100% - 2rem);
-    margin: 0 1rem;
+    max-width: 100%;
+    padding: 0 1rem 2.5rem 1rem;
+    margin: 0;
     gap: 1rem;
 
     &__video-container {

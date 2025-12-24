@@ -46,6 +46,11 @@
   color: var(--bg-color);
 }
 
+@media (max-width: 768px) {
+  .accordion {
+    padding: 0 1rem;
+  }
+}
 .accordions-section {
   display: flex;
   flex-direction: column;

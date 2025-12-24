@@ -1,6 +1,7 @@
 import './style.scss';
 import {LevelIcon} from './button.tsx';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
+import type {CSSProperties} from 'react';
 
 // export enum PatternSizes {
 //   XS = 'xs',
@@ -21,6 +22,12 @@ export type PatternType = {
 
 export function Pattern({props}: {props: PatternType}) {
   console.log('props', props)
+  const priceWithSales: CSSProperties = {
+    textDecoration: 'line-through',
+    textDecorationColor: '#f04343',
+    textDecorationThickness: '2px'
+  }
+
   return <div className={'pattern'}>
     <div className={'pattern__image-wrapper'}>
       <div className={'pattern__image'} style={{backgroundImage: `url(${props.image})`}}></div>
@@ -29,8 +36,23 @@ export function Pattern({props}: {props: PatternType}) {
       <p className={'pattern__title'}>{props.title}</p>
       <div className={'pattern__price-wrapper'}>
         <small>{'Цена: '}</small>
-        {props.salePrice && <h4 className={'pattern__sale-price'}>{`${props.salePrice} ⃀`}</h4>}
-        {props.price > 0 && <h4 style={{color: props.salePrice || props.price === 0 ? '#f04343' : 'var(--text-color)' }}>{`${props.price} ⃀`}</h4>}
+
+        {props.price > 0 &&
+          <h4
+            className={'pattern__price'}
+            style={props.salePrice && props.salePrice > 0 ? priceWithSales : {}}
+          >
+            {`${props.price} ⃀`}
+          </h4>
+        }
+
+        {props.salePrice &&
+          <h4
+            className={'pattern__sale-price'}
+          >
+            {`${props.salePrice} ⃀`}
+          </h4>
+        }
         {props.price === 0 && <div className={'pattern__free'}><p>{'бесплатно'}</p></div>}
       </div>
       <div className={'pattern__price-wrapper'}>
