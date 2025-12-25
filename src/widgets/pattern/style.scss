@@ -60,6 +60,13 @@
   &__price {
     color: var(--text-color);
   }
+  &__level-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.25rem 0 0.75rem;
+  }
 
   &__level {
     display: flex;
@@ -88,7 +95,6 @@
     padding: 0.75rem 1rem;
     color: var(--bg-color);
     width: 100%;
-    margin-top: 0.5rem;
   }
 
   & .pattern__level.active {
@@ -132,10 +138,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
     height: 100%;
-    padding: 0 2.5rem 2.5rem 2.5rem;
   }
 
   &__description {
@@ -144,6 +147,24 @@
     margin: 0 auto 1rem;
     padding: 0 2.5rem 2.5rem 2.5rem;
     text-align: justify;
+  }
+
+  &__content-wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2.5rem 2.5rem 2.5rem;
+  }
+
+  &__filter-wrapper {
+    width: 33%;
+  }
+
+  &__filter {
+    &_title {
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -159,11 +180,49 @@
     &__list {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1rem;
-      padding: 0 1rem 2.5rem 1rem;
     }
 
     &__description {
       padding: 0 1rem 2.5rem 1rem;
+    }
+
+    &__content-wrapper {
+      flex-direction: column;
+      padding: 0 1rem 2.5rem 1rem;
+    }
+
+    &__filter-wrapper {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &__filter {
+      &_button {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        background-color: #A97AB7;
+        border: none;
+        padding: 1rem 1.25rem;
+        color: var(--bg-color);
+        width: 100%;
+
+        &:hover {
+          transform: scale(1.04);
+          background-color: var(--hover-color);
+        }
+
+        &:active {
+          transform: scale(0.97);
+          background-color: var(--hover-color);
+        }
+      }
+    }
+
+    &__modal {
+      &_title {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
     }
   }
 }

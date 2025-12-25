@@ -20,8 +20,37 @@ export type PatternType = {
   level: number,
 }
 
+export function getLevels() {
+  return [
+    {
+      id: 0,
+      value: 'Все',
+    },
+    {
+      id: 1,
+      value: 'Для новичков',
+    },
+    {
+      id: 2,
+      value: 'Просто',
+    },
+    {
+      id: 3,
+      value: 'Требует опыта',
+    },
+    {
+      id: 4,
+      value: 'Сложная работа',
+    },
+    {
+      id: 5,
+      value: 'Мастерский уровень',
+    },
+  ];
+}
+
 export function Pattern({props}: {props: PatternType}) {
-  console.log('props', props)
+  const levels = getLevels().filter((item) => item.id !== 0);
   const priceWithSales: CSSProperties = {
     textDecoration: 'line-through',
     textDecorationColor: '#f04343',
@@ -55,11 +84,11 @@ export function Pattern({props}: {props: PatternType}) {
         }
         {props.price === 0 && <div className={'pattern__free'}><p>{'бесплатно'}</p></div>}
       </div>
-      <div className={'pattern__price-wrapper'}>
+      <div className={'pattern__level-wrapper'}>
         <small>{'Сложность: '}</small>
         <div className={'pattern__level'}>
-          {Array.from({ length: 5 }).map((_item: unknown, index: number) => {
-            return <LevelIcon className={`pattern__level${index + 1 <= props.level ? ' active' : ''}`} size={25}/>
+          {levels.map((item: {id: number, value: string}) => {
+            return <LevelIcon className={`pattern__level${item.id <= props.level ? ' active' : ''}`} size={25}/>
           })}
         </div>
       </div>
@@ -75,39 +104,11 @@ export function Pattern({props}: {props: PatternType}) {
   </div>;
 }
 
-export function Patterns() {
-  const items = [
-    {
-      id: 0,
-      title: 'юбка-шорты 1 вариант юбка-шорты 1 вариант юбка-шорты 1 вариантюбка-шорты 1 вариант',
-      price: 200,
-      salePrice: 180,
-      sizes: ['xs', 's', 'm', 'l'],
-      level: 3,
-      image: '/friss_school/images/patterns/photo_2025-12-23_11-23-42.jpg',
-    },
-    {
-      id: 1,
-      title: 'юбка-шорты 2 вариант',
-      price: 0,
-      sizes: ['xs', 's', 'm', 'l'],
-      level: 2,
-      image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
-    },
-    {
-      id: 2,
-      title: 'юбка-шорты 3 вариант',
-      price: 200,
-      sizes: ['xs', 's', 'm', 'l'],
-      level: 3,
-      image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
-    }
-  ];
-
+export function Patterns({props}: {props: PatternType[]}) {
   const rootRef = useScrollHider<HTMLDivElement>();
 
   return <section className={'patterns__list'} ref={rootRef}>
-    {items.map((item) => {
+    {props.map((item) => {
       return <Pattern props={item}/>
     })}
   </section>
