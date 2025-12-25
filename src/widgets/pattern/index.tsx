@@ -79,7 +79,7 @@ export function Patterns() {
   const items = [
     {
       id: 0,
-      title: 'юбка-шорты 1 вариант',
+      title: 'юбка-шорты 1 вариант юбка-шорты 1 вариант юбка-шорты 1 вариантюбка-шорты 1 вариант',
       price: 200,
       salePrice: 180,
       sizes: ['xs', 's', 'm', 'l'],
