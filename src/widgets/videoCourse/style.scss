@@ -7,7 +7,6 @@
   max-width: 1440px;
   margin: 0 auto;
 
-
   &__text {
     text-align: justify;
     color: var(--text-color);
@@ -19,18 +18,11 @@
     color: var(--text-additional-color);
   }
 
-  &__btns {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 0;
-  }
-
   &__btn {
     cursor: pointer;
     transition: transform 0.2s ease;
+    text-align: center;
+    margin: 1rem 0;
   }
 
   &__btn_full {
@@ -49,40 +41,13 @@
       background-color: var(--hover-color);
     }
   }
-
-  &__btn_transparent {
-    background-color: transparent;
-    border: 0.125rem solid #A97AB7;
-    padding: 0.875rem 1.25rem;
-    color: #A97AB7;
-
-    &:hover {
-      transform: scale(1.04);
-      color: var(--hover-color);
-      border: 0.125rem solid var(--hover-color);
-    }
-
-    &:active {
-      transform: scale(0.97);
-      color: var(--hover-color);
-      border: 0.125rem solid var(--hover-color);
-    }
-  }
 }
 
 @media (max-width: 768px) {
   .video-course {
     padding: 0 1rem 1rem;
-    &__btns {
-      flex-direction: column;
-      width: 100%;
-    }
 
     &__btn_full {
-      width: 100%;
-    }
-
-    &__btn_transparent {
       width: 100%;
     }
   }
