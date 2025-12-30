@@ -22,7 +22,7 @@ function RouteComponent() {
         </div>
 
         <div className={'tab-course__info-wrapper'}>
-          <p>{item.description}</p>
+          <p style={{textAlign: 'justify'}}>{item.description}</p>
           <div className={'tab-course__info'}>
             <div className={'tab-course__duration'}>
               <h4 style={{marginRight: '1rem'}}>{'Продолжительность курса:'}</h4>

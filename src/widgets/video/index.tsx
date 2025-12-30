@@ -63,10 +63,15 @@ export function VideoSection() {
     </div>
     <div className={'video-section__info-container'}>
       <h2 className={'video-section__title'}>{'Курс кройки и шитья — обучение с нуля'}</h2>
-      <p className={'video-section__description'}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nulla lectus, ' +
-        'pulvinar a pretium in, venenatis et augue. Fusce vitae velit in metus dapibus aliquam. Lorem ipsum dolor sit amet,' +
-        ' consectetur adipiscing elit. Suspendisse potenti. Praesent tincidunt aliquet justo, nec vestibulum ante rutrum vitae.' +
-        ' Ut sollicitudin dui non ligula pretium, malesuada fermentum felis pulvinar. Nullam eu nisl eleifend, semper augue. '}</p>
+      <p className={'video-section__description'}>{'Добрый день!' + '\n' + 'Меня зовут Ольга Борисовна. Я в швейном бизнесе уже больше 20 лет, а последние шесть лет с огромной радостью передаю свои знания другим.\n' +
+        '\n' +
+        'Наша школа — это современный обучающий проект, где мы помогаем людям не просто приобрести профессию, а исполнить свои мечты.\n' +
+        '\n' +
+        'Мы обучаем с нуля в маленьких уютных группах, с 12 лет и до... Всё максимально просто и доступно. У нас профессиональное оборудование, все материалы включены, и мы работаем в теплом, творческом пространстве.\n' +
+        '\n' +
+        'И результат вдохновляет! Наши ученицы открывают свои мастерские и ателье, запускают брендовые коллекции. Для кого-то это новая профессия, которая помогает в трудные времена, а для кого-то — любимое хобби, отдушина от основной работы.\n' +
+        '\n' +
+        'Мне безумно нравится видеть этот результат — как у людей загораются глаза, когда они создают свою первую, а потом и сотую вещь. Это модно, это творчество, это свобода.'}</p>
     </div>
   </section>
 }

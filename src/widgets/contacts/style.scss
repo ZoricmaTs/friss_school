@@ -71,12 +71,25 @@
       }
     }
   }
+
+  &__map-wrapper {
+    width: 33%;
+    height: 100%;
+  }
 }
 
 @media (max-width: 1200px) {
   .contacts {
     &__copyright {
       right: 7px;
+    }
+  }
+}
+
+@media (max-width: 1500px) {
+  .contacts {
+    &__map-wrapper {
+      width: 50%;
     }
   }
 }
