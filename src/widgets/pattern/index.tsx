@@ -57,7 +57,12 @@ export function Pattern({props}: {props: PatternType}) {
     textDecorationThickness: '2px'
   }
 
-  return <div className={'pattern'}>
+  return <a
+    className={'pattern'}
+    href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     <div className={'pattern__image-wrapper'}>
       <div className={'pattern__image'} style={{backgroundImage: `url(${props.image})`}}></div>
     </div>
@@ -92,16 +97,13 @@ export function Pattern({props}: {props: PatternType}) {
           })}
         </div>
       </div>
-      <a
+      <div
         className={'pattern__button'}
-        href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
-        target="_blank"
-        rel="noopener noreferrer"
       >
         <p>{'Купить'}</p>
-      </a>
+      </div>
     </div>
-  </div>;
+  </a>;
 }
 
 export function Patterns({props}: {props: PatternType[]}) {

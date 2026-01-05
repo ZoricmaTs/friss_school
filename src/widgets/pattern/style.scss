@@ -2,6 +2,9 @@
   overflow: hidden;
   color: var(--text-color);
   transition: transform 0.2s ease;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.04);
@@ -88,10 +91,7 @@
   &__button {
     display: block;
     text-align: center;
-    text-decoration: none;
-    cursor: pointer;
     background-color: #A97AB7;
-    border: none;
     padding: 0.75rem 1rem;
     color: var(--bg-color);
     width: 100%;
@@ -154,6 +154,7 @@
     flex-direction: row;
     max-width: 1440px;
     margin: 0 auto;
+    gap: 2.5rem;
     padding: 0 2.5rem 2.5rem 2.5rem;
   }
 
@@ -189,6 +190,7 @@
     &__content-wrapper {
       flex-direction: column;
       padding: 0 1rem 2.5rem 1rem;
+      padding: 1rem;
     }
 
     &__filter-wrapper {
