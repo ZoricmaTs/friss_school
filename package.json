@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "admin": "tsx ./admin.ts",
+    "admin-server": "tsx ./server/index.ts",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -14,11 +16,13 @@
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-router": "^1.140.0",
     "@tanstack/react-router-devtools": "^1.140.0",
+    "express": "^5.2.1",
     "leaflet": "1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-leaflet": "5.0.0",
-    "sass": "^1.94.0"
+    "sass": "^1.94.0",
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
