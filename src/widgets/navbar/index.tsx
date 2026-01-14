@@ -20,11 +20,6 @@ const navbarItems: NavbarItem[] = [
     title: 'Курсы',
     action: (navigate) => navigate({to: '/courses/$index', params: {index: '0'}}),
   },
-  // {
-  //   id: 1,
-  //   title: 'Услуги',
-  //   action: () => console.log('sd'),
-  // },
   {
     id: 2,
     title: 'Выкройки',

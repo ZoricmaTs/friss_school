@@ -36,6 +36,70 @@ const patterns = [
     sizes: ['xs', 's', 'm', 'l'],
     level: 3,
     image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
+  },
+  {
+    id: 1,
+    title: 'юбка-шорты 2 вариант',
+    price: 0,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 2,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
+  },
+  {
+    id: 2,
+    title: 'юбка-шорты 3 вариант',
+    price: 200,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 3,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
+  },
+  {
+    id: 1,
+    title: 'юбка-шорты 2 вариант',
+    price: 0,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 2,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
+  },
+  {
+    id: 2,
+    title: 'юбка-шорты 3 вариант',
+    price: 200,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 3,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
+  },
+  {
+    id: 1,
+    title: 'юбка-шорты 2 вариант',
+    price: 0,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 2,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
+  },
+  {
+    id: 2,
+    title: 'юбка-шорты 3 вариант',
+    price: 200,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 3,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
+  },
+  {
+    id: 1,
+    title: 'юбка-шорты 2 вариант',
+    price: 0,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 2,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
+  },
+  {
+    id: 2,
+    title: 'юбка-шорты 3 вариант',
+    price: 200,
+    sizes: ['xs', 's', 'm', 'l'],
+    level: 3,
+    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
   }
 ];
 
@@ -55,7 +119,6 @@ function RouteComponent() {
   const onChangeLevel = (id: number) => {
     if (id === 0) {
       setItems(patterns);
-
       return;
     }
 
@@ -78,9 +141,6 @@ function RouteComponent() {
             ? <>
               <h3 className={'patterns__filter_title'}>{'Фильтр'}</h3>
               <Dropdown props={dropdown} onActiveChange={onChangeLevel} activeId={activeId}/>
-              {/*<button className={'patterns__filter_button'} onClick={}>*/}
-              {/*  {'Показать'}*/}
-              {/*</button>*/}
             </>
             : <button className={'patterns__filter_button'} onClick={() => setOpen(true)}>
               {'Фильтр'}

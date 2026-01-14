@@ -1,7 +1,6 @@
 import './style.scss';
 import {ScissorsIcon} from '@phosphor-icons/react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
-import useSheetData from '../../hooks/useSheetData.ts';
 import {useScreen} from '../../hooks/useScreen.ts';
 
 export type LineType = {
@@ -11,7 +10,21 @@ export type LineType = {
 
 export function RunningLine() {
   const rootRef = useScrollHider<HTMLDivElement>();
-  const data = useSheetData(1124678627) as unknown as LineType [];
+  const lines: LineType [] = [
+    {
+      id: 0,
+      text: 'курсы кроя и шитья',
+    },
+    {
+      id: 1,
+      text: 'не ищи идеальную вещь, сшей ее сам',
+    },
+    {
+      id: 2,
+      text: 'friss school',
+    }
+  ];
+
   const {width} = useScreen();
   const iconSize: number = width < 1200 ? Math.floor(4 * width / 100) : 50;
 
@@ -20,13 +33,13 @@ export function RunningLine() {
       <div
         className={'running-line__items'}
       >
-        {data.map((line, index: number) => {
+        {lines.map((line, index: number) => {
           return <div className={'running-line__item'} key={`line-first_${index}`}>
             <ScissorsIcon size={iconSize}/>
             <h3 className={'running-line__text'}>{line.text}</h3>
           </div>
         })}
-        {data.map((line, index: number) => {
+        {lines.map((line, index: number) => {
           return <div className={'running-line__item'} key={`line-second_${index}`}>
             <ScissorsIcon size={iconSize}/>
             <h3 className={'running-line__text'}>{line.text}</h3>

@@ -4,7 +4,7 @@ import {CaretDownIcon, CaretUpIcon} from '@phosphor-icons/react';
 
 export interface DropdownItemType {
   id: number,
-  value: string,
+  value: string | number,
 }
 
 export interface DropdownType {

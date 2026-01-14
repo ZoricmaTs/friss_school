@@ -1,7 +1,7 @@
 import './style.scss';
 import {LevelIcon} from './button.tsx';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
-import type {CSSProperties} from 'react';
+import {type CSSProperties, useEffect, useRef, useState} from 'react';
 
 // export enum PatternSizes {
 //   XS = 'xs',
@@ -24,27 +24,34 @@ export function getLevels() {
   return [
     {
       id: 0,
-      value: 'Все',
+      // value: 'Все',
+      value: 0,
+
     },
     {
       id: 1,
-      value: 'Для новичков',
+      // value: 'Для новичков',
+      value: 1,
     },
     {
       id: 2,
-      value: 'Просто',
+      // value: 'Просто',
+      value: 2,
     },
     {
       id: 3,
-      value: 'Требует опыта',
+      // value: 'Требует опыта',
+      value: 3,
     },
     {
       id: 4,
-      value: 'Сложная работа',
+      // value: 'Сложная работа',
+      value: 4,
     },
     {
       id: 5,
-      value: 'Мастерский уровень',
+      // value: 'Мастерский уровень',
+      value: 5,
     },
   ];
 }
@@ -92,7 +99,7 @@ export function Pattern({props}: {props: PatternType}) {
       <div className={'pattern__level-wrapper'}>
         <small>{'Сложность: '}</small>
         <div className={'pattern__level'}>
-          {levels.map((item: {id: number, value: string}) => {
+          {levels.map((item: {id: number, value: string | number}) => {
             return <LevelIcon className={`pattern__level${item.id <= props.level ? ' active' : ''}`} size={25}/>
           })}
         </div>
@@ -105,13 +112,53 @@ export function Pattern({props}: {props: PatternType}) {
     </div>
   </a>;
 }
+const PAGE_SIZE = 5;
 
 export function Patterns({props}: {props: PatternType[]}) {
+  const [visibleItems, setVisibleItems] = useState<PatternType[]>([]);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+
+  const hasMore = visibleItems.length < props.length;
+
+  const loadMore = () => {
+    if (!hasMore) return;
+
+    setVisibleItems((prev: PatternType[]) => {
+      const nextItems = props.slice(
+        prev.length,
+        prev.length + PAGE_SIZE
+      );
+      return [...prev, ...nextItems];
+    });
+  };
+  
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadMore();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    const el = loaderRef.current;
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, [loadMore]);
+  
   const rootRef = useScrollHider<HTMLDivElement>();
 
   return <section className={'patterns__list'} ref={rootRef}>
-    {props.map((item) => {
-      return <Pattern props={item}/>
-    })}
-  </section>
+    {visibleItems.map((item, index: number) => <Pattern props={item} key={`pattern-${index}`}/>)}
+    {hasMore && <div ref={loaderRef} style={{ height: 1 }} />}
+  </section>;
 }

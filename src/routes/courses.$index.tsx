@@ -1,19 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {Separator} from '../widgets/separator';
 import {TabsWidget} from '../widgets/tab';
-import {courses, type CourseType} from '../widgets/courses';
+import {courses} from '../widgets/courses';
 import {Footer} from '../widgets/footer';
-import useSheetData from '../hooks/useSheetData.ts';
 
 export const Route = createFileRoute('/courses/$index')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const data = useSheetData(884951379) as unknown as CourseType[];
-
   const route = Route.useParams();
-  const items = data.map((item, index: number) => {
+
+  const items = courses.map((item, index: number) => {
     return {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
