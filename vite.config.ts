@@ -13,5 +13,5 @@ export default defineConfig({
       'Cross-Origin-Embedder-Policy': 'unsafe-none',
     },
   },
-  base: "/friss_school/"
+  base: "/"
 })

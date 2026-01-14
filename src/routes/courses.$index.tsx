@@ -38,7 +38,7 @@ function RouteComponent() {
 
   return <>
     <div className={'brush-course__container'} >
-      <img className={'brush-course'} src={'/friss_school/images/4.svg'}/>
+      <img className={'brush-course'} src={'/images/4.svg'}/>
     </div>
     <Separator title={'Оффлайн обучение'} style={{marginTop: 0}}>
       <p style={{

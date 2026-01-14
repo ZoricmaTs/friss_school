@@ -18,7 +18,7 @@ const patterns = [
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],
     level: 3,
-    image: '/friss_school/images/patterns/photo_2025-12-23_11-23-42.jpg',
+    image: '/images/patterns/photo_2025-12-23_11-23-42.jpg',
   },
   {
     id: 1,
@@ -26,7 +26,7 @@ const patterns = [
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],
     level: 3,
-    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-38.jpg',
+    image: '/images/patterns/photo_2025-12-22_19-53-38.jpg',
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const patterns = [
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],
     level: 3,
-    image: '/friss_school/images/patterns/photo_2025-12-22_19-53-56.jpg',
+    image: '/images/patterns/photo_2025-12-22_19-53-56.jpg',
   },
 ];
 

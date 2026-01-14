@@ -25,7 +25,7 @@ export const courses: CourseType[] = [
     description: 'Здесь вы научитесь шить и обрабатывать детали и узлы одежды — воротники, карманы, манжеты, планки, рюшки, клапана, шлевки, гульфики. И всё это👉 в разных вариантах.️ Вы приобретёте навыки работы на 4 видах производственного швейного оборудования — прямострочка, оверлок, распошив и закрутка. Длительность пять недель, занятия проходят три раза в неделю по три часа.',
     duration: '5 недель',
     price: '15 000 сом',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-12-09.jpg'
+    imageUrl: '/images/courses/photo_2025-11-19_12-12-09.jpg'
   },
   {
     id: 1,
@@ -36,7 +36,7 @@ export const courses: CourseType[] = [
     result: 'Готовая одежда, сшитая своими руками',
     duration: '2 месяца',
     price: '15 000 сом/месяц',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-12-14.jpg'
+    imageUrl: '/images/courses/photo_2025-11-19_12-12-14.jpg'
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ export const courses: CourseType[] = [
       'Применение навыков с первого курса для сборки изделия (обработка краёв, сборка плечевых, боковых и шаговых швов). Длительность пять недель, занятия проходят три раза в неделю по три часа.',
     duration: '5 недель',
     price: '25 000 сом',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-28-24.jpg'
+    imageUrl: '/images/courses/photo_2025-11-19_12-28-24.jpg'
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const courses: CourseType[] = [
       'Весь расходный материал предоставляется. Длительность 4 месяца, занятия проходят три раза в неделю по три часа.\n',
     duration: '4 месяца',
     price: '20 000 сом/месяц',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-20_01-17-29.jpg'
+    imageUrl: '/images/courses/photo_2025-11-20_01-17-29.jpg'
   },
 ]
 

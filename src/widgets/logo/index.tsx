@@ -12,7 +12,7 @@ export function Logo({imgVisible, action}: {imgVisible?: boolean, action?: () =>
   }
 
   return <div className={'logo'} onClick={onClick}>
-    {imgVisible && <img className={'logo__image'} src={'/friss_school/images/1.svg'}/>}
+    {imgVisible && <img className={'logo__image'} src={'/images/1.svg'}/>}
     <h2 className={'logo__title'}>{'FRISS SCHOOL'}</h2>
     <small className={'logo__description'}>{'школа кройки и шитья'}</small>
   </div>
