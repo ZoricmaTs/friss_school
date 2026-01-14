@@ -1,0 +1,13 @@
+{
+  "header": {
+    "title": "PRIVET ZORI",
+    "description": "HELLO LONG DESCRIPTION"
+  },
+  "reviews": [
+    {
+      "name": "USER NAME",
+      "date": "23.11.2001",
+      "text": "THIS IS VERY GOOD SCHOOL!"
+    }
+  ]
+}
