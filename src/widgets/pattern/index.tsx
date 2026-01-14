@@ -78,7 +78,7 @@ export function Pattern({props}: { props: PatternType }) {
             className={'pattern__price'}
             style={props.salePrice && props.salePrice > 0 ? priceWithSales : {}}
           >
-            {`${props.price} ⃀`}
+            {`${props.price} сом`}
           </h4>
         }
 
