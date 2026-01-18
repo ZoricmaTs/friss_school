@@ -14,5 +14,5 @@ export default defineConfig({
     },
     port: 3010,
   },
-  base: "/friss_school/"
+  base: "/"
 })

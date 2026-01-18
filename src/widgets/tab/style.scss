@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  height: 100%;
+  min-height: calc(100vh - 10rem);
   padding: 0 2.5rem 2.5rem 2.5rem;
 
   &__content-wrapper {
@@ -55,7 +55,7 @@
     height: 100%;
   }
   &__info-wrapper {
-
+    flex: 1;
   }
   &__info {
     margin-top: 3rem;

@@ -13,7 +13,7 @@ import {routeTree} from './routeTree.gen'
 import {createDynamicStore, DynamicStoreContext} from './providers/dynamicStore.ts';
 
 // Create a new router instance
-const router = createRouter({routeTree, basepath: '/friss_school/'})
+const router = createRouter({routeTree, basepath: '/'})
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {

@@ -10,6 +10,7 @@ export interface CarouselItem {
   date?: string,
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const reviewsCarousel: CarouselItem[] = [
   {
     id: 'review-0',

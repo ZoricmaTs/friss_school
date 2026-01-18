@@ -18,10 +18,10 @@ function Index() {
   return <>
     <VideoSection/>
     <div className={'brush__container'}>
-      <img className={'brush'} src={'/friss_school/images/4.svg'} alt={'background'}/>
+      <img className={'brush'} src={'/images/4.svg'} alt={'background'}/>
     </div>
     <div className={'brush-course__container'} style={{top: 860}}>
-      <img className={'brush-course'} src={'/friss_school/images/4.svg'} alt={'background'}/>
+      <img className={'brush-course'} src={'/images/4.svg'} alt={'background'}/>
     </div>
     <Separator title={'Оффлайн обучение'}>
       <p style={{
