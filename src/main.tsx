@@ -23,7 +23,7 @@ declare module '@tanstack/react-router' {
 }
 
 async function main() {
-  const dynamicData = await fetch('/friss_school/dynamic/config.json').then(async (res) => {
+  const dynamicData = await fetch('/dynamic/config.json').then(async (res) => {
     return await res.json();
   });
 

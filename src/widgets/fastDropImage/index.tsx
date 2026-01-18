@@ -69,7 +69,7 @@ export default function FastDropImage(props: FastDropImageProps) {
       }}>
       <SpinnerIcon fill={'#A97AB7'} size={50}/></div>}
     {!!props.selectedImageId &&
-      <img src={`/friss_school/dynamic/images/${props.selectedImageId}?${timestamp}`} alt={'Image preview'} style={{
+      <img src={`/dynamic/images/${props.selectedImageId}?${timestamp}`} alt={'Image preview'} style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%',
       }}
       />}

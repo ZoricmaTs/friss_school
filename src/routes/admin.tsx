@@ -3,6 +3,7 @@ import FastDropImage from '../widgets/fastDropImage';
 import {useState} from 'react';
 import {CoursesAdmin} from '../widgets/coursesAdmin';
 import {VideoAdmin} from '../widgets/video/videoAdmin.tsx';
+import {Separator} from '../widgets/separator';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -19,7 +20,7 @@ function RouteComponent() {
 
 
 
-  return <div style={{minHeight: '100vh'}}>
+  return <div style={{minHeight: '100vh',   width: '100%', padding: '0 2.5rem', maxWidth: '1440px', margin: '0 auto'}}>
     <VideoAdmin/>
     <FastDropImage
       onImageChange={imageId => setImageId(imageId)}
@@ -27,6 +28,7 @@ function RouteComponent() {
     />
 
     <hr style={{margin: '5rem 0'}} />
+    <Separator title={'Оффлайн курсы'}/>
     <CoursesAdmin/>
   </div>
 }

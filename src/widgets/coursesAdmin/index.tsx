@@ -21,9 +21,11 @@ export function CoursesAdmin() {
 
   return <div>
     <NewCourseForm/>
-
-    {dynamicStore.courses.map((course) => <CourseCard course={course} key={course.id}/>)}
-  </div>
+    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Существующие курсы'}</h3>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
+      {dynamicStore.courses.map((course) => <CourseCard course={course} key={course.id}/>)}
+    </div>
+  </div>;
 }
 
 function NewCourseForm() {
@@ -59,7 +61,7 @@ function NewCourseForm() {
     validationSchema={schema}
     children={(props) => {
     return <Form>
-      <h3>{'Добавить новый курс'}</h3>
+      <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый курс'}</h3>
       <Input
         type={'text'}
         name={'title'}
@@ -102,7 +104,7 @@ function NewCourseForm() {
       />
       {props.isValid && !!imageId &&<button className={'input__submit'} type="submit"><p>{'Добавить новый курс'}</p></button>}
     </Form>
-  }}/>
+  }}/>;
 }
 
 type CourseCardProps = {
@@ -112,11 +114,19 @@ type CourseCardProps = {
 function CourseCard(props: CourseCardProps) {
   const dynamicStore = useDynamicStoreStore();
   const [isEditing, setIsEditing] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   if (!isEditing) {
     return <div className={'course-admin'}>
-      {/*<img className={'course-admin__image'} alt={'image of course'} src={`/friss_school/dynamic/images/${props.course.image}`}/>*/}
-      <img className={'course-admin__image'} alt={'image of course'} src={`/friss_school/images/courses/photo_2025-11-19_12-12-09.jpg`}/>
+      <div className="course-admin__image-wrapper">
+        {!imageError && <img
+          className="course-admin__image"
+          src={`/dynamic/images/${props.course.image}`}
+          alt="Изображение курса"
+          onError={() => setImageError(true)}
+        />}
+        {imageError && <span className="course-admin__image-fallback">{'Изображение отсутствует'}</span>}
+      </div>
       <div className={'course-admin__info-container'}>
         <div>
           <h3 className={'course-admin__title'}>{props.course.title}</h3>
@@ -146,7 +156,7 @@ function CourseCard(props: CourseCardProps) {
             </button>
         </div>
       </div>
-    </div>
+    </div>;
   }
 
 
@@ -163,7 +173,6 @@ function CourseCard(props: CourseCardProps) {
           course.price = values.price;
           setIsEditing(false);
         })
-
       }}
       initialValues={{
         'title': props.course.title,
@@ -211,10 +220,15 @@ function CourseCard(props: CourseCardProps) {
             errors={props.errors}
             touched={props.touched}
           />
-          <button type={'submit'}>{'Сохранить'}</button>
+          <button
+            type={'submit'}
+            className={'course-admin__btn course-admin__btn_full'}
+          >
+            <p>{'Сохранить'}</p>
+          </button>
         </Form>
       }}
     >
-  </Formik>
-  </div>
+    </Formik>
+  </div>;
 }

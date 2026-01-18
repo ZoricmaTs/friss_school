@@ -1,15 +1,26 @@
 .course-admin {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   border: 0.15rem solid #A97AB7;
   padding: 1rem;
+  align-items: stretch;
+
+  &__image-wrapper {
+    width: 400px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--section-color-viola);
+    color: var(--text-additional-color);
+    text-align: center;
+  }
 
   &__image {
-    max-width: 300px;
-    aspect-ratio: 9/12;
-
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    text-align: center;
   }
 
   &__info-container {

@@ -2,6 +2,7 @@ import {Form, Formik} from 'formik';
 import {Input} from '../input';
 import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 import * as Yup from 'yup';
+import {Separator} from '../separator';
 
 export type OrderFormValues = {
   videoTitle: string;
@@ -32,7 +33,7 @@ export function VideoAdmin() {
   >
     {({ errors, touched }) => (
       <Form>
-        <h3 style={{margin: '1rem 0'}}>{'Блок с видео'}</h3>
+        <Separator title={'Блок с видео'}/>
         <Input
           label={'Заголовок'}
           type={'text'}
