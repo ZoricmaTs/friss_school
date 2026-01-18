@@ -11,7 +11,7 @@
       "duration": "sdfgsdfs",
       "preview": "fsdfsdf",
       "price": "dfdfgdfg",
-      "image": "dfdfgdfg"
+      "image": "ea2e1d0a-1ef0-4d24-ae4e-dd73b3b07370.jpg"
     }
   ],
   "reviews": [
@@ -19,6 +19,16 @@
       "name": "USER NAME",
       "date": "23.11.2001",
       "text": "THIS IS VERY GOOD SCHOOL!"
+    }
+  ],
+  "accordions": [
+    {
+      "answer": "sdfgsdfg",
+      "question": "sdfgsdfgsdfg"
+    },
+    {
+      "answer": "dfgdfg5435",
+      "question": " dfergdfg ghgjghj"
     }
   ]
 }

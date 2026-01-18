@@ -17,14 +17,23 @@ export const CourseZod = z.object({
   image: z.string(),
 });
 
+export const AccordionZod = z.object({
+  id: z.string(),
+  question: z.string(),
+  answer: z.string(),
+});
+
 export const DataRootZod = z.object({
   header: z.object({
     title: z.string(),
     description: z.string(),
   }),
   courses: z.array(CourseZod),
-  reviews: z.array(ReviewZod)
+  reviews: z.array(ReviewZod),
+  accordions: z.array(AccordionZod),
 });
+
+export type AccordionType = z.infer<typeof AccordionZod>;
 
 export type CourseType = z.infer<typeof CourseZod>;
 

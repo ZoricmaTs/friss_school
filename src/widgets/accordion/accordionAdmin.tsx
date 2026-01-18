@@ -1,87 +1,77 @@
 import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 import {Form, Formik} from 'formik';
 import {Input} from '../input';
-import type {ReviewType} from '../../../common/types.ts';
+import type {AccordionType} from '../../../common/types.ts';
 import * as Yup from 'yup';
 import {useState} from 'react';
 import {v4 as generateUUID} from 'uuid';
 
 type ReviewCardProps = {
-  review: ReviewType
+  accordion: AccordionType
 }
 
 const schema = Yup.object({
-  name: Yup.string().required('Введите имя автора отзыва'),
-  text: Yup.string().required('Введите текст отзыва'),
-  date: Yup.string().required('Введите дату отзыва: 11.11.2023'),
+  question: Yup.string().required('Введите вопрос'),
+  answer: Yup.string().required('Введите ответ'),
 });
 
-export function ReviewsAdmin() {
+export function AccordionsAdmin() {
   const dynamicStore = useDynamicStoreStore();
 
   return <div>
-    <NewReviewForm/>
-    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все отзывы'}</h3>
+    <NewAccordionForm/>
+    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все вопросы-ответы'}</h3>
     <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
-      {dynamicStore.reviews.map((review) => <ReviewCardAdmin review={review} key={review.id}/>)}
+      {dynamicStore.accordions.map((accordion) => <AccordionCardAdmin accordion={accordion} key={accordion.id}/>)}
     </div>
   </div>
 }
 
-function NewReviewForm() {
+function NewAccordionForm() {
   const dynamicStore = useDynamicStoreStore();
 
   return <Formik
     onSubmit={(values, formikHelpers) => {
       dynamicStore.patchData(stateDraft => {
-        const newReview: ReviewType = {
-          name: values.name,
-          text: values.text,
-          date: values.date,
+        const newAccordion: AccordionType = {
+          answer: values.answer,
+          question: values.question,
           id: generateUUID(),
         }
 
-        stateDraft.reviews.push(newReview)
+        stateDraft.accordions.push(newAccordion)
       })
 
       formikHelpers.resetForm();
     }}
     initialValues={{
-      'name': '',
-      'date': '',
-      'text': '',
+      'answer': '',
+      'question': '',
     }}
     validationSchema={schema}
     children={(props) => {
       return <Form>
-        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый отзыв'}</h3>
+        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый вопрос-ответ'}</h3>
         <Input
           type={'text'}
-          name={'name'}
-          label={'Имя автора нового отзыва'}
-          errors={props.errors}
-          touched={props.touched}
-        />
-        <Input
-          type={'text'}
-          name={'date'}
-          label={'Дата нового отзыва: 11.11.2023'}
+          name={'question'}
+          label={'Вопрос нового отзыва'}
           errors={props.errors}
           touched={props.touched}
         />
         <Input
           type={'textarea'}
-          name={'text'}
-          label={'Текст нового отзыва'}
+          name={'answer'}
+          label={'Ответ на новый вопрос'}
           errors={props.errors}
           touched={props.touched}
         />
-        <button className={'input__submit'} type="submit"><p>{'Добавить новый отзыв'}</p></button>
+        <button className={'input__submit'} type="submit"><p>{'Добавить новый вопрос-ответ'}</p></button>
       </Form>
     }}/>;
 }
 
-export function ReviewCardAdmin(props: ReviewCardProps) {
+export function AccordionCardAdmin(props: ReviewCardProps) {
   const dynamicStore = useDynamicStoreStore();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -90,9 +80,8 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
 
       <div className={'course-admin__info-container'}>
         <div>
-          <h3 className={'course-admin__title'}>{props.review.name}</h3>
-          <p className={'course-admin__preview'}>{props.review.date}</p>
-          <p className={'course-admin__preview'}>{props.review.text}</p>
+          <h3 className={'course-admin__title'}>{props.accordion.question}</h3>
+          <p className={'course-admin__preview'}>{props.accordion.answer}</p>
         </div>
         <div className={'course-admin__btns'}>
           <button
@@ -106,7 +95,7 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
             onClick={event => {
               event.preventDefault();
               dynamicStore.patchData(stateDraft => {
-                stateDraft.reviews = stateDraft.reviews.filter(value => value.id !== props.review.id);
+                stateDraft.accordions = stateDraft.accordions.filter(value => value.id !== props.accordion.id);
               });
             }}>
             <p>{'Удалить'}</p>
@@ -121,40 +110,31 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
       onSubmit={(values) => {
         dynamicStore.patchData((stateDraft) => {
 
-          const review = stateDraft.reviews.find(value => value.id === props.review.id)!;
-          review.name = values.name;
-          review.text = values.text;
-          review.date = values.date;
+          const accordion = stateDraft.accordions.find(value => value.id === props.accordion.id)!;
+          accordion.question = values.question;
+          accordion.answer = values.answer;
           setIsEditing(false);
         })
       }}
       initialValues={{
-        'name': props.review.name,
-        'text': props.review.text,
-        'date': props.review.date,
+        'question': props.accordion.question,
+        'answer': props.accordion.answer,
       }}
       validationSchema={schema}
       children={(props) => {
         return <Form>
-          <h3>{'Редактирование отзыва'}</h3>
+          <h3>{'Редактирование вопроса-ответа'}</h3>
           <Input
             type={'text'}
-            name={'date'}
-            label={'дата отзыва: 11.11.2023'}
-            errors={props.errors}
-            touched={props.touched}
-          />
-          <Input
-            type={'text'}
-            name={'name'}
-            label={'Имя автора отзыва'}
+            name={'question'}
+            label={'Вопрос'}
             errors={props.errors}
             touched={props.touched}
           />
           <Input
             type={'textarea'}
-            name={'text'}
-            label={'Текст отзыва'}
+            name={'answer'}
+            label={'Ответ'}
             errors={props.errors}
             touched={props.touched}
           />
