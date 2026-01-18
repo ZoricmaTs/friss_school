@@ -1,34 +1,32 @@
 import { createFileRoute } from '@tanstack/react-router'
 import FastDropImage from '../widgets/fastDropImage';
 import {useState} from 'react';
-import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
+import {CoursesAdmin} from '../widgets/coursesAdmin';
+import {VideoAdmin} from '../widgets/video/videoAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
 })
 
+
 function RouteComponent() {
-  const dynamicStore = useDynamicStoreStore();
   const [imageId, setImageId] = useState<string | undefined>();
 
-  return <div>
-    <p>Hello "/admin"!</p>
 
-    <button onClick={() => {
-      dynamicStore.saveData().catch(null);
-    }}>
-      save data to json
-    </button>
+  // const onSubmit = () => {
+  //   dynamicStore.saveData().catch(null);
+  // }
 
-    <input onInput={e => {
-      dynamicStore.patchData((stateDraft) => {
-        stateDraft.header.title = (e.target as HTMLInputElement).value;
-      })
-    }} value={dynamicStore.header.title}/>
 
+
+  return <div style={{minHeight: '100vh'}}>
+    <VideoAdmin/>
     <FastDropImage
       onImageChange={imageId => setImageId(imageId)}
       selectedImageId={imageId}
     />
+
+    <hr style={{margin: '5rem 0'}} />
+    <CoursesAdmin/>
   </div>
 }

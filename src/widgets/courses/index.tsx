@@ -7,11 +7,9 @@ import useSheetData from '../../hooks/useSheetData.ts';
 export interface CourseType {
   id: number,
   title: string,
-  target?: string,
   description: string,
-  imageUrl?: string,
+  image?: string,
   duration: string,
-  result?: string,
   price: string,
   preview: string,
 }
@@ -22,24 +20,21 @@ export const courses: CourseType[] = [
     id: 0,
     title: 'Курс «Нулевой практический»',
     preview: 'В рамках курса вы познакомитесь со швейным оборудованием. Изучите швы, освоите разные виды обработки деталей',
-    target: 'Научиться основам шитья и обработке деталей одежды.',
     description: 'Обработка воротников, карманов, манжет, планок, рюшей, клапанов, шлевок,' +
       ' гульфиков в разных вариантах. Работа на 4 видах оборудования (прямострочка, оверлок, распошив, закрутка).',
     duration: '5 недель',
     price: '13 000 сом',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-12-09.jpg'
+    image: '/friss_school/images/courses/photo_2025-11-19_12-12-09.jpg'
   },
   {
     id: 1,
     title: 'Курс «Портной с нуля» (Продолжающий)',
     preview: 'На курсе вы научитесь построению, моделированию и пошиву вещей по своим меркам',
-    target: 'Создание одежды по своим меркам.',
     description: 'Построение лекал по своим размерам, моделирование. Применение навыков с первого курса для' +
       ' сборки изделия (обработка краёв, сборка плечевых, боковых и шаговых швов).',
-    result: 'Готовая одежда, сшитая своими руками',
     duration: '2 месяца',
     price: '13 000 сом/месяц',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-12-14.jpg'
+    image: '/friss_school/images/courses/photo_2025-11-19_12-12-14.jpg'
   },
   {
     id: 2,
@@ -49,7 +44,7 @@ export const courses: CourseType[] = [
     description: 'Конструирование и моделирование юбок, брюк, плечевых изделий',
     duration: '5 недель',
     price: '20 000 сом',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-19_12-28-24.jpg'
+    image: '/friss_school/images/courses/photo_2025-11-19_12-28-24.jpg'
   },
   {
     id: 3,
@@ -58,7 +53,7 @@ export const courses: CourseType[] = [
     description: 'Глубокое изучение конструирования и моделирования одежды с обязательным пошивом макетов на свой размер с учетом индивидуальных особенностей.',
     duration: '4 месяца',
     price: '15 000 сом/месяц',
-    imageUrl: '/friss_school/images/courses/photo_2025-11-20_01-17-29.jpg'
+    image: '/friss_school/images/courses/photo_2025-11-20_01-17-29.jpg'
   },
 ]
 
@@ -96,7 +91,7 @@ export function Courses() {
       return <div className={'course'} key={`course-${index}`} onClick={() => navigate({to: '/courses/$index', params: {index: `${index}`}})}>
         <div className={'course__image-container'}>
           <div className={'course__image-cover'}></div>
-          <div className={'course__image'} style={{backgroundImage: `url(${courses[index].imageUrl})`}} />
+          <div className={'course__image'} style={{backgroundImage: `url(${courses[index].image})`}} />
         </div>
 
         <div className={'course__info-container'}>

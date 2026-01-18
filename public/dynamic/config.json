@@ -1,8 +1,19 @@
 {
   "header": {
-    "title": "PRIVET ZORI",
-    "description": "HELLO LONG DESCRIPTION"
+    "title": "fhfghf",
+    "description": "dfsdfksdfj\n\ndfdfsd\n\n"
   },
+  "courses" : [
+    {
+      "id": 0,
+      "title": "dsgfgdf",
+      "description": "dfsdfs",
+      "duration": "sdfgsdfs",
+      "preview": "fsdfsdf",
+      "price": "dfdfgdfg",
+      "image": "dfdfgdfg"
+    }
+  ],
   "reviews": [
     {
       "name": "USER NAME",

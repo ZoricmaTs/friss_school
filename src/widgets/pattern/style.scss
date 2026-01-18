@@ -81,8 +81,8 @@
 
   &__free {
     padding: 0 0.5rem;
-    outline: 0.125rem solid #f04343;
-    color: #f04343;
+    outline: 0.125rem solid var(--error-color);
+    color: var(--error-color);
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.25rem;

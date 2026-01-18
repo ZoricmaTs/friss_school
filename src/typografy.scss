@@ -26,7 +26,7 @@ h4 {
   font-weight: 500;
 }
 
-p {
+p, input, textarea {
   font-size: 1rem;
   font-size: clamp(1rem, 2.5vw, 1.25rem); /* 16px → 20px */
   line-height: 1.5;

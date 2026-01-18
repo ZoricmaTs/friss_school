@@ -1,0 +1,42 @@
+.input {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  border-radius: 0;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  &__label {
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+  }
+
+  &__submit {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-align: center;
+    margin: 1rem 0;
+    background-color: #A97AB7;
+    border: none;
+    padding: 1rem 1.25rem;
+    color: var(--bg-color);
+
+    &:hover {
+      transform: scale(1.04);
+      background-color: var(--hover-color);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      background-color: var(--hover-color);
+    }
+  }
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.input.error {
+  border: 2px solid var(--error-color);
+}

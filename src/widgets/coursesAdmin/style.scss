@@ -1,0 +1,93 @@
+.course-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border: 0.15rem solid #A97AB7;
+  padding: 1rem;
+
+  &__image {
+    max-width: 300px;
+    aspect-ratio: 9/12;
+
+    height: 100%;
+  }
+
+  &__info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  &__title {
+    padding: 0.5rem 0;
+  }
+
+  &__preview {
+    padding: 1rem 0;
+  }
+
+  &__price-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__duration {
+    color: var(--text-additional-color);
+  }
+
+  &__price {
+
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__btn {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-align: center;
+    padding: 1rem 1.25rem;
+  }
+
+  &__btn_full {
+    background-color: #A97AB7;
+    border: 0.15rem solid transparent;
+    color: var(--bg-color);
+
+    &:hover {
+      transform: scale(1.04);
+      background-color: var(--hover-color);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      background-color: var(--hover-color);
+    }
+  }
+
+  &__btn_transparent {
+    background-color: var(--bg-color);
+    border: 0.15rem solid #A97AB7;
+    color: #A97AB7;
+
+    &:hover {
+      transform: scale(1.04);
+      border: 0.15rem solid var(--hover-color);
+      color: var(--hover-color);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      border: 0.15rem solid var(--hover-color);
+      color: var(--hover-color);
+    }
+  }
+}
