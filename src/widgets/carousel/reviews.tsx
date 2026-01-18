@@ -5,8 +5,8 @@ import {Modal} from '../modal';
 
 export interface CarouselItem {
   id: string,
-  title: string,
-  description: string,
+  name: string,
+  text: string,
   date?: string,
 }
 
@@ -14,43 +14,43 @@ export interface CarouselItem {
 export const reviewsCarousel: CarouselItem[] = [
   {
     id: 'review-0',
-    title: 'Бекнур Жумакадыров',
+    name: 'Бекнур Жумакадыров',
     date: '16.11.2024',
-    description: 'Курсы кройки и шитья стали для меня настоящим открытием. В уютной атмосфере преподаватели не только делились ' +
+    text: 'Курсы кройки и шитья стали для меня настоящим открытием. В уютной атмосфере преподаватели не только делились ' +
       'своими профессиональными знаниями, но и вдохновляли на творчество. Каждое занятие было продуманным и интересным, ' +
       'а внимание к деталям помогло мне обрести уверенность в работе с тканями. Спасибо за терпение, поддержку и возможность воплотить мечты в реальность!'
   },
   {
     id: 'review-1',
-    title: 'J Gasangusenova',
+    name: 'J Gasangusenova',
     date: '18.11.2024',
-    description: 'Огромная благодарность прекрасным учителям, научили шить, кроить, моделировать, и все это в самой прекрасной, дружеской атмосфере. ' +
+    text: 'Огромная благодарность прекрасным учителям, научили шить, кроить, моделировать, и все это в самой прекрасной, дружеской атмосфере. ' +
       'Ольга Борисовна, спасибо, вы замечательный учитель!💞💞'
   },
   {
     id: 'review-2',
-    title: 'City Spirit',
+    name: 'City Spirit',
     date: '04.07.2024',
-    description: 'Обучалась в этой школе. Хорошая подача материала и всего три ученицы в группе. Индивидуальный подход и приятная атмосфера для обучения' +
+    text: 'Обучалась в этой школе. Хорошая подача материала и всего три ученицы в группе. Индивидуальный подход и приятная атмосфера для обучения' +
       '. Сшила юбку себе и дочке,пиджак и брюки. Пойду на продолжение-конструкторский курс.'
   },
   {
     id: 'review-3',
-    title: 'Sofa S',
+    name: 'Sofa S',
     date: '04.07.2024',
-    description: 'Прошла курс конструирование очень довольна результатом всем советую учителю большое спасибо объясняет очень понятно'
+    text: 'Прошла курс конструирование очень довольна результатом всем советую учителю большое спасибо объясняет очень понятно'
   },
   {
     id: 'review-4',
-    title: 'Людвига Коновалова',
+    name: 'Людвига Коновалова',
     date: '15.02.2022',
-    description: 'В этом месте реализуются все мечты . Теперь я создаю свой гардероб сама!'
+    text: 'В этом месте реализуются все мечты . Теперь я создаю свой гардероб сама!'
   },
   {
     id: 'review-5',
-    title: 'Нурила Джусупова',
+    name: 'Нурила Джусупова',
     date: '11.11.2024',
-    description: 'Сегодня я закончила курсы Кройки и шитья у Ольгы Борисовны,пришла с нуля. И я очень рада, что выбрала именно Вас! Научили шить, кроить, моделировать.\n' +
+    text: 'Сегодня я закончила курсы Кройки и шитья у Ольгы Борисовны,пришла с нуля. И я очень рада, что выбрала именно Вас! Научили шить, кроить, моделировать.\n' +
       'Ольга Борисовна организовала отличную школу, все четко, конкретно,доступно и понятно.\n' +
       'Огромное спасибо преподавателям, Ольге Борисовне и Татьяне Витальевне! Процветания и Успехов вашей школе!\n' +
       'Планирую продолжить обучение.'
@@ -76,9 +76,9 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
           onClick={() => onPressReview({index})}
           key={`review-${index}`}
         >
-          <h4>{item.title}</h4>
+          <h4>{item.name}</h4>
           {item.date && <small>{item.date}</small>}
-          <p style={{marginTop: '0.75rem'}}>{item.description}</p>
+          <p style={{marginTop: '0.75rem'}}>{item.text}</p>
           <button className={'carousel-review__button'}>
             <p style={{paddingRight: '0.5rem'}}>{'Подробнее'}</p><ArrowRightIcon size={24} className={'carousel-review__button_icon'}/>
           </button>
@@ -86,7 +86,7 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
       })}
     </div>
 
-    {activeIndex !== items.length - 1 && <div className={"carousel-review__arrow"} style={{position: 'absolute', right: 20, top: '50%'}}>
+    {activeIndex !== items.length - 1 && <div className={"carousel-review__arrow arrow-right"}>
       <CaretRightIcon size={60} onClick={() => {
         if (items.length == activeIndex + 1) {
           return;
@@ -95,7 +95,7 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
 
       }}/>
     </div>}
-    {activeIndex !== 0 && <div className={"carousel-review__arrow"} style={{position: 'absolute', left: 20, top: '50%'}}>
+    {activeIndex !== 0 && <div className={"carousel-review__arrow arrow-left"}>
       <CaretLeftIcon size={60} onClick={() => {
         if (0 == activeIndex) {
           return;
@@ -105,9 +105,9 @@ export function CarouselReviews({items}: {items: CarouselItem[]}) {
     </div>}
   </div>
     <Modal open={open} onClose={() => setOpen(false)} title={'Отзыв'}>
-      <h3 className={'review-modal__title'}>{items[activeIndex].title}</h3>
+      <h3 className={'review-modal__title'}>{items[activeIndex].name}</h3>
       {items[activeIndex].date && <small className={'review-modal__date'}>{items[activeIndex].date}</small>}
-      <p className={'review-modal__description'}>{items[activeIndex].description}</p>
+      <p className={'review-modal__description'}>{items[activeIndex].text}</p>
     </Modal>
   </section>;
 }

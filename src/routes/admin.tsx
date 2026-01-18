@@ -4,6 +4,7 @@ import {useState} from 'react';
 import {CoursesAdmin} from '../widgets/coursesAdmin';
 import {VideoAdmin} from '../widgets/video/videoAdmin.tsx';
 import {Separator} from '../widgets/separator';
+import {ReviewsAdmin} from '../widgets/carousel/reviewsAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -30,5 +31,7 @@ function RouteComponent() {
     <hr style={{margin: '5rem 0'}} />
     <Separator title={'Оффлайн курсы'}/>
     <CoursesAdmin/>
+    <Separator title={'Отзывы'}/>
+    <ReviewsAdmin/>
   </div>
 }

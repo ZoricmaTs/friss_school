@@ -1,10 +1,11 @@
 import {z} from 'zod';
 
 export const ReviewZod = z.object({
-    name: z.string(),
-    date: z.string(),
-    text: z.string(),
-  });
+  id: z.string(),
+  name: z.string(),
+  date: z.string(),
+  text: z.string(),
+});
 
 export const CourseZod = z.object({
   id: z.string(),

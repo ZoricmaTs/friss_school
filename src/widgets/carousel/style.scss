@@ -78,6 +78,18 @@
         fill: var(--hover-color);
       }
     }
+
+    &__arrow.arrow-right {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+    }
+
+    &__arrow.arrow-left {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+    }
   }
 
   &__wrapper {
