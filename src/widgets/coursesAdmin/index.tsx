@@ -183,7 +183,7 @@ function CourseCard(props: CourseCardProps) {
       }}
       validationSchema={schema}
       children={(props) => {
-        return <Form>
+        return <Form style={{width: '100%'}}>
           <h3>{'Редактирование курса'}</h3>
           <Input
             type={'text'}
