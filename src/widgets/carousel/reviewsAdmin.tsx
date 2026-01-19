@@ -23,7 +23,7 @@ export function ReviewsAdmin() {
     <NewReviewForm/>
     <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все отзывы'}</h3>
     <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
-      {dynamicStore.reviews.map((review) => <ReviewCardAdmin review={review} key={review.id}/>)}
+      {dynamicStore.reviews.map((review, index: number) => <ReviewCardAdmin review={review} key={index}/>)}
     </div>
   </div>
 }
@@ -120,11 +120,12 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
     <Formik
       onSubmit={(values) => {
         dynamicStore.patchData((stateDraft) => {
-
           const review = stateDraft.reviews.find(value => value.id === props.review.id)!;
+
           review.name = values.name;
           review.text = values.text;
           review.date = values.date;
+
           setIsEditing(false);
         })
       }}

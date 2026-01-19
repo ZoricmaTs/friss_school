@@ -140,7 +140,9 @@ function CourseCard(props: CourseCardProps) {
           <div className={'course-admin__btns'}>
             <button
               className={'course-admin__btn course-admin__btn_full '}
-              onClick={() => setIsEditing(true)}
+              onClick={() => {
+                setIsEditing(true);
+              }}
             >
               <p>{'Редактировать'}</p>
             </button>
@@ -173,6 +175,10 @@ function CourseCard(props: CourseCardProps) {
           course.price = values.price;
           setIsEditing(false);
         })
+
+        dynamicStore.saveData().catch((error) => {
+          console.error('Ошибка сохранения:', error);
+        });
       }}
       initialValues={{
         'title': props.course.title,

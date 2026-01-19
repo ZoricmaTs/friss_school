@@ -6,6 +6,7 @@ import {VideoAdmin} from '../widgets/video/videoAdmin.tsx';
 import {Separator} from '../widgets/separator';
 import {ReviewsAdmin} from '../widgets/carousel/reviewsAdmin.tsx';
 import {AccordionsAdmin} from '../widgets/accordion/accordionAdmin.tsx';
+import {RunningLinesAdmin} from '../widgets/runningLine/linesAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -15,12 +16,9 @@ export const Route = createFileRoute('/admin')({
 function RouteComponent() {
   const [imageId, setImageId] = useState<string | undefined>();
 
-
   // const onSubmit = () => {
   //   dynamicStore.saveData().catch(null);
   // }
-
-
 
   return <div style={{minHeight: '100vh',   width: '100%', padding: '0 2.5rem', maxWidth: '1440px', margin: '0 auto'}}>
     <VideoAdmin/>
@@ -28,6 +26,10 @@ function RouteComponent() {
       onImageChange={imageId => setImageId(imageId)}
       selectedImageId={imageId}
     />
+
+    <hr style={{margin: '5rem 0'}} />
+    <Separator title={'Бегущая строка'}/>
+    <RunningLinesAdmin/>
 
     <hr style={{margin: '5rem 0'}} />
     <Separator title={'Оффлайн курсы'}/>

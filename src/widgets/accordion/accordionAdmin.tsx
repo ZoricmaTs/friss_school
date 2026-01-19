@@ -22,7 +22,7 @@ export function AccordionsAdmin() {
     <NewAccordionForm/>
     <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все вопросы-ответы'}</h3>
     <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
-      {dynamicStore.accordions.map((accordion) => <AccordionCardAdmin accordion={accordion} key={accordion.id}/>)}
+      {dynamicStore.accordions.map((accordion, index: number) => <AccordionCardAdmin accordion={accordion} key={index}/>)}
     </div>
   </div>
 }
