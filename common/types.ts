@@ -28,6 +28,15 @@ export const AccordionZod = z.object({
   answer: z.string(),
 });
 
+export const PatternZod = z.object({
+  id: z.string(),
+  title: z.string(),
+  price: z.number(),
+  salePrice: z.number(),
+  image: z.string(),
+  level: z.number(),
+});
+
 export const DataRootZod = z.object({
   accordions: z.array(AccordionZod),
   header: z.object({
@@ -35,8 +44,10 @@ export const DataRootZod = z.object({
     description: z.string(),
   }),
   courses: z.array(CourseZod),
+  patterns: z.array(PatternZod),
   reviews: z.array(ReviewZod),
   runningLines: z.array(ReviewZod),
+
 });
 
 export type AccordionType = z.infer<typeof AccordionZod>;
@@ -44,6 +55,8 @@ export type AccordionType = z.infer<typeof AccordionZod>;
 export type CourseType = z.infer<typeof CourseZod>;
 
 export type DataRootType = z.infer<typeof DataRootZod>;
+
+export type PatternType = z.infer<typeof PatternZod>;
 
 export type ReviewType = z.infer<typeof ReviewZod>;
 

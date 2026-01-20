@@ -58,19 +58,19 @@ export function RunningLineCardAdmin(props: RunningLineProps) {
       children={(props) => {
         return <Form style={{width: '100%'}}>
           <h3>{'Редактирование'}</h3>
-          <Input
-            type={'text'}
-            name={'line'}
-            label={'Текст'}
-            errors={props.errors}
-            touched={props.touched}
-          />
-          <button
-            type={'submit'}
-            className={'course-admin__btn course-admin__btn_full'}
-          >
-            <p>{'Сохранить'}</p>
-          </button>
+            <Input
+              type={'text'}
+              name={'line'}
+              label={'Текст'}
+              errors={props.errors}
+              touched={props.touched}
+            />
+            <button
+              type={'submit'}
+              className={'btn btn__full'}
+            >
+              <p>{'Сохранить'}</p>
+            </button>
         </Form>
       }}
     >

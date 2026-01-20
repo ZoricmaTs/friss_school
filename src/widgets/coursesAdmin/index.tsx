@@ -139,7 +139,7 @@ function CourseCard(props: CourseCardProps) {
           </div>
           <div className={'course-admin__btns'}>
             <button
-              className={'course-admin__btn course-admin__btn_full '}
+              className={'btn btn__full '}
               onClick={() => {
                 setIsEditing(true);
               }}
@@ -147,7 +147,7 @@ function CourseCard(props: CourseCardProps) {
               <p>{'Редактировать'}</p>
             </button>
             <button
-              className={'course-admin__btn course-admin__btn_transparent '}
+              className={'btn btn__transparent'}
               onClick={event => {
                 event.preventDefault();
                 dynamicStore.patchData(stateDraft => {

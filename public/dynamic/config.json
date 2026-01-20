@@ -44,5 +44,14 @@
       "id": "2",
       "text": "friss school"
     }
+  ],
+  "patterns": [
+    {
+      "id": "0",
+      "title": "sdfgsdfg",
+      "price": 200,
+      "level": 3,
+      "sales": 0
+    }
   ]
 }

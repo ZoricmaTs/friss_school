@@ -48,7 +48,7 @@ export function VideoAdmin() {
           errors={errors}
           touched={touched}
         />
-        <button className={'input__submit'} type="submit"><p>{'Изменить видео-блок '}</p></button>
+        <button className={'btn btn__full'} style={{ margin: '1rem 0'}} type="submit"><p>{'Изменить видео-блок '}</p></button>
       </Form>
     )}
   </Formik>

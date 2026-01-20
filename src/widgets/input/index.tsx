@@ -2,7 +2,7 @@ import './style.scss';
 import {Field} from 'formik';
 
 export interface InputProps {
-  type: 'text' | 'password' | 'email' | 'textarea';
+  type: 'text' | 'password' | 'email' | 'textarea' | 'number';
   name: string;
   label: string;
   errors: {[key: string]: string | undefined};

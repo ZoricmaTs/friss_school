@@ -7,6 +7,7 @@ import {Separator} from '../widgets/separator';
 import {ReviewsAdmin} from '../widgets/carousel/reviewsAdmin.tsx';
 import {AccordionsAdmin} from '../widgets/accordion/accordionAdmin.tsx';
 import {RunningLinesAdmin} from '../widgets/runningLine/linesAdmin.tsx';
+import {PatternsAdmin} from '../widgets/pattern/patternsAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -42,5 +43,9 @@ function RouteComponent() {
     <hr style={{margin: '5rem 0'}} />
     <Separator title={'Вопросы-ответы'}/>
     <AccordionsAdmin/>
+
+    <hr style={{margin: '5rem 0'}} />
+    <Separator title={'Лекала'}/>
+    <PatternsAdmin/>
   </div>
 }

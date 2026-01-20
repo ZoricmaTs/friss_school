@@ -66,7 +66,7 @@ function NewAccordionForm() {
           errors={props.errors}
           touched={props.touched}
         />
-        <button className={'input__submit'} type="submit"><p>{'Добавить новый вопрос-ответ'}</p></button>
+        <button className={'btn btn__full'} type="submit"><p>{'Добавить новый вопрос-ответ'}</p></button>
       </Form>
     }}/>;
 }
@@ -85,13 +85,13 @@ export function AccordionCardAdmin(props: ReviewCardProps) {
         </div>
         <div className={'course-admin__btns'}>
           <button
-            className={'course-admin__btn course-admin__btn_full '}
+            className={'btn btn__full '}
             onClick={() => setIsEditing(true)}
           >
             <p>{'Редактировать'}</p>
           </button>
           <button
-            className={'course-admin__btn course-admin__btn_transparent '}
+            className={'btn btn__transparent'}
             onClick={event => {
               event.preventDefault();
               dynamicStore.patchData(stateDraft => {

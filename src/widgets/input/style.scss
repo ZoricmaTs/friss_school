@@ -10,27 +10,6 @@
     color: var(--text-color);
     margin-bottom: 0.25rem;
   }
-
-  &__submit {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    text-align: center;
-    margin: 1rem 0;
-    background-color: #A97AB7;
-    border: none;
-    padding: 1rem 1.25rem;
-    color: var(--bg-color);
-
-    &:hover {
-      transform: scale(1.04);
-      background-color: var(--hover-color);
-    }
-
-    &:active {
-      transform: scale(0.97);
-      background-color: var(--hover-color);
-    }
-  }
 }
 
 .error {

@@ -13,7 +13,7 @@ export const Route = createFileRoute('/patterns')({
 
 const patterns = [
   {
-    id: 0,
+    id: "0",
     title: 'юбка-шорты 1 вариант',
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],
@@ -21,7 +21,7 @@ const patterns = [
     image: '/images/patterns/photo_2025-12-23_11-23-42.jpg',
   },
   {
-    id: 1,
+    id: "1",
     title: 'юбка-шорты 2 вариант',
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],
@@ -29,7 +29,7 @@ const patterns = [
     image: '/images/patterns/photo_2025-12-22_19-53-38.jpg',
   },
   {
-    id: 2,
+    id: "2",
     title: 'юбка-шорты 3 вариант',
     price: 200,
     sizes: ['xs', 's', 'm', 'l'],

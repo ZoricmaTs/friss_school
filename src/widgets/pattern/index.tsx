@@ -3,20 +3,12 @@ import {LevelIcon} from './button.tsx';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
 import {type CSSProperties, useCallback, useEffect, useRef, useState} from 'react';
 
-// export enum PatternSizes {
-//   XS = 'xs',
-//   S = 's',
-//   M = 'm',
-//   L = 'l',
-// }
-
 export type PatternType = {
-  id: number,
+  id: string,
   title: string,
   image?: string
   price: number,
   salePrice?: number,
-  sizes: string[],
   level: number,
 }
 
@@ -51,8 +43,18 @@ export function getLevels() {
   ];
 }
 
-export function Pattern({props}: { props: PatternType }) {
+// eslint-disable-next-line react-refresh/only-export-components
+export function getLevel(level: number) {
   const levels = getLevels().filter((item) => item.id !== 0);
+
+  return <div className={'pattern__levels'}>
+    {levels.map((_item, index: number) => {
+      return <LevelIcon key={`${index}-level`} className={`pattern__level${(index + 1) <= level ? ' active' : ''}`} size={25}/>
+    })}
+  </div>;
+}
+
+export function Pattern({props}: { props: PatternType }) {
   const priceWithSales: CSSProperties = {
     textDecoration: 'line-through',
     textDecorationColor: '#f04343',
@@ -60,7 +62,7 @@ export function Pattern({props}: { props: PatternType }) {
   }
 
   return <a
-    className={'pattern'}
+    className={'pattern pattern__levelsHoverTrigger'}
     href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
     target="_blank"
     rel="noopener noreferrer"
@@ -93,15 +95,9 @@ export function Pattern({props}: { props: PatternType }) {
       </div>
       <div className={'pattern__level-wrapper'}>
         <small>{'Сложность: '}</small>
-        <div className={'pattern__level'}>
-          {levels.map((item: { id: number, value: string | number }) => {
-            return <LevelIcon className={`pattern__level${item.id <= props.level ? ' active' : ''}`} size={25}/>
-          })}
-        </div>
+        {getLevel(props.level)}
       </div>
-      <div
-        className={'pattern__button'}
-      >
+      <div className={'pattern__button'}>
         <p>{'Купить'}</p>
       </div>
     </div>
