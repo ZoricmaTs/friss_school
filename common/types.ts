@@ -33,8 +33,13 @@ export const PatternZod = z.object({
   title: z.string(),
   price: z.number(),
   salePrice: z.number(),
-  image: z.string(),
+  image: z.optional(z.string()),
   level: z.number(),
+});
+
+export const MapZod = z.object({
+  coordinates: z.tuple([z.number(), z.number()]),
+  address: z.optional(z.string()),
 });
 
 export const DataRootZod = z.object({
@@ -46,8 +51,8 @@ export const DataRootZod = z.object({
   courses: z.array(CourseZod),
   patterns: z.array(PatternZod),
   reviews: z.array(ReviewZod),
-  runningLines: z.array(ReviewZod),
-
+  runningLines: z.array(RunningLineZod),
+  map: MapZod,
 });
 
 export type AccordionType = z.infer<typeof AccordionZod>;
@@ -55,6 +60,8 @@ export type AccordionType = z.infer<typeof AccordionZod>;
 export type CourseType = z.infer<typeof CourseZod>;
 
 export type DataRootType = z.infer<typeof DataRootZod>;
+
+export type MapType = z.infer<typeof MapZod>;
 
 export type PatternType = z.infer<typeof PatternZod>;
 

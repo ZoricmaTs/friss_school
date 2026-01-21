@@ -1,9 +1,21 @@
 {
+  "accordions": [
+    {
+      "id": "1",
+      "question": "sdfgsdfgsdfg",
+      "answer": "sdfgsdfg"
+    },
+    {
+      "id": "2",
+      "question": " dfergdfg ghgjghj",
+      "answer": "dfgdfg5435"
+    }
+  ],
   "header": {
     "title": "fhfghf",
     "description": "dfsdfksdfj\n\ndfdfsd\n\n"
   },
-  "courses" : [
+  "courses": [
     {
       "id": "0",
       "title": "dsgfgdf",
@@ -14,21 +26,21 @@
       "image": "ea2e1d0a-1ef0-4d24-ae4e-dd73b3b07370.jpg"
     }
   ],
+  "patterns": [
+    {
+      "id": "0",
+      "title": "sdfgsdfg",
+      "price": 200,
+      "salePrice": 200,
+      "level": 3
+    }
+  ],
   "reviews": [
     {
+      "id": "0",
       "name": "USER NAME",
       "date": "23.11.2001",
       "text": "THIS IS VERY GOOD SCHOOL!"
-    }
-  ],
-  "accordions": [
-    {
-      "answer": "sdfgsdfg",
-      "question": "sdfgsdfgsdfg"
-    },
-    {
-      "answer": "dfgdfg5435",
-      "question": " dfergdfg ghgjghj"
     }
   ],
   "runningLines": [
@@ -45,13 +57,11 @@
       "text": "friss school"
     }
   ],
-  "patterns": [
-    {
-      "id": "0",
-      "title": "sdfgsdfg",
-      "price": 200,
-      "level": 3,
-      "sales": 0
-    }
-  ]
+  "map": {
+    "coordinates": [
+      42.848502508823266,
+      74.60770368576051
+    ],
+    "address": "720035, Кыргызская Республика, Байтик Баатыра улица, 36/184851"
+  }
 }

@@ -8,6 +8,7 @@ import {ReviewsAdmin} from '../widgets/carousel/reviewsAdmin.tsx';
 import {AccordionsAdmin} from '../widgets/accordion/accordionAdmin.tsx';
 import {RunningLinesAdmin} from '../widgets/runningLine/linesAdmin.tsx';
 import {PatternsAdmin} from '../widgets/pattern/patternsAdmin.tsx';
+import {YMapLeafletFormik} from '../widgets/yMap/yMapAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -16,12 +17,14 @@ export const Route = createFileRoute('/admin')({
 
 function RouteComponent() {
   const [imageId, setImageId] = useState<string | undefined>();
-
   // const onSubmit = () => {
   //   dynamicStore.saveData().catch(null);
   // }
 
   return <div style={{minHeight: '100vh',   width: '100%', padding: '0 2.5rem', maxWidth: '1440px', margin: '0 auto'}}>
+
+    {/*<YMapAdmin coordinates={[42.848644, 74.608399]}/>*/}
+    <YMapLeafletFormik/>
     <VideoAdmin/>
     <FastDropImage
       onImageChange={imageId => setImageId(imageId)}
