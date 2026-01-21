@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import {useState} from 'react';
 import {v4 as generateUUID} from 'uuid';
 
-type ReviewCardProps = {
+type AccordionCardProps = {
   accordion: AccordionType
 }
 
@@ -71,7 +71,7 @@ function NewAccordionForm() {
     }}/>;
 }
 
-export function AccordionCardAdmin(props: ReviewCardProps) {
+export function AccordionCardAdmin(props: AccordionCardProps) {
   const dynamicStore = useDynamicStoreStore();
   const [isEditing, setIsEditing] = useState(false);
 

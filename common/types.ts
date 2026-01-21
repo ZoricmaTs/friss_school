@@ -42,6 +42,19 @@ export const MapZod = z.object({
   address: z.optional(z.string()),
 });
 
+export const SocialsZod = z.object({
+  treads: z.string(),
+  instagram: z.string(),
+  whatsapp: z.string(),
+  facebook: z.string(),
+});
+
+export const ContactZod = z.object({
+  phone: z.string(),
+  schedule: z.string(),
+  socials: SocialsZod,
+});
+
 export const DataRootZod = z.object({
   accordions: z.array(AccordionZod),
   header: z.object({
@@ -53,6 +66,7 @@ export const DataRootZod = z.object({
   reviews: z.array(ReviewZod),
   runningLines: z.array(RunningLineZod),
   map: MapZod,
+  contacts: ContactZod,
 });
 
 export type AccordionType = z.infer<typeof AccordionZod>;
@@ -60,8 +74,6 @@ export type AccordionType = z.infer<typeof AccordionZod>;
 export type CourseType = z.infer<typeof CourseZod>;
 
 export type DataRootType = z.infer<typeof DataRootZod>;
-
-export type MapType = z.infer<typeof MapZod>;
 
 export type PatternType = z.infer<typeof PatternZod>;
 

@@ -44,23 +44,25 @@ export function RunningLineCardAdmin(props: RunningLineProps) {
     </div>;
   }
 
+  console.log('wgl props.line.text', props.line.text)
   return <div>
     <Formik
       onSubmit={(values) => {
         dynamicStore.patchData((stateDraft) => {
           const line = stateDraft.runningLines.find(value => value.id === props.line.id)!;
-          line.text = values.text;
+          line.text = values.aboba;
           setIsEditing(false);
         });
       }}
-      initialValues={{'text': props.line.text}}
+      initialValues={{'aboba': props.line.text}}
       validationSchema={schema}
       children={(props) => {
+        console.log('wgl props', props)
         return <Form style={{width: '100%'}}>
           <h3>{'Редактирование'}</h3>
             <Input
               type={'text'}
-              name={'line'}
+              name={'aboba'}
               label={'Текст'}
               errors={props.errors}
               touched={props.touched}

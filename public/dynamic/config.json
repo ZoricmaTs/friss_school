@@ -63,5 +63,15 @@
       74.60770368576051
     ],
     "address": "720035, Кыргызская Республика, Байтик Баатыра улица, 36/184851"
+  },
+  "contacts": {
+    "phone": "+996 504 362 514",
+    "schedule": "Пн-Пт: 9:00 - 18:00",
+    "socials": {
+      "instagram": "https://www.instagram.com/purisova_school/",
+      "facebook": "https://www.facebook.com/profile.php?id=100027885127821&ref=_ig_profile_ac",
+      "whatsapp": "https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig",
+      "treads": "https://www.threads.com/@purisova_school?xmt=AQF0VGwj2WIR347Nv5TSki5Zi_9ixdbjPV_qxUIxFbpoxY4"
+    }
   }
 }

@@ -46,7 +46,7 @@ export const socialMedia: SocialMediaType[] = [
   {
     id: 3,
     name: 'treads',
-    href: 'https://www.threads.com/@purisova_school?xmt=AQF0VGwj2WIR347Nv5TSki5Zi_9ixdbjPV_qxUIxFbpoxY4\n',
+    href: 'https://www.threads.com/@purisova_school?xmt=AQF0VGwj2WIR347Nv5TSki5Zi_9ixdbjPV_qxUIxFbpoxY4',
   },
 ];
 

@@ -42,6 +42,7 @@ async function getAddressFromCoords(coords: [number, number]): Promise<string | 
     const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
     const data = await res.json();
     data.address.country = data.address.country === "Киргизия" ? "Кыргызская Республика" : data.address.country;
+
     const formattedAddress = formatAddress(data.address);
 
     return formattedAddress || null;

@@ -19,11 +19,17 @@ export function Input(props: InputProps) {
     }
   };
 
+  const additionalProps: {value?: string | number, onChange?: typeof onChange} = {};
+
+  if (props.value) {
+    additionalProps.value = props.value;
+    additionalProps.onChange = onChange;
+  }
+
   return <div style={{width: '100%'}}>
     <p className={'input__label'}>{props.label}</p>
     <Field
-      value={props.value}
-      onChange={onChange}
+      {...additionalProps}
       name={props.name}
       as={props.type === 'textarea' ? props.type : undefined}
       type={props.type === 'textarea' ? undefined : props.type}
