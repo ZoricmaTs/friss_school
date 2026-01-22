@@ -180,3 +180,28 @@
     margin-bottom: 0.25rem;
   }
 }
+
+.review-admin {
+  display: flex;
+  flex-direction: column;
+  border: 0.15rem solid #A97AB7;
+  padding: 1rem 1.25rem;
+  align-items: stretch;
+
+  &__title {
+    padding: 0.5rem 0;
+  }
+
+  &__date {
+    padding-bottom: 0.5rem;
+    color: var(--text-additional-color);
+  }
+  &__text {
+
+  }
+
+  &__form {
+    border: 0.15rem solid #A97AB7;
+    padding: 1rem 1.25rem;
+  }
+}

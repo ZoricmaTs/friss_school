@@ -5,6 +5,7 @@ import type {ReviewType} from '../../../common/types.ts';
 import * as Yup from 'yup';
 import {useState} from 'react';
 import {v4 as generateUUID} from 'uuid';
+import './style.scss';
 
 type ReviewCardProps = {
   review: ReviewType
@@ -53,8 +54,8 @@ function NewReviewForm() {
     }}
     validationSchema={schema}
     children={(props) => {
-      return <Form>
-        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый отзыв'}</h3>
+      return <Form className={'review-admin__form'}>
+        <h3 style={{marginBottom: '2rem'}}>{'Добавить новый отзыв'}</h3>
         <Input
           type={'text'}
           name={'name'}
@@ -86,32 +87,29 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!isEditing) {
-    return <div className={'course-admin'}>
-
-      <div className={'course-admin__info-container'}>
-        <div>
-          <h3 className={'course-admin__title'}>{props.review.name}</h3>
-          <p className={'course-admin__preview'}>{props.review.date}</p>
-          <p className={'course-admin__preview'}>{props.review.text}</p>
-        </div>
-        <div className={'course-admin__btns'}>
-          <button
-            className={'btn btn__full btn__small'}
-            onClick={() => setIsEditing(true)}
-          >
-            <small>{'Редактировать'}</small>
-          </button>
-          <button
-            className={'btn btn__transparent btn__small'}
-            onClick={event => {
-              event.preventDefault();
-              dynamicStore.patchData(stateDraft => {
-                stateDraft.reviews = stateDraft.reviews.filter(value => value.id !== props.review.id);
-              });
-            }}>
-            <small>{'Удалить'}</small>
-          </button>
-        </div>
+    return <div className={'review-admin'}>
+      <div>
+        <p className={'review-admin__title'}>{'Имя: '}{props.review.name}</p>
+        <small className={'review-admin__date'}>{'Дата: '}{props.review.date}</small>
+        <p className={'review-admin__text'}>{'Отзыв: '}{props.review.text}</p>
+      </div>
+      <div className={'course-admin__btns'}>
+        <button
+          className={'btn btn__full btn__small'}
+          onClick={() => setIsEditing(true)}
+        >
+          <small>{'Редактировать'}</small>
+        </button>
+        <button
+          className={'btn btn__transparent btn__small'}
+          onClick={event => {
+            event.preventDefault();
+            dynamicStore.patchData(stateDraft => {
+              stateDraft.reviews = stateDraft.reviews.filter(value => value.id !== props.review.id);
+            });
+          }}>
+          <small>{'Удалить'}</small>
+        </button>
       </div>
     </div>;
   }
@@ -136,19 +134,19 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
       }}
       validationSchema={schema}
       children={(props) => {
-        return <Form>
-          <h3>{'Редактирование отзыва'}</h3>
+        return <Form className={'review-admin__form'}>
+          <h4 className={'review-admin__title'}>{'Редактирование отзыва'}</h4>
           <Input
             type={'text'}
             name={'date'}
-            label={'дата отзыва: 11.11.2023'}
+            label={'дата: (например 11.11.2023)'}
             errors={props.errors}
             touched={props.touched}
           />
           <Input
             type={'text'}
             name={'name'}
-            label={'Имя автора отзыва'}
+            label={'Имя автора'}
             errors={props.errors}
             touched={props.touched}
           />
