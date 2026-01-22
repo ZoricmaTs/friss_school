@@ -5,6 +5,7 @@ import type {AccordionType} from '../../../common/types.ts';
 import * as Yup from 'yup';
 import {useState} from 'react';
 import {v4 as generateUUID} from 'uuid';
+import './style.scss';
 
 type AccordionCardProps = {
   accordion: AccordionType
@@ -20,7 +21,7 @@ export function AccordionsAdmin() {
 
   return <div>
     <NewAccordionForm/>
-    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все вопросы-ответы'}</h3>
+    <h3 style={{margin: '2rem 0'}}>{'Все вопросы-ответы'}</h3>
     <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
       {dynamicStore.accordions.map((accordion, index: number) => <AccordionCardAdmin accordion={accordion} key={index}/>)}
     </div>
@@ -50,8 +51,8 @@ function NewAccordionForm() {
     }}
     validationSchema={schema}
     children={(props) => {
-      return <Form>
-        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый вопрос-ответ'}</h3>
+      return <Form className={'accordion-admin__form'}>
+        <h3 style={{marginBottom: '1rem'}}>{'Добавить новый вопрос-ответ'}</h3>
         <Input
           type={'text'}
           name={'question'}
@@ -66,7 +67,7 @@ function NewAccordionForm() {
           errors={props.errors}
           touched={props.touched}
         />
-        <button className={'btn btn__full'} type="submit"><p>{'Добавить новый вопрос-ответ'}</p></button>
+        <button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить новый вопрос-ответ'}</small></button>
       </Form>
     }}/>;
 }
@@ -76,31 +77,28 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!isEditing) {
-    return <div className={'course-admin'}>
-
-      <div className={'course-admin__info-container'}>
-        <div>
-          <h3 className={'course-admin__title'}>{props.accordion.question}</h3>
-          <p className={'course-admin__preview'}>{props.accordion.answer}</p>
-        </div>
-        <div className={'course-admin__btns'}>
-          <button
-            className={'btn btn__full '}
-            onClick={() => setIsEditing(true)}
-          >
-            <p>{'Редактировать'}</p>
-          </button>
-          <button
-            className={'btn btn__transparent'}
-            onClick={event => {
-              event.preventDefault();
-              dynamicStore.patchData(stateDraft => {
-                stateDraft.accordions = stateDraft.accordions.filter(value => value.id !== props.accordion.id);
-              });
-            }}>
-            <p>{'Удалить'}</p>
-          </button>
-        </div>
+    return <div className={'accordion-admin'}>
+      <div>
+        <p className={'accordion-admin__title'}>{'Вопрос: '}{props.accordion.question}</p>
+        <p className={'accordion-admin__text'}>{'Ответ: '}{props.accordion.answer}</p>
+      </div>
+      <div className={'course-admin__btns'}>
+        <button
+          className={'btn btn__full btn__small'}
+          onClick={() => setIsEditing(true)}
+        >
+          <small>{'Редактировать'}</small>
+        </button>
+        <button
+          className={'btn btn__transparent btn__small'}
+          onClick={event => {
+            event.preventDefault();
+            dynamicStore.patchData(stateDraft => {
+              stateDraft.accordions = stateDraft.accordions.filter(value => value.id !== props.accordion.id);
+            });
+          }}>
+          <small>{'Удалить'}</small>
+        </button>
       </div>
     </div>;
   }
@@ -122,8 +120,8 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
       }}
       validationSchema={schema}
       children={(props) => {
-        return <Form>
-          <h3>{'Редактирование вопроса-ответа'}</h3>
+        return <Form className={'accordion-admin'}>
+          <h4 style={{marginBottom: '1rem'}}>{'Редактирование вопроса-ответа'}</h4>
           <Input
             type={'text'}
             name={'question'}
@@ -140,9 +138,9 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
           />
           <button
             type={'submit'}
-            className={'course-admin__btn course-admin__btn_full'}
+            className={'btn btn__full btn__small'}
           >
-            <p>{'Сохранить'}</p>
+            <small>{'Сохранить'}</small>
           </button>
         </Form>
       }}

@@ -93,7 +93,7 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
         <small className={'review-admin__date'}>{'Дата: '}{props.review.date}</small>
         <p className={'review-admin__text'}>{'Отзыв: '}{props.review.text}</p>
       </div>
-      <div className={'course-admin__btns'}>
+      <div className={'review-admin__btns'}>
         <button
           className={'btn btn__full btn__small'}
           onClick={() => setIsEditing(true)}
