@@ -2,12 +2,6 @@ import {Form, Formik} from 'formik';
 import {Input} from '../input';
 import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 import * as Yup from 'yup';
-import {Separator} from '../separator';
-
-export type OrderFormValues = {
-  videoTitle: string;
-  videoText: string;
-};
 
 const schema = Yup.object({
   videoTitle: Yup.string().required('Введите заголовок для видео-блока'),
@@ -33,7 +27,6 @@ export function VideoAdmin() {
   >
     {({ errors, touched }) => (
       <Form>
-        <Separator title={'Блок с видео'}/>
         <Input
           label={'Заголовок'}
           type={'text'}

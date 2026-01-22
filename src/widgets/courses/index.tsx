@@ -57,29 +57,6 @@ export const courses: CourseType[] = [
   },
 ]
 
-// eslint-disable-next-line react-refresh/only-export-components
-export function driveToDirect(url:string) {
-  if (!url) return "";
-
-  let fileId = "";
-
-  // 1. Стандартный вариант /file/d/ID/
-  const match1 = url.match(/\/file\/d\/([^/]+)/);
-  if (match1) {
-    fileId = match1[1];
-  }
-
-  // 2. Вариант ?id=ID
-  const match2 = url.match(/[?&]id=([^&]+)/);
-  if (match2) {
-    fileId = match2[1];
-  }
-
-  if (!fileId) return url; // если не распознали — вернём как есть
-
-  return `https://drive.google.com/uc?export=view&id=${fileId}`;
-}
-
 export function Courses() {
   const rootRef = useScrollHider<HTMLDivElement>();
   const navigate = useNavigate();

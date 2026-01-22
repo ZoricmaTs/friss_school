@@ -2,7 +2,7 @@ import './style.scss';
 import {type ReactNode, useLayoutEffect, useRef, useState} from 'react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
 
-type Tab = {
+export type Tab = {
   label: string;
   content: ReactNode;
 };

@@ -105,6 +105,10 @@ body {
   text-align: center;
   padding: 1rem 1.25rem;
 
+  &__small {
+    padding: 0.5rem 0.75rem;
+  }
+
   &__full {
     background-color: #A97AB7;
     border: 0.15rem solid transparent;

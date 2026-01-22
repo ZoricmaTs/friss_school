@@ -16,7 +16,7 @@ function RouteComponent() {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
         <div className={'tab-course__img-wrapper'}>
-          <div style={{backgroundImage: `url(${courses[index].imageUrl})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+          <div style={{backgroundImage: `url(${courses[index].image})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
         </div>
 
         <div className={'tab-course__info-wrapper'}>

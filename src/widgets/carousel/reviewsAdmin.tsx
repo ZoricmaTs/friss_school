@@ -76,7 +76,7 @@ function NewReviewForm() {
           errors={props.errors}
           touched={props.touched}
         />
-        <button className={'btn btn__full'} type="submit"><p>{'Добавить новый отзыв'}</p></button>
+        <button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить новый отзыв'}</small></button>
       </Form>
     }}/>;
 }
@@ -96,20 +96,20 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
         </div>
         <div className={'course-admin__btns'}>
           <button
-            className={'btn btn__full'}
+            className={'btn btn__full btn__small'}
             onClick={() => setIsEditing(true)}
           >
-            <p>{'Редактировать'}</p>
+            <small>{'Редактировать'}</small>
           </button>
           <button
-            className={'btn btn__transparent'}
+            className={'btn btn__transparent btn__small'}
             onClick={event => {
               event.preventDefault();
               dynamicStore.patchData(stateDraft => {
                 stateDraft.reviews = stateDraft.reviews.filter(value => value.id !== props.review.id);
               });
             }}>
-            <p>{'Удалить'}</p>
+            <small>{'Удалить'}</small>
           </button>
         </div>
       </div>
@@ -161,9 +161,9 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
           />
           <button
             type={'submit'}
-            className={'btn btn__full'}
+            className={'btn btn__full btn__small'}
           >
-            <p>{'Сохранить'}</p>
+            <small>{'Сохранить'}</small>
           </button>
         </Form>
       }}

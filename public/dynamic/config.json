@@ -15,6 +15,16 @@
     "title": "fhfghf",
     "description": "dfsdfksdfj\n\ndfdfsd\n\n"
   },
+  "contacts": {
+    "phone": "+996 504 362 514",
+    "schedule": "Пн-Пт: 9:00 - 18:00",
+    "socials": {
+      "treads": "https://www.threads.com/@purisova_school?xmt=AQF0VGwj2WIR347Nv5TSki5Zi_9ixdbjPV_qxUIxFbpoxY4",
+      "instagram": "https://www.instagram.com/purisova_school/",
+      "whatsapp": "https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig",
+      "facebook": "https://www.facebook.com/profile.php?id=100027885127821&ref=_ig_profile_ac"
+    }
+  },
   "courses": [
     {
       "id": "0",
@@ -26,7 +36,6 @@
       "image": "ea2e1d0a-1ef0-4d24-ae4e-dd73b3b07370.jpg"
     }
   ],
-  "patternsText": "Мы занимаемся изготовлением лекал, которые вы можете у нас заказать. Либо выбрать готовые лекала для пошива современной одежды. На сайте также есть бесплатные выкройки. Создайте любой образ с нами. Разный уровень сложности позволит шить вещи как новичкам, так и опытным мастерам. Лекала в формате pdf.",
   "patterns": [
     {
       "id": "0",
@@ -36,6 +45,14 @@
       "level": 3
     }
   ],
+  "patternsText": "Мы занимаемся изготовлением лекал, которые вы можете у нас заказать. Либо выбрать готовые лекала для пошива современной одежды. На сайте также есть бесплатные выкройки. Создайте любой образ с нами. Разный уровень сложности позволит шить вещи как новичкам, так и опытным мастерам. Лекала в формате pdf.",
+  "map": {
+    "coordinates": [
+      42.848502508823266,
+      74.60770368576051
+    ],
+    "address": "720035, Кыргызская Республика, Байтик Баатыра улица, 36/184851"
+  },
   "reviews": [
     {
       "id": "0",
@@ -58,22 +75,5 @@
       "text": "friss school"
     }
   ],
-  "map": {
-    "coordinates": [
-      42.848502508823266,
-      74.60770368576051
-    ],
-    "address": "720035, Кыргызская Республика, Байтик Баатыра улица, 36/184851"
-  },
-  "contacts": {
-    "phone": "+996 504 362 514",
-    "schedule": "Пн-Пт: 9:00 - 18:00",
-    "socials": {
-      "instagram": "https://www.instagram.com/purisova_school/",
-      "facebook": "https://www.facebook.com/profile.php?id=100027885127821&ref=_ig_profile_ac",
-      "whatsapp": "https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig",
-      "treads": "https://www.threads.com/@purisova_school?xmt=AQF0VGwj2WIR347Nv5TSki5Zi_9ixdbjPV_qxUIxFbpoxY4"
-    }
-  },
   "videoCourseText": "Учитесь в своём темпе и без привязки ко времени. Все уроки доступны в записи, с подробными объяснениями и наглядными примерами. Вы сможете освоить крой, работу с тканями и пошив изделий, не выходя из дома. Для получения доступа перейдите в Whatsapp по ссылке ниже. После оплаты и подтверждения вам будет открыт доступ к выбранному курсу."
 }
