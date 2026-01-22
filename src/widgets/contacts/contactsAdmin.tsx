@@ -16,7 +16,7 @@ const schema = Yup.object({
 export function ContactsAdmin() {
   const dynamicStore = useDynamicStoreStore();
 
-  return <div style={{margin: '2rem 0'}}>
+  return <div>
     <Formik
       onSubmit={(values) => {
         dynamicStore.patchData((stateDraft) => {

@@ -61,7 +61,7 @@ function NewCourseForm() {
     validationSchema={schema}
     children={(props) => {
     return <Form>
-      <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить новый курс'}</h3>
+      <h3 style={{marginBottom: '1rem'}}>{'Добавить новый курс'}</h3>
       <Input
         type={'text'}
         name={'title'}
