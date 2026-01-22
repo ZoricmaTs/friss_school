@@ -61,13 +61,15 @@ export const DataRootZod = z.object({
     title: z.string(),
     description: z.string(),
   }),
+  contacts: ContactZod,
   courses: z.array(CourseZod),
+
   patterns: z.array(PatternZod),
   patternsText: z.string(),
+  map: MapZod,
   reviews: z.array(ReviewZod),
   runningLines: z.array(RunningLineZod),
-  map: MapZod,
-  contacts: ContactZod,
+  videoCourseText: z.string(),
 });
 
 export type AccordionType = z.infer<typeof AccordionZod>;
@@ -77,8 +79,6 @@ export type CourseType = z.infer<typeof CourseZod>;
 export type DataRootType = z.infer<typeof DataRootZod>;
 
 export type PatternType = z.infer<typeof PatternZod>;
-
-export type PatternsTextType = z.infer<typeof PatternsTextZod>;
 
 export type ReviewType = z.infer<typeof ReviewZod>;
 

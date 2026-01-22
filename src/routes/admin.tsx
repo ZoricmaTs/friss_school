@@ -10,6 +10,7 @@ import {RunningLinesAdmin} from '../widgets/runningLine/linesAdmin.tsx';
 import {PatternsAdmin} from '../widgets/pattern/patternsAdmin.tsx';
 import {YMapLeafletFormik} from '../widgets/yMap/yMapAdmin.tsx';
 import {ContactsAdmin} from '../widgets/contacts/contactsAdmin.tsx';
+import {VideoCourseAdmin} from '../widgets/videoCourse/videoCourseAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -23,9 +24,13 @@ function RouteComponent() {
   // }
 
   return <div style={{minHeight: '100vh',   width: '100%', padding: '0 2.5rem', maxWidth: '1440px', margin: '0 auto'}}>
+    <VideoCourseAdmin/>
     <ContactsAdmin/>
+
     <YMapLeafletFormik/>
+
     <VideoAdmin/>
+
     <FastDropImage
       onImageChange={imageId => setImageId(imageId)}
       selectedImageId={imageId}
