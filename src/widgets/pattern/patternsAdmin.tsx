@@ -47,7 +47,7 @@ function PatternTextInput() {
       validationSchema={schemaText}
       >
     {({ errors, touched }) => (
-      <Form>
+      <Form style={{marginBottom: '4rem'}}>
       <Input
         type={'textarea'}
         name={'text'}
@@ -91,8 +91,8 @@ function NewPatternForm() {
     }}
     validationSchema={schema}
     children={(props) => {
-      return <Form>
-        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Добавить'}</h3>
+      return <Form className={'pattern-admin'}>
+        <h3 style={{marginTop: '0.5rem', marginBottom: '2rem'}}>{'Добавить'}</h3>
         <Input
           type={'text'}
           name={'title'}
@@ -125,7 +125,7 @@ function NewPatternForm() {
           onImageChange={imageId => setImageId(imageId)}
           selectedImageId={imageId}
         />
-        {props.isValid && !!imageId &&<button className={'btn btn__full'} type="submit"><p>{'Добавить'}</p></button>}
+        {props.isValid && !!imageId &&<button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить'}</small></button>}
       </Form>
     }}/>;
 }
@@ -159,22 +159,22 @@ function PatternCard(props: PatternCardProps) {
         </div>
         <div className={'pattern-admin__btns'}>
           <button
-            className={'btn btn__full'}
+            className={'btn btn__full btn__small'}
             onClick={() => {
               setIsEditing(true);
             }}
           >
-            <p>{'Редактировать'}</p>
+            <small>{'Редактировать'}</small>
           </button>
           <button
-            className={'btn btn__transparent'}
+            className={'btn btn__transparent btn__small'}
             onClick={event => {
               event.preventDefault();
               dynamicStore.patchData(stateDraft => {
                 stateDraft.patterns = stateDraft.patterns.filter(value => value.id !== props.pattern.id);
               });
             }}>
-            <p>{'Удалить'}</p>
+            <small>{'Удалить'}</small>
           </button>
         </div>
       </div>
@@ -208,7 +208,7 @@ function PatternCard(props: PatternCardProps) {
       validationSchema={schema}
       children={(props) => {
         return <Form style={{width: '100%'}}>
-          <h3>{'Редактирование данных лекала'}</h3>
+          <h4 style={{marginBottom: '1rem'}}>{'Редактирование данных лекала'}</h4>
           <Input
             type={'text'}
             name={'title'}
@@ -239,9 +239,9 @@ function PatternCard(props: PatternCardProps) {
           />
           <button
             type={'submit'}
-            className={'course-admin__btn course-admin__btn_full'}
+            className={'btn btn__full btn__small'}
           >
-            <p>{'Сохранить'}</p>
+            <small>{'Сохранить'}</small>
           </button>
         </Form>
       }}

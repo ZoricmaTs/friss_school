@@ -231,10 +231,9 @@
 .pattern-admin {
   overflow: hidden;
   color: var(--text-color);
-  transition: transform 0.2s ease;
-  border: none;
-  text-decoration: none;
   cursor: pointer;
+  border: 0.15rem solid #A97AB7;
+  padding: 1rem 1.25rem;
 
   &__image-wrapper {
     width: 100%;
