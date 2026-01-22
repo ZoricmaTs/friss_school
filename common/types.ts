@@ -63,6 +63,7 @@ export const DataRootZod = z.object({
   }),
   courses: z.array(CourseZod),
   patterns: z.array(PatternZod),
+  patternsText: z.string(),
   reviews: z.array(ReviewZod),
   runningLines: z.array(RunningLineZod),
   map: MapZod,
@@ -76,6 +77,8 @@ export type CourseType = z.infer<typeof CourseZod>;
 export type DataRootType = z.infer<typeof DataRootZod>;
 
 export type PatternType = z.infer<typeof PatternZod>;
+
+export type PatternsTextType = z.infer<typeof PatternsTextZod>;
 
 export type ReviewType = z.infer<typeof ReviewZod>;
 

@@ -16,16 +16,49 @@ const schema = Yup.object({
   level: Yup.number().required('Введите уровень сложности лекала').max(5, 'Значение должно быть не более 5').min(1,'Значение должно быть не менее 1')
 });
 
+const schemaText = Yup.object({
+  text: Yup.string().required('Введите текст блока'),
+});
+
 export function PatternsAdmin() {
   const dynamicStore = useDynamicStoreStore();
 
   return <div>
+    <PatternTextInput/>
     <NewPatternForm/>
     <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все лекала'}</h3>
     <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)', width: '100%'}}>
       {dynamicStore.patterns.map((pattern, index: number) => <PatternCard pattern={pattern} key={index}/>)}
     </div>
   </div>;
+}
+
+function PatternTextInput() {
+  const dynamicStore = useDynamicStoreStore();
+
+  return  <Formik
+      onSubmit={(values) => {
+        dynamicStore.patchData(stateDraft => {
+          stateDraft.patternsText = values.text;
+        })
+        dynamicStore.saveData().catch(null);
+      }}
+      initialValues={{text: dynamicStore.patternsText}}
+      validationSchema={schemaText}
+      >
+    {({ errors, touched }) => (
+      <Form>
+      <Input
+        type={'textarea'}
+        name={'text'}
+        label={'Общий текст блока с лекалами'}
+        errors={errors}
+        touched={touched}
+      />
+      <button className={'btn btn__full'} type="submit"><p>{'Изменить текст'}</p></button>
+      </Form>
+    )}
+  </Formik>;
 }
 
 function NewPatternForm() {
@@ -92,7 +125,7 @@ function NewPatternForm() {
           onImageChange={imageId => setImageId(imageId)}
           selectedImageId={imageId}
         />
-        {props.isValid && !!imageId &&<button className={'input__submit'} type="submit"><p>{'Добавить'}</p></button>}
+        {props.isValid && !!imageId &&<button className={'btn btn__full'} type="submit"><p>{'Добавить'}</p></button>}
       </Form>
     }}/>;
 }
