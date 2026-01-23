@@ -120,6 +120,7 @@ function NewPatternForm() {
           label={'Акционная стоимость лекала'}
           errors={props.errors}
           touched={props.touched}
+          style={{marginBottom: '1rem'}}
         />
         <FastDropImage
           onImageChange={imageId => setImageId(imageId)}
@@ -138,6 +139,7 @@ function PatternCard(props: PatternCardProps) {
   const dynamicStore = useDynamicStoreStore();
   const [isEditing, setIsEditing] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [imageId, setImageId] = useState<string | undefined>(dynamicStore.patterns.find(value => value.id === props.pattern.id)?.image);
 
   if (!isEditing) {
     return <div className={'pattern-admin'}>
@@ -236,12 +238,20 @@ function PatternCard(props: PatternCardProps) {
             label={'Акционная стоимость лекала'}
             errors={props.errors}
             touched={props.touched}
+            style={{marginBottom: '1rem'}}
           />
+
+          <FastDropImage
+            onImageChange={imageId => setImageId(imageId)}
+            selectedImageId={imageId}
+          />
+
           <button
             type={'submit'}
             className={'btn btn__full btn__small'}
+            style={{marginTop: '1.5rem'}}
           >
-            <small>{'Сохранить'}</small>
+            <small>{'Сохранить изменения'}</small>
           </button>
         </Form>
       }}

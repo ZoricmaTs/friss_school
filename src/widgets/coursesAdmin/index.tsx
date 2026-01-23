@@ -96,8 +96,8 @@ function NewCourseForm() {
         label={'Стоимость нового курса: 20 000 сом / месяц и т.д.'}
         errors={props.errors}
         touched={props.touched}
+        style={{marginBottom: '1rem'}}
       />
-
       <FastDropImage
         onImageChange={imageId => setImageId(imageId)}
         selectedImageId={imageId}
