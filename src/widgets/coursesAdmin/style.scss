@@ -5,6 +5,13 @@
   padding: 1rem;
   align-items: stretch;
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+    border: 0.15rem solid #A97AB7;
+    padding: 1rem;
+  }
+
   &__image-wrapper {
     width: 400px;
     min-width: 200px;
@@ -36,7 +43,7 @@
   }
 
   &__preview {
-    padding: 1rem 0;
+    padding: 0.5rem 0;
   }
 
   &__price-container {
@@ -59,46 +66,5 @@
     flex-direction: row;
     gap: 1rem;
     margin-top: 1rem;
-  }
-
-  &__btn {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    text-align: center;
-    padding: 1rem 1.25rem;
-  }
-
-  &__btn_full {
-    background-color: #A97AB7;
-    border: 0.15rem solid transparent;
-    color: var(--bg-color);
-
-    &:hover {
-      transform: scale(1.04);
-      background-color: var(--hover-color);
-    }
-
-    &:active {
-      transform: scale(0.97);
-      background-color: var(--hover-color);
-    }
-  }
-
-  &__btn_transparent {
-    background-color: var(--bg-color);
-    border: 0.15rem solid #A97AB7;
-    color: #A97AB7;
-
-    &:hover {
-      transform: scale(1.04);
-      border: 0.15rem solid var(--hover-color);
-      color: var(--hover-color);
-    }
-
-    &:active {
-      transform: scale(0.97);
-      border: 0.15rem solid var(--hover-color);
-      color: var(--hover-color);
-    }
   }
 }

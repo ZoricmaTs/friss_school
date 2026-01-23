@@ -60,7 +60,7 @@ function NewCourseForm() {
     }}
     validationSchema={schema}
     children={(props) => {
-    return <Form>
+    return <Form className={'course-admin__form'}>
       <h3 style={{marginBottom: '1rem'}}>{'Добавить новый курс'}</h3>
       <Input
         type={'text'}
@@ -115,6 +115,7 @@ function CourseCard(props: CourseCardProps) {
   const dynamicStore = useDynamicStoreStore();
   const [isEditing, setIsEditing] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [imageId, setImageId] = useState<string | undefined>(dynamicStore.courses.find(value => value.id === props.course.id)?.image);
 
   if (!isEditing) {
     return <div className={'course-admin'}>
@@ -129,38 +130,35 @@ function CourseCard(props: CourseCardProps) {
       </div>
       <div className={'course-admin__info-container'}>
         <div>
-          <h3 className={'course-admin__title'}>{props.course.title}</h3>
-          <p className={'course-admin__preview'}>{props.course.preview}</p>
-          <p className={'course-admin__preview'}>{props.course.description}</p>
+          <p className={'course-admin__preview'}>{'Наименование: '}</p><h3 className={'course-admin__title'}>{props.course.title}</h3>
+          <p className={'course-admin__preview'}>{'Короткое описание: '}{props.course.preview}</p>
+          <p className={'course-admin__preview'}>{'Длинное описание: '}{props.course.description}</p>
+          <p className={'course-admin__preview'}>{'Длительность курса: '}{props.course.duration}</p>
+          <p className={'course-admin__price'}>{'Стоимость курса: '}{props.course.price}</p>
         </div>
-          <div>
-            <small className={'course-admin__duration'}>{props.course.duration}</small>
-            <h3 className={'course-admin__price'}>{props.course.price}</h3>
-          </div>
-          <div className={'course-admin__btns'}>
-            <button
-              className={'btn btn__full '}
-              onClick={() => {
-                setIsEditing(true);
-              }}
-            >
-              <p>{'Редактировать'}</p>
-            </button>
-            <button
-              className={'btn btn__transparent'}
-              onClick={event => {
-                event.preventDefault();
-                dynamicStore.patchData(stateDraft => {
-                  stateDraft.courses = stateDraft.courses.filter(value => value.id !== props.course.id);
-                });
-              }}>
-              <p>{'Удалить'}</p>
-            </button>
+        <div className={'course-admin__btns'}>
+          <button
+            className={'btn btn__full btn__small'}
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            <small>{'Редактировать'}</small>
+          </button>
+          <button
+            className={'btn btn__transparent btn__small'}
+            onClick={event => {
+              event.preventDefault();
+              dynamicStore.patchData(stateDraft => {
+                stateDraft.courses = stateDraft.courses.filter(value => value.id !== props.course.id);
+              });
+            }}>
+            <small>{'Удалить'}</small>
+          </button>
         </div>
       </div>
     </div>;
   }
-
 
   return <div className={'course-admin'}>
     <Formik
@@ -225,12 +223,20 @@ function CourseCard(props: CourseCardProps) {
             label={'Стоимость курса: 20 000 сом / месяц и т.д.'}
             errors={props.errors}
             touched={props.touched}
+            style={{marginBottom: '1rem'}}
           />
+
+          <FastDropImage
+            onImageChange={imageId => setImageId(imageId)}
+            selectedImageId={imageId}
+          />
+
           <button
             type={'submit'}
-            className={'course-admin__btn course-admin__btn_full'}
+            className={'btn btn__full btn__small'}
+            style={{marginTop: '1.5rem'}}
           >
-            <p>{'Сохранить'}</p>
+            <small>{'Сохранить изменения'}</small>
           </button>
         </Form>
       }}

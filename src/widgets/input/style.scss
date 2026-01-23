@@ -11,6 +11,10 @@
     color: var(--text-color);
     margin-bottom: 0.25rem;
   }
+
+  &__wrapper {
+    width:  100%;
+  }
 }
 
 .error {

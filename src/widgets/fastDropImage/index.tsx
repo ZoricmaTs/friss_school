@@ -45,7 +45,7 @@ export default function FastDropImage(props: FastDropImageProps) {
     position: 'relative',
     width: 200,
     height: 200,
-    borderRadius: 12,
+    // borderRadius: 12,
     backgroundColor: '#DCDCDC80',
     display: 'flex',
     alignItems: 'center',

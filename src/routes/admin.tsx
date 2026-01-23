@@ -16,10 +16,7 @@ export const Route = createFileRoute('/admin')({
 
 
 const items: Tab[] = [
-  {
-    label: 'Видео',
-    content: <VideoAdmin/>
-  },
+  {label: 'Видео', content: <VideoAdmin/>},
   {label: 'Бегущая строка', content: <RunningLinesAdmin/>},
   {label: 'Оффлайн курсы', content: <CoursesAdmin/>},
   {label: 'Видео-курсы', content: <VideoCourseAdmin/>},
@@ -36,28 +33,5 @@ function RouteComponent() {
       tabs={items}
       initialIndex={0}
     />
-
-    {/*<YMapLeafletFormik/>*/}
-
-    {/*<VideoAdmin/>*/}
-    {/*<hr style={{margin: '5rem 0'}} />*/}
-    {/*<Separator title={'Бегущая строка'}/>*/}
-    {/*<RunningLinesAdmin/>*/}
-
-    {/*<hr style={{margin: '5rem 0'}} />*/}
-    {/*<Separator title={'Оффлайн курсы'}/>*/}
-    {/*<CoursesAdmin/>*/}
-
-    {/*<hr style={{margin: '5rem 0'}} />*/}
-    {/*<Separator title={'Отзывы'}/>*/}
-    {/*<ReviewsAdmin/>*/}
-
-    {/*<hr style={{margin: '5rem 0'}} />*/}
-    {/*<Separator title={'Вопросы-ответы'}/>*/}
-    {/*<AccordionsAdmin/>*/}
-
-    {/*<hr style={{margin: '5rem 0'}} />*/}
-    {/*<Separator title={'Лекала'}/>*/}
-    {/*<PatternsAdmin/>*/}
   </div>
 }

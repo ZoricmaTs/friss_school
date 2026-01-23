@@ -1,6 +1,6 @@
 import './style.scss';
 import {Field} from 'formik';
-import type {ChangeEvent} from 'react';
+import React, {type ChangeEvent} from 'react';
 
 export interface InputProps {
   type: 'text' | 'password' | 'email' | 'textarea' | 'number';
@@ -10,6 +10,7 @@ export interface InputProps {
   touched: {[key: string]: boolean | undefined};
   value?: string | number;
   onChange?: (value: string) => void;
+  style?: React.CSSProperties;
 }
 
 export function Input(props: InputProps) {
@@ -26,15 +27,19 @@ export function Input(props: InputProps) {
     additionalProps.onChange = onChange;
   }
 
-  return <div style={{width: '100%'}}>
+  const error: boolean = Boolean(props.errors[props.name] && props.touched[props.name]);
+  const inputClassName = `input ${error ? 'error' : ''}`;
+
+  return <div style={props.style ?? props.style} className={'input__wrapper'}>
     <p className={'input__label'}>{props.label}</p>
     <Field
       {...additionalProps}
       name={props.name}
       as={props.type === 'textarea' ? props.type : undefined}
       type={props.type === 'textarea' ? undefined : props.type}
-      className={`input ${props.errors[props.name] && props.touched[props.name] ? 'error' : ''}`}
+      className={inputClassName}
+      style={props.type === 'textarea' ? {height: '200px'} : {}}
     />
-    {props.errors[props.name] && props.touched[props.name] ? <small className={'error'}>{props.errors[props.name]}</small> : null}
+    {error ? <small className={'error'}>{props.errors[props.name]}</small> : null}
   </div>
 }
