@@ -161,7 +161,7 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
             type={'submit'}
             className={'btn btn__full btn__small'}
           >
-            <small>{'Сохранить'}</small>
+            <small>{'Сохранить изменения'}</small>
           </button>
         </Form>
       }}

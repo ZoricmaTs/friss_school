@@ -91,9 +91,9 @@ export function ContactsAdmin() {
         />
         <button
           type={'submit'}
-          className={'course-admin__btn course-admin__btn_full'}
+          className={'btn btn__full btn__small'}
         >
-          <p>{'Изменить'}</p>
+          <small>{'Сохранить изменения'}</small>
         </button>
       </Form>
       )}

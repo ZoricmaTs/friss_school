@@ -9,6 +9,7 @@ import {YMapLeafletFormik} from '../widgets/yMap/yMapAdmin.tsx';
 import {ContactsAdmin} from '../widgets/contacts/contactsAdmin.tsx';
 import {VideoCourseAdmin} from '../widgets/videoCourse/videoCourseAdmin.tsx';
 import {type Tab, TabsWidget} from '../widgets/tab';
+import {GalleryAdmin} from '../widgets/carousel/galleryAdmin.tsx';
 
 export const Route = createFileRoute('/admin')({
   component: RouteComponent,
@@ -20,7 +21,7 @@ const items: Tab[] = [
   {label: 'Бегущая строка', content: <RunningLinesAdmin/>},
   {label: 'Оффлайн курсы', content: <CoursesAdmin/>},
   {label: 'Видео-курсы', content: <VideoCourseAdmin/>},
-  {label: 'Галерея', content: <div></div>},
+  {label: 'Галерея', content: <GalleryAdmin/>},
   {label: 'Отзывы', content: <ReviewsAdmin/>},
   {label: 'Вопросы-ответы', content: <AccordionsAdmin/>},
   {label: 'Контакты', content: <ContactsAdmin/>},

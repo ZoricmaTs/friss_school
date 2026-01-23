@@ -70,6 +70,7 @@ export const DataRootZod = z.object({
   reviews: z.array(ReviewZod),
   runningLines: z.array(RunningLineZod),
   videoCourseText: z.string(),
+  galleryImages: z.array(z.string()),
 });
 
 export type AccordionType = z.infer<typeof AccordionZod>;
