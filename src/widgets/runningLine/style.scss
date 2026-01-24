@@ -107,15 +107,20 @@
 
     &_container {
       display: flex;
-      flex-direction: row;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: flex-start;
       width: 100%;
       margin-bottom: 0.5rem;
     }
 
-    &_btn{
-      margin-left: 1rem;
-      margin-bottom: 0.75rem;
+    &_btn {
+
+    }
+    &_btns {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      margin-top: 0.5rem;
     }
   }
 }

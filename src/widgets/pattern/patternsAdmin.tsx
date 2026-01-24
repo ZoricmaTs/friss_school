@@ -35,6 +35,21 @@ export function PatternsAdmin() {
 
 function PatternTextInput() {
   const dynamicStore = useDynamicStoreStore();
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!isEditing) {
+    return <div className={'pattern-admin__text-block'}>
+      <h4>{'Общий текст блока с лекалами: '}</h4>
+      <p className={'pattern-admin__text'}>{dynamicStore.patternsText}</p>
+      <button
+        className={'btn btn__full btn__small'}
+        onClick={() => setIsEditing(true)}
+        style={{marginTop: '1.5rem'}}
+      >
+        <small>{'Редактировать'}</small>
+      </button>
+    </div>;
+  }
 
   return  <Formik
       onSubmit={(values) => {
@@ -46,16 +61,27 @@ function PatternTextInput() {
       initialValues={{text: dynamicStore.patternsText}}
       validationSchema={schemaText}
       >
-    {({ errors, touched }) => (
+    {(formik) => (
       <Form style={{marginBottom: '4rem'}}>
       <Input
         type={'textarea'}
         name={'text'}
         label={'Общий текст блока с лекалами'}
-        errors={errors}
-        touched={touched}
+        errors={formik.errors}
+        touched={formik.touched}
       />
-      <button className={'btn btn__full'} type="submit"><p>{'Изменить текст'}</p></button>
+      <button className={'btn btn__full btn__small'} type="submit"><small>{'Сохранить изменения'}</small></button>
+        <button
+          type="button"
+          className={'btn btn__transparent btn__small'}
+          onClick={() => {
+            formik.resetForm();
+            setIsEditing(false);
+          }}
+          style={{marginLeft: '1rem'}}
+        >
+          <small>{'Отмена'}</small>
+        </button>
       </Form>
     )}
   </Formik>;
@@ -90,7 +116,8 @@ function NewPatternForm() {
       'price': 0,
     }}
     validationSchema={schema}
-    children={(props) => {
+  >
+    {(props) => {
       return <Form className={'pattern-admin'}>
         <h3 style={{marginTop: '0.5rem', marginBottom: '2rem'}}>{'Добавить'}</h3>
         <Input
@@ -126,9 +153,23 @@ function NewPatternForm() {
           onImageChange={imageId => setImageId(imageId)}
           selectedImageId={imageId}
         />
-        {props.isValid && !!imageId &&<button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить'}</small></button>}
+        {props.isValid && !!imageId &&
+          <div className={'pattern-admin__btns'}>
+            <button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить'}</small></button>
+            <button
+              type="button"
+              className={'btn btn__transparent btn__small'}
+              onClick={() => {
+                props.resetForm();
+              }}
+            >
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
+        }
       </Form>
-    }}/>;
+    }}
+  </Formik>;
 }
 
 type PatternCardProps = {
@@ -208,36 +249,37 @@ function PatternCard(props: PatternCardProps) {
         'salePrice': props.pattern.salePrice,
       }}
       validationSchema={schema}
-      children={(props) => {
+    >
+      {(formik) => {
         return <Form style={{width: '100%'}}>
           <h4 style={{marginBottom: '1rem'}}>{'Редактирование данных лекала'}</h4>
           <Input
             type={'text'}
             name={'title'}
             label={'Наименование лекала'}
-            errors={props.errors}
-            touched={props.touched}
+            errors={formik.errors}
+            touched={formik.touched}
           />
           <Input
             type={'number'}
             name={'level'}
             label={'Уровень сложности лекала: от 1 до 5'}
-            errors={props.errors}
-            touched={props.touched}
+            errors={formik.errors}
+            touched={formik.touched}
           />
           <Input
             type={'number'}
             name={'price'}
             label={'Стоимость лекала'}
-            errors={props.errors}
-            touched={props.touched}
+            errors={formik.errors}
+            touched={formik.touched}
           />
           <Input
             type={'number'}
             name={'salePrice'}
             label={'Акционная стоимость лекала'}
-            errors={props.errors}
-            touched={props.touched}
+            errors={formik.errors}
+            touched={formik.touched}
             style={{marginBottom: '1rem'}}
           />
 
@@ -246,16 +288,26 @@ function PatternCard(props: PatternCardProps) {
             selectedImageId={imageId}
           />
 
-          <button
-            type={'submit'}
-            className={'btn btn__full btn__small'}
-            style={{marginTop: '1.5rem'}}
-          >
-            <small>{'Сохранить изменения'}</small>
-          </button>
+          <div className={'pattern-admin__btns'}>
+            <button
+              type={'submit'}
+              className={'btn btn__full btn__small'}
+            >
+              <small>{'Сохранить изменения'}</small>
+            </button>
+            <button
+              type="button"
+              className={'btn btn__transparent btn__small'}
+              onClick={() => {
+                formik.resetForm();
+                setIsEditing(false);
+              }}
+            >
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
         </Form>
       }}
-    >
     </Formik>
   </div>;
 }

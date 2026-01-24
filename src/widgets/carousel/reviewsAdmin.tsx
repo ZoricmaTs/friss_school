@@ -77,7 +77,21 @@ function NewReviewForm() {
           errors={props.errors}
           touched={props.touched}
         />
-        <button className={'btn btn__full btn__small'} type="submit"><small>{'Добавить новый отзыв'}</small></button>
+        <div className={'review-admin__btns'}>
+          <button
+            className={'btn btn__full btn__small'}
+            type="submit"
+          >
+            <small>{'Добавить новый отзыв'}</small>
+          </button>
+          <button
+            type="button"
+            className={'btn btn__transparent btn__small'}
+            onClick={() => props.resetForm()}
+          >
+            <small>{'Отмена'}</small>
+          </button>
+        </div>
       </Form>
     }}/>;
 }
@@ -157,12 +171,24 @@ export function ReviewCardAdmin(props: ReviewCardProps) {
             errors={props.errors}
             touched={props.touched}
           />
-          <button
-            type={'submit'}
-            className={'btn btn__full btn__small'}
-          >
-            <small>{'Сохранить изменения'}</small>
-          </button>
+          <div className={'review-admin__btns'}>
+            <button
+              type={'submit'}
+              className={'btn btn__full btn__small'}
+            >
+              <small>{'Сохранить изменения'}</small>
+            </button>
+            <button
+              type="button"
+              className={'btn btn__transparent btn__small'}
+              onClick={() => {
+                props.resetForm();
+                setIsEditing(false);
+              }}
+            >
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
         </Form>
       }}
     >

@@ -39,7 +39,6 @@ export function RunningLineCardAdmin(props: RunningLineProps) {
   }
 
   return <Formik
-
     onSubmit={(values) => {
       dynamicStore.patchData((stateDraft) => {
         const line = stateDraft.runningLines.find(value => value.id === props.line.id)!;
@@ -49,26 +48,40 @@ export function RunningLineCardAdmin(props: RunningLineProps) {
     }}
     initialValues={{'text': props.line.text}}
     validationSchema={schema}
-    children={(props) => {
-      return <Form className={'lines__item-form'}>
+  >
+    {(formik) => (
+      <Form className={'lines__item-form'}>
         <h3>{'Редактирование'}</h3>
+
         <div className={'lines__item-form_container'}>
           <Input
-            type={'text'}
-            name={'text'}
-            label={'Текст'}
-            errors={props.errors}
-            touched={props.touched}
+            type="text"
+            name="text"
+            label="Текст"
+            errors={formik.errors}
+            touched={formik.touched}
           />
-          <button
-            type={'submit'}
-            className={'btn btn__full btn__small lines__item-form_btn'}
-          >
-            <small>{'Сохранить'}</small>
-          </button>
+          <div className={'lines__item-form_btns'}>
+            <button
+              type="submit"
+              className={'btn btn__full btn__small lines__item-form_btn'}
+            >
+              <small>{'Сохранить изменения'}</small>
+            </button>
+
+            <button
+              type="button"
+              className={'btn btn__transparent btn__small lines__item-form_btn'}
+              onClick={() => {
+                formik.resetForm();
+                setIsEditing(false);
+              }}
+            >
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
         </div>
       </Form>
-    }}
-  >
+    )}
   </Formik>;
 }

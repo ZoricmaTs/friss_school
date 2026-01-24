@@ -235,6 +235,10 @@
   border: 0.15rem solid #A97AB7;
   padding: 1rem 1.25rem;
 
+  &__text-block {
+    margin-bottom: 4rem;
+  }
+
   &__image-wrapper {
     width: 100%;
     height: 400px;

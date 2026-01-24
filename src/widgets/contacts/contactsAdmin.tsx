@@ -2,6 +2,8 @@ import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 import {Form, Formik} from 'formik';
 import {Input} from '../input';
 import * as Yup from 'yup';
+import {useState} from 'react';
+import './style.scss';
 
 const schema = Yup.object({
   phone: Yup.string().required('Введите номер телефона'),
@@ -16,6 +18,30 @@ const schema = Yup.object({
 export function ContactsAdmin() {
   const dynamicStore = useDynamicStoreStore();
 
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!isEditing) {
+    return <div className={'contacts-admin'}>
+      <div>
+        <p className={'contacts-admin__text'}>{'Телефон: '}{dynamicStore.contacts.phone}</p>
+        <p className={'review-admin__text'}>{'Отзыв: '}{dynamicStore.contacts.schedule}</p>
+        <h4 style={{margin: '1.5rem 0 1rem'}}>{'Социальные сети'}</h4>
+        <p className={'contacts-admin__text'}>{'Treads: '}{dynamicStore.contacts.socials.treads}</p>
+        <p className={'contacts-admin__text'}>{'Instagram: '}{dynamicStore.contacts.socials.instagram}</p>
+        <p className={'contacts-admin__text'}>{'Facebook: '}{dynamicStore.contacts.socials.facebook}</p>
+        <p className={'contacts-admin__text'}>{'WhatsApp: '}{dynamicStore.contacts.socials.whatsapp}</p>
+      </div>
+      <div className={'review-admin__btns'}>
+        <button
+          className={'btn btn__full btn__small'}
+          onClick={() => setIsEditing(true)}
+        >
+          <small>{'Редактировать'}</small>
+        </button>
+      </div>
+    </div>;
+  }
+
   return <div>
     <Formik
       onSubmit={(values) => {
@@ -26,6 +52,7 @@ export function ContactsAdmin() {
           stateDraft.contacts.socials.instagram = values.instagram;
           stateDraft.contacts.socials.facebook = values.facebook;
           stateDraft.contacts.socials.whatsapp = values.whatsapp;
+          setIsEditing(false);
         })
       }}
       initialValues={{
@@ -38,63 +65,75 @@ export function ContactsAdmin() {
       }}
       validationSchema={schema}
     >
-      {({ errors, touched }) => (
-      <Form >
+      {(formik ) => (
+      <Form>
         <h3>{'Редактирование контактных данных'}</h3>
         <Input
           type={'text'}
           name={'phone'}
           label={'Телефон'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.phone}
         />
         <Input
           type={'text'}
           name={'schedule'}
           label={'График работы'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.schedule}
         />
         <Input
           type={'text'}
           name={'treads'}
           label={'Treads'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.socials.treads}
         />
         <Input
           type={'text'}
           name={'instagram'}
           label={'Instagram'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.socials.instagram}
         />
         <Input
           type={'text'}
           name={'whatsapp'}
           label={'WhatsApp'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.socials.whatsapp}
         />
         <Input
           type={'text'}
           name={'facebook'}
           label={'Facebook'}
-          errors={errors}
-          touched={touched}
+          errors={formik.errors}
+          touched={formik.touched}
           value={dynamicStore.contacts.socials.facebook}
         />
-        <button
-          type={'submit'}
-          className={'btn btn__full btn__small'}
-        >
-          <small>{'Сохранить изменения'}</small>
-        </button>
+        <div className={'contacts-admin__btns'}>
+          <button
+            type={'submit'}
+            className={'btn btn__full btn__small'}
+          >
+            <small>{'Сохранить изменения'}</small>
+          </button>
+          <button
+            type="button"
+            className={'btn btn__transparent btn__small'}
+            onClick={() => {
+              formik.resetForm();
+              setIsEditing(false);
+            }}
+          >
+            <small>{'Отмена'}</small>
+          </button>
+        </div>
       </Form>
       )}
     </Formik>

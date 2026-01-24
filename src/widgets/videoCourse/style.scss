@@ -52,3 +52,11 @@
     }
   }
 }
+
+.video-course-admin {
+  display: flex;
+  flex-direction: column;
+  &__text {
+    width: 100%;
+  }
+}

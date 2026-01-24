@@ -102,7 +102,27 @@ function NewCourseForm() {
         onImageChange={imageId => setImageId(imageId)}
         selectedImageId={imageId}
       />
-      {props.isValid && !!imageId &&<button className={'input__submit'} type="submit"><p>{'Добавить новый курс'}</p></button>}
+      {props.isValid && !!imageId &&
+        <div className={'course-admin__btns'}>
+          <button
+            className={'btn btn__full btn__small'}
+            type="submit"
+          >
+            <small>{'Добавить новый курс'}</small>
+          </button>
+          <button
+            type="button"
+            className={'btn btn__transparent btn__small'}
+            onClick={() => {
+              props.resetForm();
+              setImageId(undefined)
+            }}
+            style={{marginLeft: '1rem'}}
+          >
+            <small>{'Отмена'}</small>
+          </button>
+        </div>
+      }
     </Form>
   }}/>;
 }
@@ -186,7 +206,8 @@ function CourseCard(props: CourseCardProps) {
         'price': props.course.price,
       }}
       validationSchema={schema}
-      children={(props) => {
+    >
+      {(props) => {
         return <Form style={{width: '100%'}}>
           <h3>{'Редактирование курса'}</h3>
           <Input
@@ -238,9 +259,19 @@ function CourseCard(props: CourseCardProps) {
           >
             <small>{'Сохранить изменения'}</small>
           </button>
+          <button
+            type="button"
+            className={'btn btn__transparent btn__small'}
+            onClick={() => {
+              props.resetForm();
+              setIsEditing(false);
+            }}
+            style={{marginLeft: '1rem'}}
+          >
+            <small>{'Отмена'}</small>
+          </button>
         </Form>
       }}
-    >
     </Formik>
   </div>;
 }

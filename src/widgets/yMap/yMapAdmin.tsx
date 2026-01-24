@@ -81,7 +81,7 @@ export function YMapLeafletFormik({hasError}: {
   hasError?: boolean;
 }) {
   const dynamicStore = useDynamicStoreStore();
-
+  const [isEditing, setIsEditing] = useState(false);
   const [tempCoords, setTempCoords] = useState<[number, number]>(dynamicStore.map.coordinates);
   const [address, setAddress] = useState<string | null>(null);
 
@@ -91,6 +91,19 @@ export function YMapLeafletFormik({hasError}: {
   }
 
   const center = tempCoords ?? dynamicStore.map.coordinates;
+
+  if (!isEditing) {
+    return <div className={"map-wrapper"}>
+      <p>{dynamicStore.map.address}</p>
+      <button
+        className={'btn btn__full btn__small'}
+        onClick={() => setIsEditing(true)}
+        style={{marginTop: '1.5rem'}}
+      >
+        <small>{'Редактировать'}</small>
+      </button>
+    </div>;
+  }
 
   return (
     <Formik
@@ -109,7 +122,7 @@ export function YMapLeafletFormik({hasError}: {
         }
       }
     >
-    {({ errors, touched }) => (
+    {(formik) => (
     <Form>
     <div
       style={{border: hasError ? '2px solid red' : '2px solid transparent'}}
@@ -136,8 +149,8 @@ export function YMapLeafletFormik({hasError}: {
         label={'Адрес'}
         type={'text'}
         name={'address'}
-        errors={errors}
-        touched={touched}
+        errors={formik.errors}
+        touched={formik.touched}
         value={address || ''}
         onChange={value => setAddress(value)}
       />
@@ -145,9 +158,20 @@ export function YMapLeafletFormik({hasError}: {
         type="submit"
         disabled={!tempCoords}
         style={{ marginTop: '1rem' }}
-        className={'btn btn__full'}
+        className={'btn btn__full btn__small'}
       >
-        <p>{'Выбрать точку'}</p>
+        <small>{'Сохранить изменения'}</small>
+      </button>
+      <button
+        type="button"
+        className={'btn btn__transparent btn__small'}
+        onClick={() => {
+          formik.resetForm();
+          setIsEditing(false);
+        }}
+        style={{marginLeft: '1rem'}}
+      >
+        <small>{'Отмена'}</small>
       </button>
     </div>
     </Form>
