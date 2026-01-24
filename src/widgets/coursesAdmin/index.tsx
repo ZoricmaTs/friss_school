@@ -191,6 +191,7 @@ function CourseCard(props: CourseCardProps) {
           course.duration = values.duration;
           course.preview = values.preview;
           course.price = values.price;
+          course.image = imageId || course.image;
           setIsEditing(false);
         })
 

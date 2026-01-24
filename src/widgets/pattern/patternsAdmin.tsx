@@ -235,6 +235,7 @@ function PatternCard(props: PatternCardProps) {
           pattern.level = values.level;
           pattern.price = values.price;
           pattern.salePrice = values.salePrice;
+          pattern.image = imageId || pattern.image;
           setIsEditing(false);
         })
 
