@@ -55,6 +55,11 @@ export const ContactZod = z.object({
   socials: SocialsZod,
 });
 
+export const VideoCourseZod = z.object({
+  text: z.string(),
+  note: z.string(),
+});
+
 export const DataRootZod = z.object({
   accordions: z.array(AccordionZod),
   header: z.object({
@@ -69,7 +74,7 @@ export const DataRootZod = z.object({
   map: MapZod,
   reviews: z.array(ReviewZod),
   runningLines: z.array(RunningLineZod),
-  videoCourseText: z.string(),
+  videoCourse: VideoCourseZod,
   galleryImages: z.array(z.string()),
 });
 

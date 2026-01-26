@@ -14,7 +14,10 @@ export function VideoCourseAdmin() {
 
   if (!isEditing) {
     return <div className={'video-course-admin'}>
-      <p className={'video-course-admin__text'}>{dynamicStore.videoCourseText}</p>
+      <h4>{'Описание'}</h4>
+      <p className={'video-course-admin__text'}>{dynamicStore.videoCourse.text}</p>
+      <h4 style={{marginTop: '1rem'}}>{'Примечание'}</h4>
+      <p className={'video-course-admin__text'}>{dynamicStore.videoCourse.note}</p>
       <button
         className={'btn btn__full btn__small'}
         onClick={() => setIsEditing(true)}
@@ -26,12 +29,16 @@ export function VideoCourseAdmin() {
   }
 
   return <Formik
-    initialValues={{videoCourseText: dynamicStore.videoCourseText}}
+    initialValues={{
+      videoCourseText: dynamicStore.videoCourse.text,
+      videoCourseNote: dynamicStore.videoCourse.note,
+  }}
     validationSchema={schema}
     onSubmit={
       function(values): void {
         dynamicStore.patchData((stateDraft) => {
-          stateDraft.videoCourseText = values.videoCourseText;
+          stateDraft.videoCourse.text = values.videoCourseText;
+          stateDraft.videoCourse.note = values.videoCourseNote;
         })
 
         dynamicStore.saveData().catch(null);
@@ -45,6 +52,13 @@ export function VideoCourseAdmin() {
           label={'Описание'}
           type={'textarea'}
           name={'videoCourseText'}
+          errors={formik.errors}
+          touched={formik.touched}
+        />
+        <Input
+          label={'Примечание'}
+          type={'textarea'}
+          name={'videoCourseNote'}
           errors={formik.errors}
           touched={formik.touched}
         />
