@@ -45,6 +45,8 @@ export function RunningLineCardAdmin(props: RunningLineProps) {
         line.text = values.text;
         setIsEditing(false);
       });
+
+      dynamicStore.saveData().catch(null);
     }}
     initialValues={{'text': props.line.text}}
     validationSchema={schema}
