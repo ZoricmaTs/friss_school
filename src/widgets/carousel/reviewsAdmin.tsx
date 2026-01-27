@@ -22,10 +22,14 @@ export function ReviewsAdmin() {
 
   return <div>
     <NewReviewForm/>
-    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все отзывы'}</h3>
-    <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
-      {dynamicStore.reviews.map((review, index: number) => <ReviewCardAdmin review={review} key={index}/>)}
-    </div>
+    {
+      dynamicStore.reviews.length > 0 && <>
+        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все отзывы'}</h3>
+        <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
+          {dynamicStore.reviews.map((review, index: number) => <ReviewCardAdmin review={review} key={index}/>)}
+        </div>
+      </>
+    }
   </div>
 }
 
@@ -43,8 +47,9 @@ function NewReviewForm() {
         }
 
         stateDraft.reviews.push(newReview)
-      })
+      });
 
+      dynamicStore.saveData().catch(null);
       formikHelpers.resetForm();
     }}
     initialValues={{

@@ -3,7 +3,7 @@ import {VideoSection} from '../widgets/video';
 import {Separator} from '../widgets/separator';
 import {Courses} from '../widgets/courses';
 import {Carousel} from '../widgets/carousel';
-import {CarouselReviews, reviewsCarousel} from '../widgets/carousel/reviews.tsx';
+import {CarouselReviews} from '../widgets/carousel/reviews.tsx';
 import Accordions from '../widgets/accordion';
 import {Contacts} from '../widgets/contacts';
 import {Footer} from '../widgets/footer';
@@ -37,9 +37,16 @@ function Index() {
       </Separator>
     }
     <RunningLine/>
+
     {dynamicStore.courses.length > 0 && <Courses/>}
-    <Separator title={'Видео-курсы'} id={'video-view'}/>
-    <VideoCourse/>
+
+    {dynamicStore.videoCourse.text.length > 0 && dynamicStore.videoCourse.text.length > 0 &&
+      <>
+        <Separator title={'Видео-курсы'} id={'video-view'}/>
+        <VideoCourse/>
+      </>
+    }
+
     {dynamicStore.galleryImages.length > 0 &&
       <>
         <Separator title={'Галерея'}/>
@@ -47,8 +54,13 @@ function Index() {
       </>
     }
 
-    <Separator title={'Отзывы'} id={'reviews-view'}/>
-    <CarouselReviews items={reviewsCarousel}/>
+    {dynamicStore.reviews.length > 0 &&
+      <>
+        <Separator title={'Отзывы'} id={'reviews-view'}/>
+        <CarouselReviews items={dynamicStore.reviews}/>
+      </>
+    }
+
     <Separator title={'Вопросы и ответы'} id={'accordions-view'}/>
     <Accordions/>
     <Separator title={'Контакты'} id={'contacts-view'}/>

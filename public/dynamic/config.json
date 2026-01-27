@@ -53,10 +53,10 @@
   },
   "reviews": [
     {
-      "id": "0",
-      "name": "USER NAME",
-      "date": "23.11.2001",
-      "text": "THIS IS VERY GOOD SCHOOL!"
+      "id": "d9cf7387-e13b-4387-8eb6-58d529f7a7f8",
+      "name": "xcvxcv",
+      "date": "xcvxcv",
+      "text": "xcvxcv"
     }
   ],
   "runningLines": [
@@ -74,8 +74,8 @@
     }
   ],
   "videoCourse": {
-    "text": "fbvb",
-    "note": "cvbcvb"
+    "text": "",
+    "note": ""
   },
   "galleryImages": []
 }
