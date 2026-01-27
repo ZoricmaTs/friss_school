@@ -82,7 +82,7 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
         <p className={'accordion-admin__title'}>{'Вопрос: '}{props.accordion.question}</p>
         <p className={'accordion-admin__text'}>{'Ответ: '}{props.accordion.answer}</p>
       </div>
-      <div className={'course-admin__btns'}>
+      <div className={'accordion-admin__btns'}>
         <button
           className={'btn btn__full btn__small'}
           onClick={() => setIsEditing(true)}
@@ -96,6 +96,8 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
             dynamicStore.patchData(stateDraft => {
               stateDraft.accordions = stateDraft.accordions.filter(value => value.id !== props.accordion.id);
             });
+
+            dynamicStore.saveData().catch(null);
           }}>
           <small>{'Удалить'}</small>
         </button>
@@ -113,13 +115,16 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
           accordion.answer = values.answer;
           setIsEditing(false);
         })
+
+        dynamicStore.saveData().catch(null);
       }}
       initialValues={{
         'question': props.accordion.question,
         'answer': props.accordion.answer,
       }}
       validationSchema={schema}
-      children={(props) => {
+    >
+      {(props) => {
         return <Form className={'accordion-admin'}>
           <h4 style={{marginBottom: '1rem'}}>{'Редактирование вопроса-ответа'}</h4>
           <Input
@@ -136,15 +141,25 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
             errors={props.errors}
             touched={props.touched}
           />
-          <button
-            type={'submit'}
-            className={'btn btn__full btn__small'}
-          >
-            <small>{'Сохранить'}</small>
-          </button>
+          <div className={'accordion-admin__btns'}>
+            <button
+              type={'submit'}
+              className={'btn btn__full btn__small'}
+            >
+              <small>{'Сохранить'}</small>
+            </button>
+            <button
+              className={'btn btn__transparent btn__small'}
+              onClick={event => {
+                event.preventDefault();
+                props.resetForm();
+                setIsEditing(false);
+              }}>
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
         </Form>
-      }}
-    >
+    }}
     </Formik>
   </div>;
 }

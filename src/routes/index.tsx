@@ -61,8 +61,13 @@ function Index() {
       </>
     }
 
-    <Separator title={'Вопросы и ответы'} id={'accordions-view'}/>
-    <Accordions/>
+    {dynamicStore.accordions.length > 0 &&
+      <>
+        <Separator title={'Вопросы и ответы'} id={'accordions-view'}/>
+        <Accordions/>
+      </>
+    }
+
     <Separator title={'Контакты'} id={'contacts-view'}/>
     <Contacts/>
     <Footer/>
