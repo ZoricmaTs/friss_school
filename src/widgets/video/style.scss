@@ -114,12 +114,13 @@
   &__title {
     color: var(--text-color);
     margin-bottom: 2rem;
+    white-space: break-spaces;
   }
 
   &__description {
     color: var(--text-color);
     text-align: justify;
-    white-space: pre;
+    white-space: break-spaces;
   }
 }
 
@@ -155,5 +156,12 @@
     &__info-container {
       padding: 0;
     }
+  }
+}
+
+.video-admin {
+  &__text {
+    text-align: justify;
+    white-space: break-spaces;
   }
 }

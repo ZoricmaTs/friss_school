@@ -3,6 +3,7 @@ import {Input} from '../input';
 import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 import * as Yup from 'yup';
 import {useState} from 'react';
+import './style.scss';
 
 const schema = Yup.object({
   videoTitle: Yup.string().required('Введите заголовок для видео-блока'),

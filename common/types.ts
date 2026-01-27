@@ -68,7 +68,6 @@ export const DataRootZod = z.object({
   }),
   contacts: ContactZod,
   courses: z.array(CourseZod),
-
   patterns: z.array(PatternZod),
   patternsText: z.string(),
   map: MapZod,

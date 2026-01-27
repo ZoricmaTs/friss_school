@@ -21,10 +21,13 @@ export function CoursesAdmin() {
 
   return <div>
     <NewCourseForm/>
-    <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Существующие курсы'}</h3>
-    <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
-      {dynamicStore.courses.map((course) => <CourseCard course={course} key={course.id}/>)}
-    </div>
+    {dynamicStore.courses.length > 0 && <>
+      <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Существующие курсы'}</h3>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
+        {dynamicStore.courses.map((course) => <CourseCard course={course} key={course.id}/>)}
+      </div>
+    </>
+    }
   </div>;
 }
 
@@ -47,6 +50,8 @@ function NewCourseForm() {
 
         stateDraft.courses.push(newCourse)
       })
+
+      dynamicStore.saveData().catch(null);
 
       formikHelpers.resetForm();
       setImageId(undefined);
@@ -172,6 +177,8 @@ function CourseCard(props: CourseCardProps) {
               dynamicStore.patchData(stateDraft => {
                 stateDraft.courses = stateDraft.courses.filter(value => value.id !== props.course.id);
               });
+
+              dynamicStore.saveData().catch(null);
             }}>
             <small>{'Удалить'}</small>
           </button>

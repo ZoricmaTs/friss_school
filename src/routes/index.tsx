@@ -2,19 +2,22 @@ import {createFileRoute} from '@tanstack/react-router';
 import {VideoSection} from '../widgets/video';
 import {Separator} from '../widgets/separator';
 import {Courses} from '../widgets/courses';
-import {Carousel, imagesCarousel} from '../widgets/carousel';
+import {Carousel} from '../widgets/carousel';
 import {CarouselReviews, reviewsCarousel} from '../widgets/carousel/reviews.tsx';
 import Accordions from '../widgets/accordion';
 import {Contacts} from '../widgets/contacts';
 import {Footer} from '../widgets/footer';
 import {RunningLine} from '../widgets/runningLine';
 import {VideoCourse} from '../widgets/videoCourse';
+import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
 
 export const Route = createFileRoute('/')({
   component: Index,
 })
 
 function Index() {
+  const dynamicStore = useDynamicStoreStore();
+
   return <>
     <VideoSection/>
     <div className={'brush__container'}>
@@ -23,20 +26,27 @@ function Index() {
     <div className={'brush-course__container'} style={{top: 860}}>
       <img className={'brush-course'} src={'/images/4.svg'} alt={'background'}/>
     </div>
-    <Separator title={'Оффлайн обучение'}>
-      <p style={{
-        color: 'var(--text-additional-color)',
-        fontFamily: 'serif',
-        letterSpacing: '0.2rem',
-        whiteSpace: 'nowrap',
-      }}>{'в FRISS SCHOOL'}</p>
-    </Separator>
+    {dynamicStore.courses.length > 0 &&
+      <Separator title={'Оффлайн обучение'}>
+        <p style={{
+          color: 'var(--text-additional-color)',
+          fontFamily: 'serif',
+          letterSpacing: '0.2rem',
+          whiteSpace: 'nowrap',
+        }}>{'в FRISS SCHOOL'}</p>
+      </Separator>
+    }
     <RunningLine/>
-    <Courses/>
-    <Separator style={{}} title={'Видео-курсы'} id={'video-view'}/>
+    {dynamicStore.courses.length > 0 && <Courses/>}
+    <Separator title={'Видео-курсы'} id={'video-view'}/>
     <VideoCourse/>
-    <Separator title={'Галерея'}/>
-    <Carousel items={imagesCarousel}/>
+    {dynamicStore.galleryImages.length > 0 &&
+      <>
+        <Separator title={'Галерея'}/>
+        <Carousel items={dynamicStore.galleryImages}/>
+      </>
+    }
+
     <Separator title={'Отзывы'} id={'reviews-view'}/>
     <CarouselReviews items={reviewsCarousel}/>
     <Separator title={'Вопросы и ответы'} id={'accordions-view'}/>

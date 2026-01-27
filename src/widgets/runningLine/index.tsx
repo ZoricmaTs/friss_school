@@ -4,11 +4,6 @@ import {useScrollHider} from '../../hooks/scroll-observer.ts';
 import {useScreen} from '../../hooks/useScreen.ts';
 import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
-export type LineType = {
-  id: number,
-  text: string
-}
-
 export function RunningLine() {
   const rootRef = useScrollHider<HTMLDivElement>();
   const dynamicStore = useDynamicStoreStore();
