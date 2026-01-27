@@ -57,25 +57,25 @@ export function Contacts() {
   return <section className={'contacts'} ref={rootRef}>
     <span className={'contacts__copyright'}>{'©FRISS SCHOOL 2025'}</span>
     <div className={'contacts__map-wrapper'}>
-      <YMapLeaflet address={'ул.Байтик-Батыра, д. 34/5, офис 6/1'} coordinates={dynamicStore.map.coordinates}/>
+      <YMapLeaflet address={dynamicStore.map.address} coordinates={dynamicStore.map.coordinates}/>
     </div>
     <div className={'contacts__info'}>
       <h2 className={'contacts__logo_title'}>{'FRISS SCHOOL'}</h2>
       <small className={'contacts__logo_description'}>{'школа кройки и шитья'}</small>
       <p className={'contacts__address'}>{'Адрес: '}{dynamicStore.map.address}</p>
-      <p>{'Телефон: +996 504 362 514'}</p>
-      <p>{'График работы: пн-сб 09:00-19:00'}</p>
+      <p>{'Телефон: '} {dynamicStore.contacts.phone}</p>
+      <p>{'График работы: '}{dynamicStore.contacts.schedule}</p>
 
       <div className={'contacts__social-media'}>
-        {socialMedia.map((item, index) => {
+        {Object.entries(dynamicStore.contacts.socials).map(([key, value], index) => {
           return <a
             className={'contacts__social-media_item'}
-            href={item.href}
+            href={value}
             key={`social-media-${index}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {getSocialMediaLogo(item.name)}
+            {getSocialMediaLogo(key)}
           </a>;
         })}
       </div>

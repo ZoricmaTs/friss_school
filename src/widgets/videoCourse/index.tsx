@@ -11,7 +11,12 @@ export function VideoCourse() {
       {dynamicStore.videoCourse.text}
     </h4>
     <small className={'video-course__note'}>{dynamicStore.videoCourse.note}</small>
-    <a className={'video-course__btn video-course__btn_full'}>
+    <a
+      className={'video-course__btn video-course__btn_full'}
+      href={dynamicStore.contacts.socials.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <p>{'Оставить заявку'}</p>
     </a>
   </section>
