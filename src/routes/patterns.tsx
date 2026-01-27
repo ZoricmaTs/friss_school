@@ -6,6 +6,7 @@ import {Dropdown} from '../widgets/dropdown';
 import {useState} from 'react';
 import {useScreen} from '../hooks/useScreen.ts';
 import {Modal} from '../widgets/modal';
+import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
 
 export const Route = createFileRoute('/patterns')({
   component: RouteComponent,
@@ -40,6 +41,7 @@ function RouteComponent() {
   const {width} = useScreen();
   const [open, setOpen] = useState<boolean>(false);
   const [activeId, setActiveId] = useState<number>(0);
+  const dynamicStore = useDynamicStoreStore();
 
   const dropdown = {
     id: 2,
@@ -63,11 +65,9 @@ function RouteComponent() {
   return <>
     <div style={{minHeight: '100vh'}}>
       <Separator title={'Выкройки'} style={{marginTop: 0}}/>
-      <p className={'patterns__description'}>
-        {'Мы занимаемся изготовлением лекал, которые вы можете у нас заказать. ' +
-          'Либо выбрать готовые лекала для пошива современной одежды.  На сайте также есть бесплатные выкройки. Создайте любой образ с нами.\n' +
-          'Разный уровень сложности позволит шить вещи как новичкам, так и опытным мастерам. Лекала в формате pdf.'}
-      </p>
+      {dynamicStore.patternsText && <p className={'patterns__description'}>
+        {dynamicStore.patternsText}
+      </p>}
       <div className={'patterns__content-wrapper'} >
         <div className={'patterns__filter-wrapper'}>
           {width > 768
@@ -81,7 +81,7 @@ function RouteComponent() {
           }
         </div>
         {items.length > 0
-          ? <Patterns props={items} key={activeId}/>
+          ? <Patterns props={dynamicStore.patterns} key={activeId}/>
           : <div><p>{'Ничего не найдено.'}</p></div>
         }
       </div>

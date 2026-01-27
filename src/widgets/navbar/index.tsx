@@ -36,20 +36,19 @@ export function Navbar() {
     {
       id: 3,
       title: 'Видео-курсы',
-      available: true,
-      // available: dynamicStore.videoCourse.text && dynamicStore.videoCourse.note,
+      available: dynamicStore.videoCourse.text.length > 0 && dynamicStore.videoCourse.note.length > 0,
       action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('video-view')}),
     },
     {
       id: 4,
       title: 'Отзывы',
-      available: true,
+      available: dynamicStore.reviews.length > 0,
       action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('reviews-view')}),
     },
     {
       id: 5,
       title: 'Вопросы и ответы',
-      available: true,
+      available: dynamicStore.accordions.length > 0,
       action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('accordions-view')}),
     },
     {

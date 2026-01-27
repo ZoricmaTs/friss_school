@@ -2,6 +2,7 @@ import './style.scss';
 import {LevelIcon} from './button.tsx';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
 import {type CSSProperties, useCallback, useEffect, useRef, useState} from 'react';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
 export type PatternType = {
   id: string,
@@ -55,6 +56,8 @@ export function getLevel(level: number) {
 }
 
 export function Pattern({props}: { props: PatternType }) {
+  const dynamicStore = useDynamicStoreStore();
+
   const priceWithSales: CSSProperties = {
     textDecoration: 'line-through',
     textDecorationColor: '#f04343',
@@ -63,19 +66,19 @@ export function Pattern({props}: { props: PatternType }) {
 
   return <a
     className={'pattern pattern__levelsHoverTrigger'}
-    href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
+    href={dynamicStore.contacts.socials.whatsapp}
     target="_blank"
     rel="noopener noreferrer"
   >
     <div className={'pattern__image-wrapper'}>
-      <div className={'pattern__image'} style={{backgroundImage: `url(${props.image})`}}></div>
+      <div className={'pattern__image'} style={{backgroundImage: `url(/dynamic/images/${props.image})`}}></div>
     </div>
     <div className={'pattern__info-wrapper'}>
       <p className={'pattern__title'}>{props.title}</p>
       <div className={'pattern__price-wrapper'}>
         <small>{'Цена: '}</small>
 
-        {props.price > 0 &&
+        {props.price !== 0 &&
           <h4
             className={'pattern__price'}
             style={props.salePrice && props.salePrice > 0 ? priceWithSales : {}}
@@ -84,11 +87,11 @@ export function Pattern({props}: { props: PatternType }) {
           </h4>
         }
 
-        {props.salePrice &&
+        {props.salePrice && props.salePrice < props.price &&
           <h4
             className={'pattern__sale-price'}
           >
-            {`${props.salePrice} ⃀`}
+            {`${props.salePrice} сом`}
           </h4>
         }
         {props.price === 0 && <div className={'pattern__free'}><p>{'бесплатно'}</p></div>}

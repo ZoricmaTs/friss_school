@@ -12,7 +12,7 @@ import {getLevel} from './index.tsx';
 const schema = Yup.object({
   title: Yup.string().required('Введите наименование лекала'),
   price: Yup.number().required('Введите стоимость лекала').min(0,'Значение должно быть не менее 0'),
-  salePrice: Yup.number().required('Введите акционную стоимость лекала').min(0,'Значение должно быть не менее 0').default(0),
+  salePrice: Yup.number().required('Введите акционную стоимость лекала').min(0,'Значение должно быть положительным').default(0),
   level: Yup.number().required('Введите уровень сложности лекала').max(5, 'Значение должно быть не более 5').min(1,'Значение должно быть не менее 1')
 });
 
@@ -106,6 +106,7 @@ function NewPatternForm() {
         stateDraft.patterns.push(newPattern)
       })
 
+      dynamicStore.saveData().catch(null);
       formikHelpers.resetForm();
       setImageId(undefined);
     }}
@@ -216,6 +217,8 @@ function PatternCard(props: PatternCardProps) {
               dynamicStore.patchData(stateDraft => {
                 stateDraft.patterns = stateDraft.patterns.filter(value => value.id !== props.pattern.id);
               });
+
+              dynamicStore.saveData().catch(null);
             }}>
             <small>{'Удалить'}</small>
           </button>
