@@ -57,6 +57,12 @@ export function Navbar() {
       available: true,
       action: (navigate) => navigate({to: '/'}).then(() => {scrollToId('contacts-view')}),
     },
+    {
+      id: 7,
+      title: 'Админ',
+      available: import.meta.env.VITE_ADMIN === 'true',
+      action: (navigate) => navigate({to: '/admin'}),
+    },
   ];
 
   useEffect(() => {

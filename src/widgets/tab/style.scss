@@ -36,6 +36,24 @@
     background-color: var(--hover-color);
     color: var(--bg-color);
   }
+
+  &__pub-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-end;
+    padding: 0.5rem;
+    border: 0;
+    background-color: #3e5bd1;
+    color: var(--bg-color);
+    fill: var(--bg-color);
+    white-space: nowrap;
+  }
+  &__pub-btn:hover {
+    background-color: #3e52a5;
+    color: var(--bg-color);
+    cursor: pointer;
+  }
 }
 
 .tab-course {

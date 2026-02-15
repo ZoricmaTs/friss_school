@@ -14,24 +14,21 @@ if (Test-Path "$gitBinariesPath") {
     Write-Host "Скачиваем архив с Git..." -ForegroundColor Cyan
     Invoke-WebRequest -Uri $gitUrl -OutFile $exeFile
 
-    # 3. Create destination folder if it doesn't exist
     if (-not (Test-Path $gitPath)) {
         New-Item -Path $gitPath -ItemType Directory
     }
 
-    # 4. Extract the contents
     Write-Host "Распаковываем архив по пути: $gitPath..." -ForegroundColor Cyan
 
     if (Test-Path "C:\Program Files\7-Zip") {
         Rename-Item -Path $exeFile -NewName $zipName
         & "C:\Program Files\7-Zip\7z.exe" x $zipFile "-o$gitPath" -y > $null
-        # Remove-Item $zipFile
+        Remove-Item $zipFile!
     } else { 
         & $exeFile
-        # Remove-Item $exeFile
+        Remove-Item $exeFile
     }
 
-    # 5. Clean up (delete the zip file)
     Write-Host "Готово!" -ForegroundColor Green
 }
 
@@ -49,9 +46,8 @@ if (Test-Path $nodeBinariesPath) {
     Write-Host "NodeJs не установлен." -ForegroundColor Red
 
     Write-Host "Скачиваем архив с NodeJs..." -ForegroundColor Cyan
-    # Invoke-WebRequest -Uri $nodeUrl -OutFile $zipFile
+    Invoke-WebRequest -Uri $nodeUrl -OutFile $zipFile
 
-    # 3. Create destination folder if it doesn't exist
     if (-not (Test-Path $nodePath)) {
         New-Item -Path $nodePath -ItemType Directory
     }
@@ -62,9 +58,8 @@ if (Test-Path $nodeBinariesPath) {
     $innerNodeFolder = Get-ChildItem -Path $nodePath | Select-Object -First 1
     Rename-Item -Path "$nodePath\$innerNodeFolder" -NewName "inner"
 
-    # Remove-Item $zipFile
+    Remove-Item $zipFile
 
-    # 5. Clean up (delete the zip file)
     Write-Host "Готово!" -ForegroundColor Green
 }
 
@@ -82,8 +77,10 @@ if (-not (Test-Path $projectPath)) {
 
 Push-Location $projectPath
 
+git fetch
+
+git pull --force
+
 npm i
 
 npm run admin
-
-Pop-Location
