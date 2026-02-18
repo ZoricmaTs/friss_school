@@ -1,4 +1,6 @@
-$gitPath = "$PSScriptRoot\PortableGit"
+$scriptDir = if (-not $PSScriptRoot) { Split-Path -Parent (Convert-Path ([Environment]::GetCommandLineArgs()[0])) } else { $PSScriptRoot }
+
+$gitPath = "$scriptDir\PortableGit"
 $gitBinariesPath = "$gitPath\bin"
 
 if (Test-Path "$gitBinariesPath") {
@@ -6,7 +8,7 @@ if (Test-Path "$gitBinariesPath") {
 } else {
     $gitUrl = "https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/PortableGit-2.52.0-64-bit.7z.exe"
     $zipName = "temp_git_archive.7z"
-    $zipFile = "$PSScriptRoot\$zipName"
+    $zipFile = "$scriptDir\$zipName"
     $exeFile = "$zipFile.exe"
 
     Write-Host "Git не установлен." -ForegroundColor Red
@@ -35,14 +37,14 @@ if (Test-Path "$gitBinariesPath") {
 
 $env:Path = "$gitBinariesPath;" + $env:Path
 
-$nodePath = "$PSScriptRoot\node"
+$nodePath = "$scriptDir\node"
 $nodeBinariesPath = "$nodePath\inner"
 
 if (Test-Path $nodeBinariesPath) { 
     Write-Host "NodeJs установлен." -ForegroundColor Green
 } else {
     $nodeUrl = "https://nodejs.org/dist/v24.12.0/node-v24.12.0-win-x64.zip"
-    $zipFile = "$PSScriptRoot\temp_node_archive.zip"
+    $zipFile = "$scriptDir\temp_node_archive.zip"
     Write-Host "NodeJs не установлен." -ForegroundColor Red
 
     Write-Host "Скачиваем архив с NodeJs..." -ForegroundColor Cyan
@@ -69,7 +71,7 @@ Get-Command git
 Get-Command node
 Get-Command npm
 
-$projectPath = "$PSScriptRoot\friss_school"
+$projectPath = "$scriptDir\friss_school"
 
 if (-not (Test-Path $projectPath)) {
     git clone "https://github.com/ZoricmaTs/friss_school.git"
@@ -78,6 +80,8 @@ if (-not (Test-Path $projectPath)) {
 Push-Location $projectPath
 
 git fetch
+
+git checkout "emiller/feat/dynamic-data"
 
 git pull --force
 
