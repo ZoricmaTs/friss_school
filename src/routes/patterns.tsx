@@ -12,36 +12,12 @@ export const Route = createFileRoute('/patterns')({
   component: RouteComponent,
 })
 
-const patterns = [
-  {
-    id: "0",
-    title: 'юбка-шорты 1 вариант',
-    price: 200,
-    level: 3,
-    image: '/images/patterns/photo_2025-12-23_11-23-42.jpg',
-  },
-  {
-    id: "1",
-    title: 'юбка-шорты 2 вариант',
-    price: 200,
-    level: 3,
-    image: '/images/patterns/photo_2025-12-22_19-53-38.jpg',
-  },
-  {
-    id: "2",
-    title: 'юбка-шорты 3 вариант',
-    price: 200,
-    level: 3,
-    image: '/images/patterns/photo_2025-12-22_19-53-56.jpg',
-  },
-];
-
 function RouteComponent() {
-  const [items, setItems] = useState(patterns);
+  const dynamicStore = useDynamicStoreStore();
+  const [items, setItems] = useState(dynamicStore.patterns);
   const {width} = useScreen();
   const [open, setOpen] = useState<boolean>(false);
   const [activeId, setActiveId] = useState<number>(0);
-  const dynamicStore = useDynamicStoreStore();
 
   const dropdown = {
     id: 2,
@@ -52,11 +28,11 @@ function RouteComponent() {
 
   const onChangeLevel = (id: number) => {
     if (id === 0) {
-      setItems(patterns);
+      setItems(dynamicStore.patterns);
       return;
     }
 
-    const filteredItems = patterns.filter((item) => item.level === id);
+    const filteredItems = dynamicStore.patterns.filter((item) => item.level === id);
 
     setItems(filteredItems);
     setActiveId(id);

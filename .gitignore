@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-public/dynamic/config-local.json
+public/dynamic/config_local.json
 
 node_modules
 dist

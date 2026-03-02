@@ -29,7 +29,7 @@ async function main() {
 
   if (import.meta.env.VITE_ADMIN === 'true') {
     try {
-      dynamicData = await (await fetch('/dynamic/config-local.json')).json();
+      dynamicData = await (await fetch('/dynamic/config_local.json')).json();
       isSaved = false;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {

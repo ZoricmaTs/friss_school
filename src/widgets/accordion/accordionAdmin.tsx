@@ -41,7 +41,9 @@ function NewAccordionForm() {
         }
 
         stateDraft.accordions.push(newAccordion)
-      })
+      });
+
+      dynamicStore.saveData().catch(null);
 
       formikHelpers.resetForm();
     }}
@@ -109,7 +111,6 @@ export function AccordionCardAdmin(props: AccordionCardProps) {
     <Formik
       onSubmit={(values) => {
         dynamicStore.patchData((stateDraft) => {
-
           const accordion = stateDraft.accordions.find(value => value.id === props.accordion.id)!;
           accordion.question = values.question;
           accordion.answer = values.answer;

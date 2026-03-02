@@ -87,7 +87,7 @@ export function Pattern({props}: { props: PatternType }) {
           </h4>
         }
 
-        {props.salePrice && props.salePrice < props.price &&
+        {!!props.salePrice && props.salePrice < props.price &&
           <h4
             className={'pattern__sale-price'}
           >

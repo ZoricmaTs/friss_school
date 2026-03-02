@@ -32,7 +32,7 @@ export const PatternZod = z.object({
   id: z.string(),
   title: z.string(),
   price: z.number(),
-  salePrice: z.number(),
+  salePrice: z.optional(z.number()),
   image: z.optional(z.string()),
   level: z.number(),
 });

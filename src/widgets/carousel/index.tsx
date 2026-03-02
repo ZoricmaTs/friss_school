@@ -12,7 +12,7 @@ export function Carousel({items}: {items: string[]}) {
       {items.map((item, index) => {
         return <div
           className={`carousel__item ${activeIndex == index ? '_active' : ''}`}
-          style={{backgroundImage: `url(images/students/${item})`, backgroundPosition: 'center', backgroundSize: 'cover'}}
+          style={{backgroundImage: `url(/dynamic/images/${item})`, backgroundPosition: 'center', backgroundSize: 'cover'}}
           onClick={() => setActiveIndex(index)}
           key={`carousel-item-${index}`}
         >
