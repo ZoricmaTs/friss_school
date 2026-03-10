@@ -43,6 +43,15 @@ async function ensureDirs() {
   await fs.mkdir(CONFIG_DIR, {recursive: true});
 }
 
+async function fileExists(path: string) {
+  try {
+    await fs.access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 ensureDirs().catch((err) => {
   console.error('Failed to create required directories:', err);
   process.exit(1);
@@ -165,20 +174,36 @@ app.patch('/update-config', async (req, res) => {
 
 app.post('/publish', async (_, res) => {
   try {
-    await fs.rm(CONFIG_FILE);
-    await fs.rename(CONFIG_FILE_LOCAl, CONFIG_FILE);
+    console.log('Friss server: Started publishing process');
 
+    if (await fileExists(CONFIG_FILE_LOCAl)) {
+      console.log('Friss server: Removing old config file');
+      await fs.rm(CONFIG_FILE);
+      console.log('Friss server: Replacing ');
+      await fs.rename(CONFIG_FILE_LOCAl, CONFIG_FILE);
+    } else {
+      console.log('Friss server: No new config file found');
+    }
+
+    console.log('Friss server: Clearing orphan images');
     await clearOrphanImages();
 
+    console.log('Friss server: Assembling app');
     await execPromise('npm run build');
 
+    console.log('Friss server: Removing old docs folder');
     await fs.rm(path.resolve(__dirname, '..', 'docs'), {recursive: true})
+    console.log('Friss server: Copying new build to docs folder');
     await fs.cp(path.resolve(__dirname, '..', 'dist'), path.resolve(__dirname, '..', 'docs'), {recursive: true})
 
-    await execPromise('git add . ');
+    console.log('Friss server: Git marking files as changed');
+    await execPromise('git add --all');
+    console.log('Friss server: Git committing changes');
     await execPromise('git commit -m "Publish"');
-    await execPromise('git push origin main');
+    console.log('Friss server: Git pushing changes');
+    await execPromise('git push -u origin main');
 
+    console.log('Friss server: Publishing complete');
     return res.status(200).send();
   } catch (err: unknown) {
     return res.status(500).json({error: `Internal server error: ${err}`});

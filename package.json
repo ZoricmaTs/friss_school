@@ -9,6 +9,7 @@
     "dev": "cross-env vite --open",
     "dev-admin": "cross-env VITE_ADMIN=true vite --open /admin",
     "build": "tsc -b && vite build",
+    "psToExe": "Invoke-PS2EXE \"./bootstrap/friss.ps1\" \"./bootstrap/friss.exe\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },

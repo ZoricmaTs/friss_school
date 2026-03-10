@@ -82,6 +82,9 @@ if (-not (Test-Path $projectPath)) {
 
 Push-Location $projectPath
 
+git config --local user.name "Friss Bot"
+git config --local user.email "bot@friss.studio"
+
 git fetch
 
 git pull --force
