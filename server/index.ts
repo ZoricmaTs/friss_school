@@ -201,7 +201,7 @@ app.post('/publish', async (_, res) => {
     console.log('Friss server: Git committing changes');
     await execPromise('git commit -m "Publish"');
     console.log('Friss server: Git pushing changes');
-    await execPromise('git push -u origin master');
+    await execPromise('git -c credential.helper=manager-core push -u origin master');
 
     console.log('Friss server: Publishing complete');
     return res.status(200).send();
