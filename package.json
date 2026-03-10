@@ -8,7 +8,7 @@
     "server-admin": "tsx ./server/index.ts",
     "dev": "cross-env vite --open",
     "dev-admin": "cross-env VITE_ADMIN=true vite --open /admin",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --emptyOutDir",
     "psToExe": "Invoke-PS2EXE \"./bootstrap/friss.ps1\" \"./bootstrap/friss.exe\"",
     "lint": "eslint .",
     "preview": "vite preview"
