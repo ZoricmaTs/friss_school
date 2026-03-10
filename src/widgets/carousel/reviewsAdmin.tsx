@@ -1,0 +1,202 @@
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
+import {Form, Formik} from 'formik';
+import {Input} from '../input';
+import type {ReviewType} from '../../../common/types.ts';
+import * as Yup from 'yup';
+import {useState} from 'react';
+import {v4 as generateUUID} from 'uuid';
+import './style.scss';
+
+type ReviewCardProps = {
+  review: ReviewType
+}
+
+const schema = Yup.object({
+  name: Yup.string().required('Введите имя автора отзыва'),
+  text: Yup.string().required('Введите текст отзыва'),
+  date: Yup.string().required('Введите дату отзыва: 11.11.2023'),
+});
+
+export function ReviewsAdmin() {
+  const dynamicStore = useDynamicStoreStore();
+
+  return <div>
+    <NewReviewForm/>
+    {
+      dynamicStore.reviews.length > 0 && <>
+        <h3 style={{marginTop: '4rem', marginBottom: '2rem'}}>{'Все отзывы'}</h3>
+        <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(3, 1fr)'}}>
+          {dynamicStore.reviews.map((review, index: number) => <ReviewCardAdmin review={review} key={index}/>)}
+        </div>
+      </>
+    }
+  </div>
+}
+
+function NewReviewForm() {
+  const dynamicStore = useDynamicStoreStore();
+
+  return <Formik
+    onSubmit={(values, formikHelpers) => {
+      dynamicStore.patchData(stateDraft => {
+        const newReview: ReviewType = {
+          name: values.name,
+          text: values.text,
+          date: values.date,
+          id: generateUUID(),
+        }
+
+        stateDraft.reviews.push(newReview)
+      });
+
+      dynamicStore.saveData().catch(null);
+      formikHelpers.resetForm();
+    }}
+    initialValues={{
+      'name': '',
+      'date': '',
+      'text': '',
+    }}
+    validationSchema={schema}
+    children={(props) => {
+      return <Form className={'review-admin__form'}>
+        <h3 style={{marginBottom: '2rem'}}>{'Добавить новый отзыв'}</h3>
+        <Input
+          type={'text'}
+          name={'name'}
+          label={'Имя автора нового отзыва'}
+          errors={props.errors}
+          touched={props.touched}
+        />
+        <Input
+          type={'text'}
+          name={'date'}
+          label={'Дата нового отзыва: 11.11.2023'}
+          errors={props.errors}
+          touched={props.touched}
+        />
+        <Input
+          type={'textarea'}
+          name={'text'}
+          label={'Текст нового отзыва'}
+          errors={props.errors}
+          touched={props.touched}
+        />
+        <div className={'review-admin__btns'}>
+          <button
+            className={'btn btn__full btn__small'}
+            type="submit"
+          >
+            <small>{'Добавить новый отзыв'}</small>
+          </button>
+          <button
+            type="button"
+            className={'btn btn__transparent btn__small'}
+            onClick={() => props.resetForm()}
+          >
+            <small>{'Отмена'}</small>
+          </button>
+        </div>
+      </Form>
+    }}/>;
+}
+
+export function ReviewCardAdmin(props: ReviewCardProps) {
+  const dynamicStore = useDynamicStoreStore();
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!isEditing) {
+    return <div className={'review-admin'}>
+      <div>
+        <p className={'review-admin__title'}>{'Имя: '}{props.review.name}</p>
+        <small className={'review-admin__date'}>{'Дата: '}{props.review.date}</small>
+        <p className={'review-admin__text'}>{'Отзыв: '}{props.review.text}</p>
+      </div>
+      <div className={'review-admin__btns'}>
+        <button
+          className={'btn btn__full btn__small'}
+          onClick={() => setIsEditing(true)}
+        >
+          <small>{'Редактировать'}</small>
+        </button>
+        <button
+          className={'btn btn__transparent btn__small'}
+          onClick={event => {
+            event.preventDefault();
+            dynamicStore.patchData(stateDraft => {
+              stateDraft.reviews = stateDraft.reviews.filter(value => value.id !== props.review.id);
+            });
+          }}>
+          <small>{'Удалить'}</small>
+        </button>
+      </div>
+    </div>;
+  }
+
+  return <div>
+    <Formik
+      onSubmit={(values) => {
+        dynamicStore.patchData((stateDraft) => {
+          const review = stateDraft.reviews.find(value => value.id === props.review.id)!;
+
+          review.name = values.name;
+          review.text = values.text;
+          review.date = values.date;
+
+          setIsEditing(false);
+        })
+      }}
+      initialValues={{
+        'name': props.review.name,
+        'text': props.review.text,
+        'date': props.review.date,
+      }}
+      validationSchema={schema}
+      children={(props) => {
+        return <Form className={'review-admin__form'}>
+          <h4 className={'review-admin__title'}>{'Редактирование отзыва'}</h4>
+          <Input
+            type={'text'}
+            name={'date'}
+            label={'дата: (например 11.11.2023)'}
+            errors={props.errors}
+            touched={props.touched}
+          />
+          <Input
+            type={'text'}
+            name={'name'}
+            label={'Имя автора'}
+            errors={props.errors}
+            touched={props.touched}
+          />
+          <Input
+            type={'textarea'}
+            name={'text'}
+            label={'Текст отзыва'}
+            errors={props.errors}
+            touched={props.touched}
+          />
+          <div className={'review-admin__btns'}>
+            <button
+              type={'submit'}
+              className={'btn btn__full btn__small'}
+            >
+              <small>{'Сохранить изменения'}</small>
+            </button>
+            <button
+              type="button"
+              className={'btn btn__transparent btn__small'}
+              onClick={() => {
+                props.resetForm();
+                setIsEditing(false);
+              }}
+            >
+              <small>{'Отмена'}</small>
+            </button>
+          </div>
+        </Form>
+      }}
+    >
+    </Formik>
+  </div>;
+}

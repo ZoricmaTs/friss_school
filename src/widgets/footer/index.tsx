@@ -1,5 +1,6 @@
 import './style.scss';
-import {getSocialMediaLogo, socialMedia} from '../contacts';
+import {getSocialMediaLogo} from '../contacts';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
 export type FooterItem = {
   id: string,
@@ -11,17 +12,19 @@ export type Props = {
 }
 
 export function Footer() {
+  const dynamicStore = useDynamicStoreStore();
+
   return <footer className={'footer'}>
     <div className={'contacts__social-media'}>
-      {socialMedia.map((item, index) => {
+      {Object.entries(dynamicStore.contacts.socials).map(([name, href], index) => {
         return <a
           className={'contacts__social-media_item'}
-          href={item.href}
+          href={href}
           key={`social-media-${index}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {getSocialMediaLogo(item.name)}
+          {getSocialMediaLogo(name)}
         </a>;
       })}
     </div>

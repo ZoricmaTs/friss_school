@@ -56,3 +56,32 @@
   flex-direction: column;
   gap: 1.25rem;
 }
+
+
+.accordion-admin {
+  display: flex;
+  flex-direction: column;
+  border: 0.15rem solid #A97AB7;
+  padding: 1rem 1.25rem;
+  align-items: stretch;
+
+  &__form {
+    border: 0.15rem solid #A97AB7;
+    padding: 1rem 1.25rem;
+  }
+
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}

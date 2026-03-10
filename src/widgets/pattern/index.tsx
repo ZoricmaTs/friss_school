@@ -2,21 +2,14 @@ import './style.scss';
 import {LevelIcon} from './button.tsx';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
 import {type CSSProperties, useCallback, useEffect, useRef, useState} from 'react';
-
-// export enum PatternSizes {
-//   XS = 'xs',
-//   S = 's',
-//   M = 'm',
-//   L = 'l',
-// }
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
 export type PatternType = {
-  id: number,
+  id: string,
   title: string,
   image?: string
   price: number,
   salePrice?: number,
-  sizes: string[],
   level: number,
 }
 
@@ -51,8 +44,20 @@ export function getLevels() {
   ];
 }
 
-export function Pattern({props}: { props: PatternType }) {
+// eslint-disable-next-line react-refresh/only-export-components
+export function getLevel(level: number) {
   const levels = getLevels().filter((item) => item.id !== 0);
+
+  return <div className={'pattern__levels'}>
+    {levels.map((_item, index: number) => {
+      return <LevelIcon key={`${index}-level`} className={`pattern__level${(index + 1) <= level ? ' active' : ''}`} size={25}/>
+    })}
+  </div>;
+}
+
+export function Pattern({props}: { props: PatternType }) {
+  const dynamicStore = useDynamicStoreStore();
+
   const priceWithSales: CSSProperties = {
     textDecoration: 'line-through',
     textDecorationColor: '#f04343',
@@ -60,20 +65,20 @@ export function Pattern({props}: { props: PatternType }) {
   }
 
   return <a
-    className={'pattern'}
-    href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
+    className={'pattern pattern__levelsHoverTrigger'}
+    href={dynamicStore.contacts.socials.whatsapp}
     target="_blank"
     rel="noopener noreferrer"
   >
     <div className={'pattern__image-wrapper'}>
-      <div className={'pattern__image'} style={{backgroundImage: `url(${props.image})`}}></div>
+      <div className={'pattern__image'} style={{backgroundImage: `url(/dynamic/images/${props.image})`}}></div>
     </div>
     <div className={'pattern__info-wrapper'}>
       <p className={'pattern__title'}>{props.title}</p>
       <div className={'pattern__price-wrapper'}>
         <small>{'Цена: '}</small>
 
-        {props.price > 0 &&
+        {props.price !== 0 &&
           <h4
             className={'pattern__price'}
             style={props.salePrice && props.salePrice > 0 ? priceWithSales : {}}
@@ -82,26 +87,20 @@ export function Pattern({props}: { props: PatternType }) {
           </h4>
         }
 
-        {props.salePrice &&
+        {!!props.salePrice && props.salePrice < props.price &&
           <h4
             className={'pattern__sale-price'}
           >
-            {`${props.salePrice} ⃀`}
+            {`${props.salePrice} сом`}
           </h4>
         }
         {props.price === 0 && <div className={'pattern__free'}><p>{'бесплатно'}</p></div>}
       </div>
       <div className={'pattern__level-wrapper'}>
         <small>{'Сложность: '}</small>
-        <div className={'pattern__level'}>
-          {levels.map((item: { id: number, value: string | number }) => {
-            return <LevelIcon className={`pattern__level${item.id <= props.level ? ' active' : ''}`} size={25}/>
-          })}
-        </div>
+        {getLevel(props.level)}
       </div>
-      <div
-        className={'pattern__button'}
-      >
+      <div className={'pattern__button'}>
         <p>{'Купить'}</p>
       </div>
     </div>

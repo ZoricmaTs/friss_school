@@ -9,6 +9,7 @@
   --section-color-pink: #F2E6E8;
   //--hover-color: #FFCAD4;
   --hover-color: #E17F92;
+  --error-color: #f04343;
   --spacing-gutter: 1.5rem;
 }
 
@@ -97,3 +98,49 @@ body {
 .stop-scroll-animate {
   transform: translateY(0px);
 }
+
+.btn {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
+  padding: 1rem 1.25rem;
+
+  &__small {
+    padding: 0.5rem 0.75rem;
+  }
+
+  &__full {
+    background-color: #A97AB7;
+    border: 0.15rem solid transparent;
+    color: var(--bg-color);
+
+    &:hover {
+      transform: scale(1.04);
+      background-color: var(--hover-color);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      background-color: var(--hover-color);
+    }
+  }
+
+  &__transparent {
+    background-color: var(--bg-color);
+    border: 0.15rem solid #A97AB7;
+    color: #A97AB7;
+
+    &:hover {
+      transform: scale(1.04);
+      border: 0.15rem solid var(--hover-color);
+      color: var(--hover-color);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      border: 0.15rem solid var(--hover-color);
+      color: var(--hover-color);
+    }
+  }
+}
+

@@ -6,40 +6,15 @@ import {Dropdown} from '../widgets/dropdown';
 import {useState} from 'react';
 import {useScreen} from '../hooks/useScreen.ts';
 import {Modal} from '../widgets/modal';
+import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
 
 export const Route = createFileRoute('/patterns')({
   component: RouteComponent,
 })
 
-const patterns = [
-  {
-    id: 0,
-    title: 'юбка-шорты 1 вариант',
-    price: 200,
-    sizes: ['xs', 's', 'm', 'l'],
-    level: 3,
-    image: '/images/patterns/photo_2025-12-23_11-23-42.jpg',
-  },
-  {
-    id: 1,
-    title: 'юбка-шорты 2 вариант',
-    price: 200,
-    sizes: ['xs', 's', 'm', 'l'],
-    level: 3,
-    image: '/images/patterns/photo_2025-12-22_19-53-38.jpg',
-  },
-  {
-    id: 2,
-    title: 'юбка-шорты 3 вариант',
-    price: 200,
-    sizes: ['xs', 's', 'm', 'l'],
-    level: 3,
-    image: '/images/patterns/photo_2025-12-22_19-53-56.jpg',
-  },
-];
-
 function RouteComponent() {
-  const [items, setItems] = useState(patterns);
+  const dynamicStore = useDynamicStoreStore();
+  const [items, setItems] = useState(dynamicStore.patterns);
   const {width} = useScreen();
   const [open, setOpen] = useState<boolean>(false);
   const [activeId, setActiveId] = useState<number>(0);
@@ -53,11 +28,11 @@ function RouteComponent() {
 
   const onChangeLevel = (id: number) => {
     if (id === 0) {
-      setItems(patterns);
+      setItems(dynamicStore.patterns);
       return;
     }
 
-    const filteredItems = patterns.filter((item) => item.level === id);
+    const filteredItems = dynamicStore.patterns.filter((item) => item.level === id);
 
     setItems(filteredItems);
     setActiveId(id);
@@ -66,11 +41,9 @@ function RouteComponent() {
   return <>
     <div style={{minHeight: '100vh'}}>
       <Separator title={'Выкройки'} style={{marginTop: 0}}/>
-      <p className={'patterns__description'}>
-        {'Мы занимаемся изготовлением лекал, которые вы можете у нас заказать. ' +
-          'Либо выбрать готовые лекала для пошива современной одежды.  На сайте также есть бесплатные выкройки. Создайте любой образ с нами.\n' +
-          'Разный уровень сложности позволит шить вещи как новичкам, так и опытным мастерам. Лекала в формате pdf.'}
-      </p>
+      {dynamicStore.patternsText && <p className={'patterns__description'}>
+        {dynamicStore.patternsText}
+      </p>}
       <div className={'patterns__content-wrapper'} >
         <div className={'patterns__filter-wrapper'}>
           {width > 768
@@ -84,7 +57,7 @@ function RouteComponent() {
           }
         </div>
         {items.length > 0
-          ? <Patterns props={items} key={activeId}/>
+          ? <Patterns props={dynamicStore.patterns} key={activeId}/>
           : <div><p>{'Ничего не найдено.'}</p></div>
         }
       </div>

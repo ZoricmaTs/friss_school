@@ -1,71 +1,71 @@
-$gitPath = "$PSScriptRoot\PortableGit"
+$scriptDir = if (-not $PSScriptRoot) { Split-Path -Parent (Convert-Path ([Environment]::GetCommandLineArgs()[0])) } else { $PSScriptRoot }
+
+$gitPath = "$scriptDir\PortableGit"
 $gitBinariesPath = "$gitPath\bin"
 
 if (Test-Path "$gitBinariesPath") {
-    Write-Host "Git установлен." -ForegroundColor Green
+    Write-Host "Git is installed." -ForegroundColor Green
 } else {
     $gitUrl = "https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/PortableGit-2.52.0-64-bit.7z.exe"
     $zipName = "temp_git_archive.7z"
-    $zipFile = "$PSScriptRoot\$zipName"
+    $zipFile = "$scriptDir\$zipName"
     $exeFile = "$zipFile.exe"
 
-    Write-Host "Git не установлен." -ForegroundColor Red
+    Write-Host "Git isn't installed" -ForegroundColor Red
 
-    Write-Host "Скачиваем архив с Git..." -ForegroundColor Cyan
+    Write-Host "Downloading Git archive..." -ForegroundColor Cyan
     Invoke-WebRequest -Uri $gitUrl -OutFile $exeFile
 
-    # 3. Create destination folder if it doesn't exist
     if (-not (Test-Path $gitPath)) {
         New-Item -Path $gitPath -ItemType Directory
     }
 
-    # 4. Extract the contents
-    Write-Host "Распаковываем архив по пути: $gitPath..." -ForegroundColor Cyan
+    Write-Host "Unpacking Git to path: $gitPath..." -ForegroundColor Cyan
 
     if (Test-Path "C:\Program Files\7-Zip") {
+        Write-Host "7-Zip is installed! Unpacking silently..." -ForegroundColor Red
         Rename-Item -Path $exeFile -NewName $zipName
         & "C:\Program Files\7-Zip\7z.exe" x $zipFile "-o$gitPath" -y > $null
-        # Remove-Item $zipFile
-    } else { 
-        & $exeFile
-        # Remove-Item $exeFile
+        Remove-Item $zipFile
+        Remove-Item $exeFile
+    } else {
+        Write-Host "7-Zip isn't installed! Follow installer instructions" -ForegroundColor Red
+        Start-Process $exeFile -Wait
+        Remove-Item $exeFile
     }
 
-    # 5. Clean up (delete the zip file)
-    Write-Host "Готово!" -ForegroundColor Green
+    Write-Host "Done!" -ForegroundColor Green
 }
 
 
 $env:Path = "$gitBinariesPath;" + $env:Path
 
-$nodePath = "$PSScriptRoot\node"
+$nodePath = "$scriptDir\node"
 $nodeBinariesPath = "$nodePath\inner"
 
 if (Test-Path $nodeBinariesPath) { 
-    Write-Host "NodeJs установлен." -ForegroundColor Green
+    Write-Host "NodeJs is installed." -ForegroundColor Green
 } else {
     $nodeUrl = "https://nodejs.org/dist/v24.12.0/node-v24.12.0-win-x64.zip"
-    $zipFile = "$PSScriptRoot\temp_node_archive.zip"
-    Write-Host "NodeJs не установлен." -ForegroundColor Red
+    $zipFile = "$scriptDir\temp_node_archive.zip"
+    Write-Host "NodeJs isn't installed." -ForegroundColor Red
 
-    Write-Host "Скачиваем архив с NodeJs..." -ForegroundColor Cyan
-    # Invoke-WebRequest -Uri $nodeUrl -OutFile $zipFile
+    Write-Host "Downloading NodeJs archive..." -ForegroundColor Cyan
+    Invoke-WebRequest -Uri $nodeUrl -OutFile $zipFile
 
-    # 3. Create destination folder if it doesn't exist
     if (-not (Test-Path $nodePath)) {
         New-Item -Path $nodePath -ItemType Directory
     }
 
-    Write-Host "Распаковываем архив по пути: $nodePath..." -ForegroundColor Cyan
+    Write-Host "Unpacking node to path: $nodePath..." -ForegroundColor Cyan
     Expand-Archive $zipFile $nodePath -Force
 
     $innerNodeFolder = Get-ChildItem -Path $nodePath | Select-Object -First 1
     Rename-Item -Path "$nodePath\$innerNodeFolder" -NewName "inner"
 
-    # Remove-Item $zipFile
+    Remove-Item $zipFile
 
-    # 5. Clean up (delete the zip file)
-    Write-Host "Готово!" -ForegroundColor Green
+    Write-Host "Done!" -ForegroundColor Green
 }
 
 $env:Path = "$nodeBinariesPath;" + $env:Path
@@ -74,7 +74,7 @@ Get-Command git
 Get-Command node
 Get-Command npm
 
-$projectPath = "$PSScriptRoot\friss_school"
+$projectPath = "$scriptDir\friss_school"
 
 if (-not (Test-Path $projectPath)) {
     git clone "https://github.com/ZoricmaTs/friss_school.git"
@@ -82,8 +82,12 @@ if (-not (Test-Path $projectPath)) {
 
 Push-Location $projectPath
 
+git fetch
+
+git checkout "emiller/feat/dynamic-data"
+
+git pull --force
+
 npm i
 
 npm run admin
-
-Pop-Location

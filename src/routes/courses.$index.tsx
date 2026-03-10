@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {Separator} from '../widgets/separator';
 import {TabsWidget} from '../widgets/tab';
-import {courses} from '../widgets/courses';
 import {Footer} from '../widgets/footer';
+import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
 
 export const Route = createFileRoute('/courses/$index')({
   component: RouteComponent,
@@ -10,17 +10,18 @@ export const Route = createFileRoute('/courses/$index')({
 
 function RouteComponent() {
   const route = Route.useParams();
+  const dynamicStore = useDynamicStoreStore();
 
-  const items = courses.map((item, index: number) => {
+  const items = dynamicStore.courses.map((item, index: number) => {
     return {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
         <div className={'tab-course__img-wrapper'}>
-          <div style={{backgroundImage: `url(${courses[index].imageUrl})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+          <div style={{backgroundImage: `url(/dynamic/images/${dynamicStore.courses[index].image})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
         </div>
 
         <div className={'tab-course__info-wrapper'}>
-          <p style={{textAlign: 'justify'}}>{item.description}</p>
+          <p style={{textAlign: 'justify', whiteSpace: 'break-spaces'}}>{item.description}</p>
           <div className={'tab-course__info'}>
             <div className={'tab-course__duration'}>
               <h4 style={{marginRight: '1rem'}}>{'Продолжительность курса:'}</h4>
@@ -48,10 +49,16 @@ function RouteComponent() {
         whiteSpace: 'nowrap',
       }}>{'в FRISS SCHOOL'}</p>
     </Separator>
-    <TabsWidget
-      tabs={items}
-      initialIndex={parseInt(route.index)}
-    />
+    {
+      items.length > 0
+      ? <TabsWidget
+          tabs={items}
+          initialIndex={parseInt(route.index)}
+        />
+        : <div style={{height: 'calc(100vh - 106px)'}} className={'tab'}>
+          <p>{'Курсы не найдены.'}</p>
+        </div>
+    }
     <Footer/>
   </>;
 }

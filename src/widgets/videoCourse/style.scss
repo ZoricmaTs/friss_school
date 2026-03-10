@@ -23,6 +23,7 @@
     transition: transform 0.2s ease;
     text-align: center;
     margin: 1rem 0;
+    text-decoration: none;
   }
 
   &__btn_full {
@@ -50,5 +51,20 @@
     &__btn_full {
       width: 100%;
     }
+  }
+}
+
+.video-course-admin {
+  display: flex;
+  flex-direction: column;
+  &__text {
+    width: 100%;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 }

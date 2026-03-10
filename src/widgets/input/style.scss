@@ -1,0 +1,26 @@
+.input {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  border-radius: 0;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  padding: 0.25rem 0.75rem;
+
+  &__label {
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+  }
+
+  &__wrapper {
+    width:  100%;
+  }
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.input.error {
+  border: 2px solid var(--error-color);
+}

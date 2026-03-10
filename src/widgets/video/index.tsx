@@ -2,8 +2,11 @@ import './style.scss';
 import {PauseIcon, PlayIcon, SpeakerSimpleHighIcon, SpeakerSimpleSlashIcon} from '@phosphor-icons/react';
 import {useEffect, useRef, useState} from 'react';
 import {useScrollHider} from '../../hooks/scroll-observer.ts';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
 export function VideoSection() {
+  const dynamicStore = useDynamicStoreStore();
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState<boolean>(true);
   const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -62,23 +65,8 @@ export function VideoSection() {
       </button>}
     </div>
     <div className={'video-section__info-container'}>
-      <h2 className={'video-section__title'}>{'Курс кройки и шитья — обучение с нуля'}</h2>
-      <p className={'video-section__description'}>{'Добрый день!'}</p>
-      <br/>
-      <p className={'video-section__description'}>{'Меня зовут Ольга Борисовна. в швейном бизнесе уже больше 20 лет,' +
-        ' а последние шесть лет с огромной радостью передаю свои знания другим.'}</p>
-      <br/>
-      <p className={'video-section__description'}>{'Наша школа — это современный обучающий проект, где мы помогаем людям не просто приобрести профессию, а исполнить свои мечты.'}</p>
-      <br/>
-      <p className={'video-section__description'}>
-        {'Мы обучаем с нуля в маленьких уютных группах, с 12 лет и до... Всё максимально просто и доступно. У нас профессиональное оборудование, все материалы включены, и мы работаем в теплом, творческом пространстве.'}
-      </p>
-      <br/>
-      <p className={'video-section__description'}>
-        {'И результат вдохновляет! Наши ученицы открывают свои мастерские и ателье, запускают брендовые коллекции. Для кого-то это новая профессия, которая помогает в трудные времена, а для кого-то — любимое хобби, отдушина от основной работы.'}
-      </p>
-      <br/>
-      <p>{'Мне безумно нравится видеть этот результат — как у людей загораются глаза, когда они создают свою первую, а потом и сотую вещь. Это модно, это творчество, это свобода.'}</p>
+      <h2 className={'video-section__title'}>{dynamicStore.header.title}</h2>
+      <p className={'video-section__description'}>{dynamicStore.header.description}</p>
     </div>
   </section>
 }

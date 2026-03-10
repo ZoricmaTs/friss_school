@@ -12,6 +12,7 @@ export default defineConfig({
     headers: {
       'Cross-Origin-Embedder-Policy': 'unsafe-none',
     },
+    port: 3010,
   },
   base: "/"
 })

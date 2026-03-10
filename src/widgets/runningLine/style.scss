@@ -77,3 +77,50 @@
     transform: translateX(-50%);
   }
 }
+
+.lines {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    border: 0.15rem solid #A97AB7;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+
+    &_text {
+      padding: 0.5rem 0;
+    }
+  }
+
+  &__item-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 0.15rem solid #A97AB7;
+    padding: 1rem 1rem 0.25rem 1rem;
+
+    &_container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    &_btn {
+
+    }
+    &_btns {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+}

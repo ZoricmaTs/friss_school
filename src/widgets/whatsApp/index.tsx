@@ -1,10 +1,12 @@
 import {WhatsappLogoIcon} from '@phosphor-icons/react';
 import './style.scss';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
 export function WhatsAppWidget() {
+  const dynamicStore = useDynamicStoreStore();
   return <a
     className={'whatsapp-widget'}
-    href={'https://api.whatsapp.com/send/?phone=996504362514&text&type=phone_number&app_absent=0&utm_source=ig'}
+    href={dynamicStore.contacts.socials.whatsapp}
     target="_blank"
     rel="noopener noreferrer"
   >
