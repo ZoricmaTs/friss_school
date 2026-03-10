@@ -82,7 +82,9 @@ if (-not (Test-Path $projectPath)) {
 
 Push-Location $projectPath
 
-git config pull.rebase true
+git config --local credential.helper manager-core
+git config --local pull.rebase true
+
 git config --local user.name "Friss Bot"
 git config --local user.email "bot@friss.studio"
 
