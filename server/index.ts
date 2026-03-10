@@ -27,7 +27,7 @@ const corsOptions = {
 }
 
 app.use(express.json());
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -49,7 +49,7 @@ ensureDirs().catch((err) => {
 });
 
 async function clearOrphanImages() {
-  const config = await fs.readFile(CONFIG_FILE_LOCAl, 'utf8');
+  const config = await fs.readFile(CONFIG_FILE, 'utf8');
 
   const images = fs.readdir(IMAGES_UPLOAD_DIR);
 
@@ -179,14 +179,23 @@ app.post('/publish', async (_, res) => {
     await execPromise('git commit -m "Publish"');
     await execPromise('git push origin main');
 
-    return res.status(200);
+    return res.status(200).send();
   } catch (err: unknown) {
-    console.error('Error in /publish:', err);
+    return res.status(500).json({error: `Internal server error: ${err}`});
   }
 });
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: unknown, _req: unknown, _res: unknown, _next: unknown) => {
+  console.error('Global error handler:', err);
+  server.close(() => {
+    console.log('HTTP server closed. Exiting process.');
+    process.exit(1); // Exit with a 'failure' code
+  });
 });
