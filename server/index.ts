@@ -197,9 +197,9 @@ app.post('/publish', async (_, res) => {
     await fs.cp(path.resolve(__dirname, '..', 'dist'), path.resolve(__dirname, '..', 'docs'), {recursive: true})
 
     console.log('Friss server: Git marking files as changed');
-    await execPromise('git add --all');
+    await execPromise('git -c credential.helper=manager-core add --all');
     console.log('Friss server: Git committing changes');
-    await execPromise('git commit -m "Publish"');
+    await execPromise('git -c credential.helper=manager-core commit -m "Publish"');
     console.log('Friss server: Git pushing changes');
     await execPromise('git -c credential.helper=manager-core push -u origin master');
 
