@@ -8,6 +8,7 @@ export type RootStore = DataRootType & {
   patchData: (changer: (stateDraft: Draft<DataRootType>) => void) => void
   saveData: () => Promise<Response>
   publish: () => Promise<void>
+  resetChanges: () => Promise<void>
   isSaved: boolean
   isSaving: boolean
 }
@@ -38,7 +39,8 @@ export const createDynamicStore = (initProps: DataRootType, isSaved: boolean) =>
         } catch (e) {
           alert('При сохранении изменений произошла ошибка! Перезапустите скрипт! Мы попытаемся сохранить весь снимок ваших данных в буфер обмена и консоль');
           console.log('Не удалось сохранить данные:', updatedState);
-          navigator.clipboard.writeText(JSON.stringify(updatedState)).catch(() => {});
+          navigator.clipboard.writeText(JSON.stringify(updatedState)).catch(() => {
+          });
           throw e;
         }
       },
@@ -52,6 +54,24 @@ export const createDynamicStore = (initProps: DataRootType, isSaved: boolean) =>
         } catch (e) {
           alert('При публикации сайта возникла ошибка! Изменения сохранены локально, но не опубликованы. Возможно, выключен сервер, не удаётся авторизоваться в GitHub или возникли конфликты слияния. Рекомендуем связаться с разработчиком');
           setState({isSaving: false});
+          throw e;
+        }
+      },
+      resetChanges: async () => {
+        try {
+          setState({isSaving: true});
+          const stableConfig: DataRootType = await (await fetch('/dynamic/config.json')).json();
+          await fetch('http://localhost:3000/remove-local-config', {
+            method: 'POST',
+          });
+          setState({...stableConfig, isSaving: false, isSaved: true});
+        } catch (e) {
+          setState({isSaving: false, isSaved: false});
+          const state = getState();
+          alert('При сохранении изменений произошла ошибка! Перезапустите скрипт! Мы попытаемся сохранить весь снимок ваших данных в буфер обмена и консоль');
+          console.log('Не удалось сохранить данные:', state);
+          navigator.clipboard.writeText(JSON.stringify(state)).catch(() => {
+          });
           throw e;
         }
       },

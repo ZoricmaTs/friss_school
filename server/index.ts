@@ -172,6 +172,16 @@ app.patch('/update-config', async (req, res) => {
   }
 });
 
+app.post('/remove-local-config', async (_, res) => {
+  try {
+    await fs.rm(CONFIG_FILE_LOCAl);
+    return res.json({success: true});
+  } catch (err: unknown) {
+    console.error('Error in /remove-local-config:', err);
+    return res.status(500).json({error: `Internal server error: ${err}`});
+  }
+});
+
 app.post('/publish', async (_, res) => {
   try {
     console.log('Friss server: Started publishing process');

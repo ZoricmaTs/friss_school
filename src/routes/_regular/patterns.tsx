@@ -1,14 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {Footer} from '../widgets/footer';
-import {Separator} from '../widgets/separator';
-import {getLevels, Patterns} from '../widgets/pattern';
-import {Dropdown} from '../widgets/dropdown';
+import {Footer} from '../../widgets/footer';
+import {Separator} from '../../widgets/separator';
+import {getLevels, Patterns} from '../../widgets/pattern';
+import {Dropdown} from '../../widgets/dropdown';
 import {useState} from 'react';
-import {useScreen} from '../hooks/useScreen.ts';
-import {Modal} from '../widgets/modal';
-import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
+import {useScreen} from '../../hooks/useScreen.ts';
+import {Modal} from '../../widgets/modal';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
-export const Route = createFileRoute('/patterns')({
+export const Route = createFileRoute('/_regular/patterns')({
   component: RouteComponent,
 })
 

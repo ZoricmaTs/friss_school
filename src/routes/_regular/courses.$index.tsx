@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {Separator} from '../widgets/separator';
-import {TabsWidget} from '../widgets/tab';
-import {Footer} from '../widgets/footer';
-import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
+import {Separator} from '../../widgets/separator';
+import {TabsWidget} from '../../widgets/tab';
+import {Footer} from '../../widgets/footer';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
-export const Route = createFileRoute('/courses/$index')({
+export const Route = createFileRoute('/_regular/courses/$index')({
   component: RouteComponent,
 })
 
@@ -17,7 +17,7 @@ function RouteComponent() {
       label: item.title,
       content: <div key={item.id} className={'tab-course'}>
         <div className={'tab-course__img-wrapper'}>
-          <div style={{backgroundImage: `url(/dynamic/images/${dynamicStore.courses[index].image})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+          <div style={{backgroundImage: `url(/dynamic/images/${dynamicStore.courses[index].image})`, width: `100%`, height: `100%`, backgroundSize: `cover`, backgroundPosition: `center`}}></div>
         </div>
 
         <div className={'tab-course__info-wrapper'}>

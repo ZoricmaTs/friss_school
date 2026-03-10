@@ -35,17 +35,28 @@ export function TabsWidget({tabs, initialIndex}: Props) {
 
   return (
     <div className={'tab'} ref={rootRef}>
-      {!dynamicStore.isSaved &&
-        <button className={'tab__pub-btn'} onClick={() => {
-          if (dynamicStore.isSaving) {
-            return;
-          }
+      {!dynamicStore.isSaved && (
+        <div className={'tab__changes-wrapper'}>
+          <button className={'tab__changes-btn _reset'} onClick={() => {
+            if (dynamicStore.isSaving) {
+              return;
+            }
 
-          dynamicStore.publish().catch(null);
-        }}>
-          <p>{'Опубликовать изменения'}</p> {dynamicStore.isSaving && <SpinnerIcon size={20}/>}
-        </button>
-      }
+            dynamicStore.resetChanges().catch(null);
+          }}>
+            <p>{'Отменить неопубликованные изменения'}</p> {dynamicStore.isSaving && <SpinnerIcon size={20}/>}
+          </button>
+          <button className={'tab__changes-btn _pub'} onClick={() => {
+            if (dynamicStore.isSaving) {
+              return;
+            }
+
+            dynamicStore.publish().catch(null);
+          }}>
+            <p>{'Опубликовать изменения'}</p> {dynamicStore.isSaving && <SpinnerIcon size={20}/>}
+          </button>
+        </div>
+      )}
 
       <div className={'tab__btn-wrapper'} ref={tabsWrapper}>
         {tabs.map((t, index) => (

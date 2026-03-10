@@ -9,75 +9,78 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PatternsRouteImport } from './routes/patterns'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CoursesIndexRouteImport } from './routes/courses.$index'
+import { Route as RegularRouteRouteImport } from './routes/_regular/route'
+import { Route as RegularIndexRouteImport } from './routes/_regular/index'
+import { Route as RegularPatternsRouteImport } from './routes/_regular/patterns'
+import { Route as RegularCoursesIndexRouteImport } from './routes/_regular/courses.$index'
 
-const PatternsRoute = PatternsRouteImport.update({
-  id: '/patterns',
-  path: '/patterns',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const RegularRouteRoute = RegularRouteRouteImport.update({
+  id: '/_regular',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CoursesIndexRoute = CoursesIndexRouteImport.update({
+const RegularIndexRoute = RegularIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RegularRouteRoute,
+} as any)
+const RegularPatternsRoute = RegularPatternsRouteImport.update({
+  id: '/patterns',
+  path: '/patterns',
+  getParentRoute: () => RegularRouteRoute,
+} as any)
+const RegularCoursesIndexRoute = RegularCoursesIndexRouteImport.update({
   id: '/courses/$index',
   path: '/courses/$index',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => RegularRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/patterns': typeof PatternsRoute
-  '/courses/$index': typeof CoursesIndexRoute
+  '/patterns': typeof RegularPatternsRoute
+  '/': typeof RegularIndexRoute
+  '/courses/$index': typeof RegularCoursesIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/patterns': typeof PatternsRoute
-  '/courses/$index': typeof CoursesIndexRoute
+  '/patterns': typeof RegularPatternsRoute
+  '/': typeof RegularIndexRoute
+  '/courses/$index': typeof RegularCoursesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_regular': typeof RegularRouteRouteWithChildren
   '/admin': typeof AdminRoute
-  '/patterns': typeof PatternsRoute
-  '/courses/$index': typeof CoursesIndexRoute
+  '/_regular/patterns': typeof RegularPatternsRoute
+  '/_regular/': typeof RegularIndexRoute
+  '/_regular/courses/$index': typeof RegularCoursesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/patterns' | '/courses/$index'
+  fullPaths: '/admin' | '/patterns' | '/' | '/courses/$index'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/patterns' | '/courses/$index'
-  id: '__root__' | '/' | '/admin' | '/patterns' | '/courses/$index'
+  to: '/admin' | '/patterns' | '/' | '/courses/$index'
+  id:
+    | '__root__'
+    | '/_regular'
+    | '/admin'
+    | '/_regular/patterns'
+    | '/_regular/'
+    | '/_regular/courses/$index'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  RegularRouteRoute: typeof RegularRouteRouteWithChildren
   AdminRoute: typeof AdminRoute
-  PatternsRoute: typeof PatternsRoute
-  CoursesIndexRoute: typeof CoursesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/patterns': {
-      id: '/patterns'
-      path: '/patterns'
-      fullPath: '/patterns'
-      preLoaderRoute: typeof PatternsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -85,28 +88,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/_regular': {
+      id: '/_regular'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof RegularRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/courses/$index': {
-      id: '/courses/$index'
+    '/_regular/': {
+      id: '/_regular/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof RegularIndexRouteImport
+      parentRoute: typeof RegularRouteRoute
+    }
+    '/_regular/patterns': {
+      id: '/_regular/patterns'
+      path: '/patterns'
+      fullPath: '/patterns'
+      preLoaderRoute: typeof RegularPatternsRouteImport
+      parentRoute: typeof RegularRouteRoute
+    }
+    '/_regular/courses/$index': {
+      id: '/_regular/courses/$index'
       path: '/courses/$index'
       fullPath: '/courses/$index'
-      preLoaderRoute: typeof CoursesIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof RegularCoursesIndexRouteImport
+      parentRoute: typeof RegularRouteRoute
     }
   }
 }
 
+interface RegularRouteRouteChildren {
+  RegularPatternsRoute: typeof RegularPatternsRoute
+  RegularIndexRoute: typeof RegularIndexRoute
+  RegularCoursesIndexRoute: typeof RegularCoursesIndexRoute
+}
+
+const RegularRouteRouteChildren: RegularRouteRouteChildren = {
+  RegularPatternsRoute: RegularPatternsRoute,
+  RegularIndexRoute: RegularIndexRoute,
+  RegularCoursesIndexRoute: RegularCoursesIndexRoute,
+}
+
+const RegularRouteRouteWithChildren = RegularRouteRoute._addFileChildren(
+  RegularRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  RegularRouteRoute: RegularRouteRouteWithChildren,
   AdminRoute: AdminRoute,
-  PatternsRoute: PatternsRoute,
-  CoursesIndexRoute: CoursesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

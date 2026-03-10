@@ -1,17 +1,17 @@
 import {createFileRoute} from '@tanstack/react-router';
-import {VideoSection} from '../widgets/video';
-import {Separator} from '../widgets/separator';
-import {Courses} from '../widgets/courses';
-import {Carousel} from '../widgets/carousel';
-import {CarouselReviews} from '../widgets/carousel/reviews.tsx';
-import Accordions from '../widgets/accordion';
-import {Contacts} from '../widgets/contacts';
-import {Footer} from '../widgets/footer';
-import {RunningLine} from '../widgets/runningLine';
-import {VideoCourse} from '../widgets/videoCourse';
-import {useDynamicStoreStore} from '../providers/dynamicStore.ts';
+import {VideoSection} from '../../widgets/video';
+import {Separator} from '../../widgets/separator';
+import {Courses} from '../../widgets/courses';
+import {Carousel} from '../../widgets/carousel';
+import {CarouselReviews} from '../../widgets/carousel/reviews.tsx';
+import Accordions from '../../widgets/accordion';
+import {Contacts} from '../../widgets/contacts';
+import {Footer} from '../../widgets/footer';
+import {RunningLine} from '../../widgets/runningLine';
+import {VideoCourse} from '../../widgets/videoCourse';
+import {useDynamicStoreStore} from '../../providers/dynamicStore.ts';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_regular/')({
   component: Index,
 })
 
