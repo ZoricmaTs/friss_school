@@ -84,8 +84,6 @@ Push-Location $projectPath
 
 git fetch
 
-git checkout "emiller/feat/dynamic-data"
-
 git pull --force
 
 npm i
