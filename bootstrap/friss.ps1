@@ -1,5 +1,7 @@
 $scriptDir = if (-not $PSScriptRoot) { Split-Path -Parent (Convert-Path ([Environment]::GetCommandLineArgs()[0])) } else { $PSScriptRoot }
 
+Push-Location $scriptDir
+
 $gitPath = "$scriptDir\PortableGit"
 $gitBinariesPath = "$gitPath\bin"
 
@@ -82,7 +84,10 @@ if (-not (Test-Path $projectPath)) {
 
 Push-Location $projectPath
 
+git config credential.helper manager-core
 git config --local credential.helper manager-core
+git config --global credential.helper manager-core
+
 git config --local pull.rebase true
 
 git config --local user.name "Friss Bot"

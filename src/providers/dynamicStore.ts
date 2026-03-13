@@ -60,7 +60,7 @@ export const createDynamicStore = (initProps: DataRootType, isSaved: boolean) =>
       resetChanges: async () => {
         try {
           setState({isSaving: true});
-          const stableConfig: DataRootType = await (await fetch('/dynamic/config.json')).json();
+          const stableConfig: DataRootType = await (await fetch(`/dynamic/config.json?t=${Date.now()}`)).json();
           await fetch('http://localhost:3000/remove-local-config', {
             method: 'POST',
           });

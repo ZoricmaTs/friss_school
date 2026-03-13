@@ -29,14 +29,14 @@ async function main() {
 
   if (import.meta.env.VITE_ADMIN === 'true') {
     try {
-      dynamicData = await (await fetch('/dynamic/config_local.json')).json();
+      dynamicData = await (await fetch(`/dynamic/config_local.json?t=${Date.now()}`)).json();
       isSaved = false;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
-      dynamicData = await (await fetch('/dynamic/config.json')).json();
+      dynamicData = await (await fetch(`/dynamic/config.json?t=${Date.now()}`)).json();
     }
   } else {
-    dynamicData = await (await fetch('/dynamic/config.json')).json();
+    dynamicData = await (await fetch(`/dynamic/config.json?t=${Date.now()}`)).json();
   }
 
   const dynamicStore = createDynamicStore(dynamicData, isSaved);
